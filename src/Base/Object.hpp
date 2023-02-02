@@ -1,0 +1,34 @@
+#ifndef __NEUTRONTL_BASE_OBJECT_HPP__
+#define __NEUTRONTL_BASE_OBJECT_HPP__
+
+#include <string>
+#include "BasicObject.hpp"
+#include "Type.hpp"
+
+namespace ntl
+{
+    /// @brief 对象类，有虚函数表
+    class NTL_ALIGN Object : public BasicObject
+    {
+    public:
+        /// @brief 自身类型
+        using SelfType = Object;
+        /// @brief 父类类型
+        using ParentType = BasicObject;
+
+    public:
+        NTL_CONSTEXPR Object() NTL_NOEXCEPT = default;
+        NTL_CONSTEXPR NTL_EXPLICIT Object(const SelfType &from) NTL_NOEXCEPT = default;
+        NTL_VIRTUAL ~Object() = default;
+
+    public:
+        NTL_INLINE NTL_CONSTEXPR SelfType &operator=(const SelfType &from) NTL_NOEXCEPT = default;
+
+    public:
+        /// @brief 转换为字符串
+        /// @return 转换后的结果
+        NTL_VIRTUAL String as_string() const;
+    };
+} // namespace ntl
+
+#endif
