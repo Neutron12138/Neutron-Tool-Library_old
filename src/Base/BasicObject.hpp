@@ -1,0 +1,25 @@
+#ifndef __NEUTRONTL_BASE_BASICOBJECT_HPP__
+#define __NEUTRONTL_BASE_BASICOBJECT_HPP__
+
+#include "../Config.hpp"
+
+namespace ntl
+{
+    /// @brief 基础对象类，所有NTL对象的基类
+    class NTL_ALIGN BasicObject
+    {
+    public:
+        /// @brief 自身类型
+        using SelfType = BasicObject;
+
+    public:
+        constexpr BasicObject() noexcept = default;
+        constexpr explicit BasicObject(const SelfType &from) noexcept = default;
+        ~BasicObject() = default;
+
+    public:
+        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
+    };
+} // namespace ntl
+
+#endif
