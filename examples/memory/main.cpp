@@ -32,7 +32,7 @@ int main()
     }
     catch (const ntl::NullPointerException &e)
     {
-        std::wcout << e << std::endl;
+        std::cout << e << std::endl;
     }
 
     std::cout << "----------" << std::endl;

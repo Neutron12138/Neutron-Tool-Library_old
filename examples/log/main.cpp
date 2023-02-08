@@ -4,6 +4,6 @@
 
 int main()
 {
-    ntl::log.logi(L"Title", L"Good Job");
+    ntl::log.logi("Title", "Good Job");
     return 0;
 }

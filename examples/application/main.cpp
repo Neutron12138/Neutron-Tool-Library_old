@@ -19,7 +19,7 @@ public:
         std::cout << "onDestroyed" << std::endl;
     }
 
-    void onIdle(const ntl::Time &delta_time) override
+    void onIdle() override
     {
         std::cout << "onIdle" << std::endl;
     }

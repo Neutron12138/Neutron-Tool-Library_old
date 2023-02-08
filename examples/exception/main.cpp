@@ -12,7 +12,7 @@ int main()
     }
     catch (const ntl::Exception &e)
     {
-        std::wcout << e << std::endl;
+        std::cout << e << std::endl;
     }
 
     return 0;
@@ -20,5 +20,5 @@ int main()
 
 void test()
 {
-    throw ntl::NullPointerException(L"some place");
+    throw ntl::NullPointerException("some place");
 }

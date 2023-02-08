@@ -5,8 +5,8 @@
 
 int main()
 {
-    NTL_set_debug_output([](const wchar_t *str)
-                         { std::wcout << str << std::endl; });
-    NTL_debug_output(L"abc");
+    NTL_set_debug_output([](const char *str)
+                         { std::cout << str << std::endl; });
+    NTL_debug_output("abc");
     return 0;
 }
