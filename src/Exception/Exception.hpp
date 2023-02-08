@@ -47,7 +47,7 @@ namespace ntl
         inline const String &where() const;
     };
 
-    std::wostream &operator<<(std::wostream &os, const Exception &exception);
+    OutputStream &operator<<(OutputStream &os, const Exception &exception);
 } // namespace ntl
 
 #endif

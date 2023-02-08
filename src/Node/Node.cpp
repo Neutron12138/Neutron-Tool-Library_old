@@ -24,12 +24,19 @@ namespace ntl
         }
         catch (const std::out_of_range &exception)
         {
-            throw OutOfRangeException(StringUtils::to_string(L"Attempt to get non-existent child node:\"", name, L"\""),
-                                      L"template <typename m_ChildNodeType> typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::operator[](const String &name)");
+            throw OutOfRangeException(
+                StringUtils::to_string(
+                    NTL_CSTRING("Attempt to get non-existent child node:\""),
+                    name,
+                    NTL_CSTRING("\"")),
+                NTL_CSTRING("template <typename m_ChildNodeType> typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::operator[](const String &name)"));
         }
         catch (const std::exception &exception)
         {
-            throw Exception(StringUtils::to_wstring(exception.what()), L"", L"template <typename m_ChildNodeType> typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::operator[](const String &name)");
+            throw Exception(
+                StringUtils::to_stl_string(exception.what()),
+                NTL_CSTRING(""),
+                NTL_CSTRING("template <typename m_ChildNodeType> typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::operator[](const String &name)"));
         }
     }
 
@@ -54,12 +61,20 @@ namespace ntl
         }
         catch (const std::out_of_range &exception)
         {
-            throw OutOfRangeException(StringUtils::to_string(L"Attempt to get non-existent child node:\"", name, L"\""),
-                                      L"template <typename m_ChildNodeType> const typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::get_child_node(const String &name) const");
+            throw OutOfRangeException(
+                StringUtils::to_string(
+                    NTL_CSTRING("Attempt to get non-existent child node:\""),
+                    name,
+                    NTL_CSTRING("\"")),
+                NTL_CSTRING("template <typename m_ChildNodeType> const typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::get_child_node(const String &name) const"));
         }
         catch (const std::exception &exception)
         {
-            throw Exception(StringUtils::to_wstring(exception.what()), L"", L"template <typename m_ChildNodeType> const typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::get_child_node(const String &name) const");
+            throw Exception(
+                StringUtils::to_stl_string(
+                    exception.what()),
+                NTL_CSTRING(""),
+                NTL_CSTRING("template <typename m_ChildNodeType> const typename Node<m_ChildNodeType>::ChildNodeType &Node<m_ChildNodeType>::get_child_node(const String &name) const"));
         }
     }
 

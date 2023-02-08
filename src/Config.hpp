@@ -10,18 +10,17 @@
 // NEUTRONTL_CONFIG_NO_DEBUG 不包含Debug.hpp与Debug.cpp
 // NEUTRONTL_CONFIG_NO_INCLUDES 不包含Includes.hpp
 
-// NEUTRONTL_CONFIG_USE_CHAR 不使用宽字符而使用单字节字符
+// NEUTRONTL_CONFIG_USE_WCHAR 使用宽字节字符串而不是多字节字符串
 
 // 实现：
 
-// 使用char
-#ifdef NEUTRONTL_CONFIG_USE_CHAR
-#warning Not using wide characters is not a good idea. It has not been tested.
-/// @brief NTL字符
-using NTL_CHAR = char;
-#else
+// 使用wchar
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
 /// @brief NTL字符
 using NTL_CHAR = wchar_t;
+#else
+/// @brief NTL字符
+using NTL_CHAR = char;
 #endif
 
 // 禁用内存对齐

@@ -18,6 +18,9 @@ namespace ntl
         /// @brief 上一次调用onIdle()的时间
         Time m_last_idle = ZeroSecond;
 
+        /// @brief 两次调用onIdle()之间相差的时间
+        Time m_delta_time = ZeroSecond;
+
         /// @brief 是否正在运行
         bool m_is_running = false;
 
@@ -49,8 +52,7 @@ namespace ntl
         virtual void onDestroyed() = 0;
 
         /// @brief 当系统空闲时调用
-        /// @param delta_time 距上一次调用经过的时间
-        virtual void onIdle(const Time &delta_time) = 0;
+        virtual void onIdle() = 0;
     };
 } // namespace ntl
 

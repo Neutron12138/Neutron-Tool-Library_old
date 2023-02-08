@@ -15,17 +15,17 @@ namespace __ntl__
         return debugger;
     }
 
-    void __Debugger__::set_output_func(const std::function<void(const wchar_t *)> &output_func)
+    void __Debugger__::set_output_func(const std::function<void(const NTL_CHAR *)> &output_func)
     {
         m_output_func = output_func;
     }
 
-    const std::function<void(const wchar_t *)> &__Debugger__::get_output_func() const
+    const std::function<void(const NTL_CHAR *)> &__Debugger__::get_output_func() const
     {
         return m_output_func;
     }
 
-    void __Debugger__::output(const wchar_t *str)
+    void __Debugger__::output(const NTL_CHAR *str)
     {
         m_output_func(str);
     }

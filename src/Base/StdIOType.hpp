@@ -9,7 +9,7 @@
 
 namespace ntl
 {
-#ifndef NEUTRONTL_CONFIG_USE_CHAR
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
 
     /// @brief 字符串类型
     using String = std::wstring;

@@ -2,7 +2,7 @@
 #define __NEUTRONTL_DEBUG_HPP__
 
 #include <functional>
-#include "Base/BasicObject.hpp"
+#include "Base/Object.hpp"
 
 #ifndef NEUTRONTL_CONFIG_NO_DEBUG
 
@@ -36,7 +36,7 @@
 namespace __ntl__
 {
     /// @brief 调试器，单例对象
-    class __Debugger__ : public ntl::BasicObject
+    class __Debugger__ : public ntl::Object
     {
     public:
         using SelfType = __Debugger__;
@@ -45,7 +45,7 @@ namespace __ntl__
         static __Debugger__ &get();
 
     private:
-        std::function<void(const wchar_t *)> m_output_func;
+        std::function<void(const NTL_CHAR *)> m_output_func;
 
     private:
         __Debugger__() = default;
@@ -60,9 +60,9 @@ namespace __ntl__
         SelfType &operator=(const SelfType &&from) = delete;
 
     public:
-        void set_output_func(const std::function<void(const wchar_t *)> &output_func);
-        const std::function<void(const wchar_t *)> &get_output_func() const;
-        void output(const wchar_t *str);
+        void set_output_func(const std::function<void(const NTL_CHAR *)> &output_func);
+        const std::function<void(const NTL_CHAR *)> &get_output_func() const;
+        void output(const NTL_CHAR *str);
     };
 } // namespace __ntl__
 

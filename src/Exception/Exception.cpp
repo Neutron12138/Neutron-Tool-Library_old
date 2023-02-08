@@ -30,15 +30,15 @@ namespace ntl
         return m_where;
     }
 
-    std::wostream &
+    OutputStream &
     operator<<(
-        std::wostream &os,
+        OutputStream &os,
         const Exception &exception)
     {
-        os << L"Exception:" << std::endl
-           << L"what:" << exception.what() << std::endl
-           << L"why:" << exception.why() << std::endl
-           << L"where:" << exception.where() << std::endl;
+        os << NTL_STRING("Exception:") << std::endl
+           << NTL_STRING("what:") << exception.what() << std::endl
+           << NTL_STRING("why:") << exception.why() << std::endl
+           << NTL_STRING("where:") << exception.where() << std::endl;
         return os;
     }
 } // namespace ntl

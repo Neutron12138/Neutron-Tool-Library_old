@@ -10,12 +10,12 @@
 #include "../Base/Object.hpp"
 #include "../Base/Type.hpp"
 
-#ifndef NEUTRONTL_CONFIG_USE_CHAR
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
 #define NTL_CSTRING(str) L##str
-#define NTL_STRING(str) String(L##str)
+#define NTL_STRING(str) ntl::String(L##str)
 #else
-#define NTL_CSTRING(str) ##str
-#define NTL_STRING(str) String(##str)
+#define NTL_CSTRING(str) str
+#define NTL_STRING(str) ntl::String(str)
 #endif
 
 namespace ntl
@@ -76,10 +76,17 @@ namespace ntl
         const String &load_string_from_file(const std::string &filename);
 
     public:
+#ifdef NEUTRON_CONFIG_USE_WCHAR
         /// @brief 转换为宽字符字符串
         /// @param str 字符串
         /// @return 宽字符字符串
-        static std::wstring to_wstring(const std::string &str);
+        static std::wstring to_stl_string(const std::string &str);
+#else
+        /// @brief 转换为宽字符字符串
+        /// @param str 字符串
+        /// @return 宽字符字符串
+        static std::string to_stl_string(const std::string &str);
+#endif
 
     public:
         /// @brief 转换为字符串，重载函数之一

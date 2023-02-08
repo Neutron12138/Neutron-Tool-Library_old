@@ -18,7 +18,9 @@ namespace ntl
         }
         else
         {
-            throw NullPointerException(L"template <typename m_ResourceObjectType> void ResourceDeleter<m_ResourceObjectType>::operator()(typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr)");
+            throw NullPointerException(
+                NTL_STRING(
+                    "template <typename m_ResourceObjectType> void ResourceDeleter<m_ResourceObjectType>::operator()(typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr)"));
         }
     }
 

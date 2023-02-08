@@ -44,16 +44,12 @@ namespace ntl
     /// @brief 宽字符
     using CharW = wchar_t;
 
-#ifndef NEUTRONTL_CONFIG_USE_CHAR
-
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
     /// @brief 字符类型
     using Char = wchar_t;
-
 #else
-
     /// @brief 字符类型
     using Char = char;
-
 #endif
 
 } // namespace ntl

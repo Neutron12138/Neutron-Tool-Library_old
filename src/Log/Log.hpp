@@ -26,7 +26,7 @@ namespace ntl
         /// @brief 是否自动输出
         bool m_auto_output = true;
 
-#ifndef NEUTRONTL_CONFIG_USE_CHAR
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
         /// @brief 输出流
         OutputStream *m_output = &std::wcout;
 #else

@@ -8,8 +8,8 @@ namespace ntl
 {
     NullPointerException::NullPointerException(
         const String &where)
-        : Exception(NTL_CSTRING("null pointer"),
-                    NTL_CSTRING("You tried to access a null pointer"),
+        : Exception(NTL_STRING("null pointer"),
+                    NTL_STRING("You tried to access a null pointer"),
                     where) {}
 } // namespace ntl
 

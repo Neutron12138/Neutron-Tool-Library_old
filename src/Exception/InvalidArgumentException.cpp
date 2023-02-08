@@ -9,7 +9,7 @@ namespace ntl
     InvalidArgumentException::InvalidArgumentException(
         const String &why,
         const String &where)
-        : Exception(NTL_CSTRING("invalid argument"),
+        : Exception(NTL_STRING("invalid argument"),
                     why,
                     where) {}
 

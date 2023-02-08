@@ -9,7 +9,7 @@ namespace ntl
     OutOfRangeException::OutOfRangeException(
         const String &why,
         const String &where)
-        : Exception(NTL_CSTRING("out of range"),
+        : Exception(NTL_STRING("out of range"),
                     why,
                     where) {}
 

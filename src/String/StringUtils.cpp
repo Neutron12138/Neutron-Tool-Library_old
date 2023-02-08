@@ -23,7 +23,7 @@ namespace ntl
         catch (const std::exception &e)
         {
             load_string_from_stream_status = Status::Failure;
-            load_string_from_stream_result = to_wstring(e.what());
+            load_string_from_stream_result = to_stl_string(e.what());
         }
 
         return load_string_from_stream_result;
@@ -59,14 +59,15 @@ namespace ntl
         {
             fin.close();
             load_string_from_file_status = Status::Failure;
-            load_string_from_file_result = to_wstring(e.what());
+            load_string_from_file_result = to_stl_string(e.what());
         }
 
         return load_string_from_file_result;
     }
 
+#ifdef NEUTRON_CONFIG_USE_WCHAR
     std::wstring
-    StringUtils::to_wstring(
+    StringUtils::to_stl_wstring(
         const std::string &str)
     {
         std::wstring result;
@@ -74,6 +75,14 @@ namespace ntl
             result += static_cast<wchar_t>(*iter);
         return result;
     }
+#else
+    std::string
+    StringUtils::to_stl_string(
+        const std::string &str)
+    {
+        return str;
+    }
+#endif
 
     String
     StringUtils::to_string()
@@ -181,7 +190,7 @@ namespace ntl
         std::wostream &os,
         const std::string &str)
     {
-        os << StringUtils::to_wstring(str);
+        os << StringUtils::to_stl_string(str);
         return os;
     }
 

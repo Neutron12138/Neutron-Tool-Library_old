@@ -27,7 +27,7 @@ namespace ntl
     /// @brief 1秒
     static Time const OneSecond = Time(static_cast<clock_t>(CLOCKS_PER_SEC));
 
-#ifndef NEUTRONTL_CONFIG_USE_CHAR
+#ifdef NEUTRONTL_CONFIG_USE_WCHAR
     /// @brief 标准输入流
     static InputStream &nin = std::wcin;
     /// @brief 标准输出流
