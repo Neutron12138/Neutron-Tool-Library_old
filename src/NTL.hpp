@@ -71,6 +71,14 @@
 #include "Misc/Print.hpp"
 #include "Misc/Application.hpp"
 
+#include "Script/ScriptMisc.hpp"
+#include "Script/Token.hpp"
+#include "Script/Syntax.hpp"
+#include "Script/TypeID.hpp"
+#include "Script/Variable.hpp"
+#include "Script/Types/TypeTraits.hpp"
+#include "Script/Types/Integer.hpp"
+
 // ---------- 静态实例 ----------
 
 #include "Instances.hpp"

@@ -48,4 +48,7 @@
 #include "Misc/Print.cpp"
 #include "Misc/Application.cpp"
 
+#include "Script/Types/TypeTraits.cpp"
+#include "Script/Types/Integer.cpp"
+
 #endif
