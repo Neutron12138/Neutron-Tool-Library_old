@@ -3,9 +3,23 @@
 
 ## 版本
 
-1.1.0
+1.1.1
 
 ## 更新说明
+
+### 1.1.1
+
+修改了Application，增加了两个run()的重载函数
+
+Application::run(int,char**)负责处理main(int,char**)提供的参数，并转换为std::vector<std::string>，用作run(const std::vector<std::string>&)的参数
+
+Application::run(const std::vector<std::string>&)负责真正地处理参数，处理参数只要重载此函数即可
+
+Application::run()负责主程序运行
+
+定义宏NEUTRONTL_CONFIG_USE_APPLICATION可以使用默认的main()函数，只要实现get_application()即可
+
+### 1.1.0
 
 增加了脚本的一些基础部分
 
