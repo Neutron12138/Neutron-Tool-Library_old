@@ -3,9 +3,15 @@
 
 ## 版本
 
-1.1.1
+1.1.2
 
 ## 更新说明
+
+### 1.1.2
+
+把脚本部分拆分了出去
+
+https://github.com/Neutron12138/Neutron-Script-Language
 
 ### 1.1.1
 
