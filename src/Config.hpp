@@ -11,6 +11,7 @@
 // NEUTRONTL_CONFIG_NO_INCLUDES 不包含Includes.hpp
 
 // NEUTRONTL_CONFIG_USE_WCHAR 使用宽字节字符串而不是多字节字符串
+// NEUTRONTL_CONFIG_USE_APPLICATION 使用NTL提供的Main入口
 
 // 实现：
 

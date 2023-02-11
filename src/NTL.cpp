@@ -42,11 +42,12 @@
 #include "Log/LogItem.cpp"
 #include "Log/Log.cpp"
 
-#include "Meta/TypeInfo.cpp"
-#include "Meta/TypeUtils.cpp"
+#include "Meta/TypeInfo/TypeInfo.cpp"
+#include "Meta/TypeInfo/TypeUtils.cpp"
 
-#include "Misc/Print.cpp"
-#include "Misc/Application.cpp"
+#include "Misc/PrintUtils.cpp"
+#include "Misc/Application/Application.cpp"
+#include "Misc/Application/Main.cpp"
 
 #include "Script/Types/TypeTraits.cpp"
 #include "Script/Types/Integer.cpp"
