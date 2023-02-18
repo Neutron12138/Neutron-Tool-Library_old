@@ -15,13 +15,14 @@
 
 // 实现：
 
-// 使用wchar
 #ifdef NEUTRONTL_CONFIG_USE_WCHAR
-/// @brief NTL字符
-using NTL_CHAR = wchar_t;
+#define NTL_CHAR(ch) L##ch
+#define NTL_CSTRING(str) L##str
+#define NTL_STRING(str) ntl::String(L##str)
 #else
-/// @brief NTL字符
-using NTL_CHAR = char;
+#define NTL_CHAR(ch) ch
+#define NTL_CSTRING(str) str
+#define NTL_STRING(str) ntl::String(str)
 #endif
 
 // 禁用内存对齐

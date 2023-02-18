@@ -10,14 +10,6 @@
 #include "../Base/Object.hpp"
 #include "../Base/Type.hpp"
 
-#ifdef NEUTRONTL_CONFIG_USE_WCHAR
-#define NTL_CSTRING(str) L##str
-#define NTL_STRING(str) ntl::String(L##str)
-#else
-#define NTL_CSTRING(str) str
-#define NTL_STRING(str) ntl::String(str)
-#endif
-
 namespace ntl
 {
     /// @brief 字符串的工具类

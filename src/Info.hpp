@@ -1,7 +1,7 @@
 #ifndef __NEUTRONTL_INFO_HPP__
 #define __NEUTRONTL_INFO_HPP__
 
-#include "String/StringUtils.hpp"
+#include "Config.hpp"
 
 #ifndef NEUTRONTL_CONFIG_NO_INFO
 
