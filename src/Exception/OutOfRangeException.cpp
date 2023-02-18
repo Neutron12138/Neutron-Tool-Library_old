@@ -7,11 +7,12 @@
 namespace ntl
 {
     OutOfRangeException::OutOfRangeException(
-        const std::out_of_range &exception)
+        const std::out_of_range &exception,
+        const String &where)
         : Exception(
               NTL_STRING("out of range"),
               exception.what(),
-              NTL_STRING("")) {}
+              where) {}
 
     OutOfRangeException::OutOfRangeException(
         const String &why,
