@@ -26,7 +26,7 @@ namespace ntl
 
     public:
         Exception() = default;
-        explicit Exception(const std::exception &exception);
+        explicit Exception(const std::exception &exception, const String &where);
         explicit Exception(const String &what, const String &why, const String &where);
         explicit Exception(const SelfType &from) = default;
         ~Exception() override = default;

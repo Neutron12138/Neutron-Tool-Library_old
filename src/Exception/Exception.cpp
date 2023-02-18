@@ -8,9 +8,11 @@
 namespace ntl
 {
     Exception::Exception(
-        const std::exception &exception)
+        const std::exception &exception,
+        const String &where)
         : m_what(NTL_STRING("exception")),
-          m_why(exception.what()) {}
+          m_why(exception.what()),
+          m_where(where) {}
 
     Exception::Exception(
         const String &what,
