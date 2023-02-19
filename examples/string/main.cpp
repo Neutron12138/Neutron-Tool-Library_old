@@ -4,6 +4,11 @@
 
 int main()
 {
+    std::vector<ntl::String> vec = {"a", "b", "c"};
+    std::cout << ntl::StringUtils::joint_string(vec.cbegin(), vec.cend()) << std::endl;
+
+    std::cout << "----------" << std::endl;
+
     ntl::String data("a,b,c,d,e");
     ntl::Regex reg("(.*),(.*)");
     ntl::Match m;
