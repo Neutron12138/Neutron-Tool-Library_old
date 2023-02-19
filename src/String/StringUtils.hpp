@@ -101,6 +101,15 @@ namespace ntl
         template <typename ArgT, typename... ArgsT>
         static String to_string(const ArgT &arg, const ArgsT &...args);
 
+        /// @brief 拼接字符串
+        /// @tparam IterType 迭代器类型
+        /// @param begin 起始位置
+        /// @param end 结束位置
+        /// @param delimiter 分隔符
+        /// @return 拼接后的结果
+        template <typename IterType>
+        static String joint_string(const IterType &begin, const IterType &end, const String &delimiter = NTL_STRING(""));
+
     public:
         /// @brief 匹配
         /// @param data 数据

@@ -41,7 +41,11 @@ namespace ntl
             {
                 fin.close();
                 load_string_from_file_status = Status::Failure;
-                load_string_from_file_result = to_string("Could not open file:\"", filename, "\"");
+                load_string_from_file_result =
+                    to_string(
+                        NTL_STRING("Could not open file:\""),
+                        filename,
+                        NTL_STRING("\""));
             }
 
             load_string_from_file_status = Status::Success;
@@ -109,6 +113,21 @@ namespace ntl
         return to_string(arg) + to_string(args...);
     }
 
+    template <typename IterType>
+    String
+    StringUtils::joint_string(
+        const IterType &begin,
+        const IterType &end,
+        const String &delimiter)
+    {
+        ntl::StringStream sstr;
+        for (auto iter = begin; iter != end; iter++)
+        {
+            sstr << *iter << delimiter;
+        }
+        return sstr.str();
+    }
+
     bool
     StringUtils::match(
         const String &data,
@@ -158,7 +177,11 @@ namespace ntl
         std::regex_constants::match_flag_type flag)
     {
         std::vector<String> result;
-        Regex regex(to_string(L"(.*)", reg, L"(.*)"));
+        Regex regex(
+            to_string(
+                NTL_STRING("(.*)"),
+                reg,
+                NTL_STRING("(.*)")));
         String str = data;
         while (match(str, regex, flag))
         {
