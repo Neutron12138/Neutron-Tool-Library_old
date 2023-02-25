@@ -52,4 +52,7 @@
 #include "Application/ConsoleApplication.cpp"
 #include "Application/Main.cpp"
 
+#include "Image/Pixel.cpp"
+#include "Image/Image.cpp"
+
 #endif

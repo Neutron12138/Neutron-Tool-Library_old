@@ -74,6 +74,9 @@
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
 
+#include "Image/Pixel.hpp"
+#include "Image/Image.hpp"
+
 // ---------- 静态实例 ----------
 
 #include "Instances.hpp"
