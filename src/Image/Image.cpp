@@ -7,21 +7,22 @@
 #include <stb/stb_image_write.h>
 #include "Image.hpp"
 #include "../Exception/OutOfRangeException.hpp"
+#include "../String/StringUtils.hpp"
 
 namespace ntl
 {
 	template <typename m_PixelType>
 	Image<m_PixelType>::Image(
-		UInt32 width,
-		UInt32 height)
+		SizeT width,
+		SizeT height)
 		: m_width(width),
 		  m_height(height),
 		  m_pixels(width * height) {}
 
 	template <typename m_PixelType>
 	Image<m_PixelType>::Image(
-		UInt32 width,
-		UInt32 height,
+		SizeT width,
+		SizeT height,
 		const PixelHolder &pixels)
 		: m_width(width),
 		  m_height(height),
@@ -30,7 +31,7 @@ namespace ntl
 	template <typename m_PixelType>
 	typename Image<m_PixelType>::PixelType &
 	Image<m_PixelType>::operator[](
-		UInt32 index)
+		SizeT index)
 	{
 		try
 		{
@@ -44,14 +45,14 @@ namespace ntl
 			throw OutOfRangeException(
 				exception,
 				NTL_STRING(
-					"template <typename m_PixelType> typename Image<m_PixelType>::PixelType &Image<m_PixelType>::operator[](UInt32 index)"));
+					"template <typename m_PixelType> typename Image<m_PixelType>::PixelType &Image<m_PixelType>::operator[](SizeT index)"));
 		}
 	}
 
 	template <typename m_PixelType>
 	const typename Image<m_PixelType>::PixelType &
 	Image<m_PixelType>::operator[](
-		UInt32 index) const
+		SizeT index) const
 	{
 		try
 		{
@@ -65,7 +66,7 @@ namespace ntl
 			throw OutOfRangeException(
 				exception,
 				NTL_STRING(
-					"template <typename m_PixelType> const typename Image<m_PixelType>::PixelType &Image<m_PixelType>::operator[](UInt32 index) const"));
+					"template <typename m_PixelType> const typename Image<m_PixelType>::PixelType &Image<m_PixelType>::operator[](SizeT index) const"));
 		}
 	}
 
@@ -77,14 +78,96 @@ namespace ntl
 	}
 
 	template <typename m_PixelType>
-	std::uint32_t
+	typename Image<m_PixelType>::PixelType &
+	Image<m_PixelType>::get_pixel(
+		UInt32 x,
+		UInt32 y,
+		bool repeat)
+	{
+		SizeT coord_x = x;
+		SizeT coord_y = y;
+
+		if (!repeat)
+		{
+			if (x < 0 || x >= m_width)
+				throw OutOfRangeException(
+					StringUtils::to_string(
+						NTL_STRING("X is out of range. x: "),
+						x,
+						NTL_STRING(" but the width is only: "),
+						m_width),
+					NTL_STRING(
+						"template <typename m_PixelType> typename Image<m_PixelType>::PixelType &Image<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat)"));
+
+			if (y < 0 || y >= m_height)
+				throw OutOfRangeException(
+					StringUtils::to_string(
+						NTL_STRING("Y is out of range. y: "),
+						y,
+						NTL_STRING(" but the height is only: "),
+						m_height),
+					NTL_STRING(
+						"template <typename m_PixelType> typename Image<m_PixelType>::PixelType &Image<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat)"));
+		}
+		else
+		{
+			coord_x = cut_off(x, m_width);
+			coord_y = cut_off(y, m_height);
+		}
+
+		return operator[](coord_y *m_width + coord_x);
+	}
+
+	template <typename m_PixelType>
+	const typename Image<m_PixelType>::PixelType &
+	Image<m_PixelType>::get_pixel(
+		UInt32 x,
+		UInt32 y,
+		bool repeat) const
+	{
+		SizeT coord_x = x;
+		SizeT coord_y = y;
+
+		if (!repeat)
+		{
+			if (x < 0 || x >= m_width)
+				throw OutOfRangeException(
+					StringUtils::to_string(
+						NTL_STRING("X is out of range. x: "),
+						x,
+						NTL_STRING(" but the width is only: "),
+						m_width),
+					NTL_STRING(
+						"template <typename m_PixelType> const typename Image<m_PixelType>::PixelType &Image<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat) const"));
+
+			if (y < 0 || y >= m_height)
+				throw OutOfRangeException(
+					StringUtils::to_string(
+						NTL_STRING("Y is out of range. y: "),
+						y,
+						NTL_STRING(" but the height is only: "),
+						m_height),
+					NTL_STRING(
+						"template <typename m_PixelType> const typename Image<m_PixelType>::PixelType &Image<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat) const"));
+		}
+		else
+		{
+			coord_x = cut_off(x, m_width);
+			coord_y = cut_off(y, m_height);
+		}
+
+		return operator[](coord_y *m_width + coord_x);
+	}
+
+	template <typename m_PixelType>
+	SizeT
 	Image<m_PixelType>::get_width() const
 	{
 		return m_width;
 	}
 
 	template <typename m_PixelType>
-	std::uint32_t
+	SizeT
 	Image<m_PixelType>::get_height() const
 	{
 		return m_height;
@@ -131,14 +214,14 @@ namespace ntl
 	template <typename m_PixelType>
 	bool
 	Image<m_PixelType>::load_from_memory(
-		UInt32 width,
-		UInt32 height,
+		SizeT width,
+		SizeT height,
 		void *source)
 	{
 		if (source == nullptr)
 			throw NullPointerException(
 				NTL_STRING(
-					"bool Image::load_from_memory(UInt32 width,UInt32 height,void *source)"));
+					"bool Image::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;
@@ -169,6 +252,27 @@ namespace ntl
 			Image<m_PixelType>::PixelType::get_color_channels(),
 			m_pixels.data(),
 			0);
+	}
+
+	template <typename m_PixelType>
+	SizeT
+	Image<m_PixelType>::cut_off(
+		UInt32 value,
+		SizeT max)
+	{
+		UInt32 result = value;
+
+		if (result < 0)
+		{
+			result %= max;
+			result += max;
+		}
+		else if (result >= max)
+		{
+			result %= max;
+		}
+
+		return static_cast<SizeT>(result);
 	}
 
 } // namespace ntl

@@ -6,6 +6,7 @@
 #include <stb/stb_image.h>
 #include <stb/stb_image_write.h>
 #include "../Base/Object.hpp"
+#include "Pixel.hpp"
 
 namespace ntl
 {
@@ -25,35 +26,49 @@ namespace ntl
         PixelHolder m_pixels;
 
         /// @brief 图像的宽
-        UInt32 m_width = 0;
+        SizeT m_width = 0;
 
         /// @brief 图像的高
-        UInt32 m_height = 0;
+        SizeT m_height = 0;
 
     public:
         constexpr Image() = default;
-        explicit Image(UInt32 width, UInt32 height);
-        explicit Image(UInt32 width, UInt32 height, const PixelHolder &pixels);
+        explicit Image(SizeT width, SizeT height);
+        explicit Image(SizeT width, SizeT height, const PixelHolder &pixels);
         constexpr explicit Image(const SelfType &from) = default;
         ~Image() override = default;
 
     public:
         constexpr SelfType &operator=(const SelfType &from);
-        PixelType &operator[](UInt32 index);
-        const PixelType &operator[](UInt32 index) const;
+        PixelType &operator[](SizeT index);
+        const PixelType &operator[](SizeT index) const;
 
     public:
         /// @brief 获取图像的数据
         /// @return 图像数据
         const PixelHolder &get_pixels() const;
 
+        /// @brief 获取像素
+        /// @param x 横坐标（以左上角为原点）
+        /// @param y 纵坐标（以左上角为原点）
+        /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
+        /// @return 像素
+        PixelType &get_pixel(UInt32 x, UInt32 y, bool repeat = true);
+
+        /// @brief 获取像素
+        /// @param x 横坐标（以左上角为原点）
+        /// @param y 纵坐标（以左上角为原点）
+        /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
+        /// @return 像素
+        const PixelType &get_pixel(UInt32 x, UInt32 y, bool repeat = true) const;
+
         /// @brief 获取图像宽度
         /// @return 图像的宽
-        UInt32 get_width() const;
+        SizeT get_width() const;
 
         /// @brief 获取图像高度
         /// @return 图像的高
-        UInt32 get_height() const;
+        SizeT get_height() const;
 
     public:
         /// @brief 手动释放图像资源
@@ -70,12 +85,19 @@ namespace ntl
         /// @param height 图像的高度
         /// @param source 指向图像数据的指针
         /// @return 是否加载成功
-        virtual bool load_from_memory(UInt32 width, UInt32 height, void *source);
+        virtual bool load_from_memory(SizeT width, SizeT height, void *source);
 
         /// @brief 保存为png文件
         /// @param filename 输出文件名
         /// @param need_flip 输出图像时是否将其反转
         virtual void save_as_png(const std::string &filename, bool need_flip = false);
+
+    public:
+        /// @brief 把值截断在[0,max)之间
+        /// @param value 值
+        /// @param max 最大值
+        /// @return 值
+        static SizeT cut_off(UInt32 value, SizeT max);
     };
 
     /// @brief RGB图像
@@ -88,7 +110,7 @@ namespace ntl
     using ImageRGBA = Image<PixelRGBA>;
 
     /// @brief 浮点型RGBA图像
-    using ImageRGBAF = Image<PixelRGBF>;
+    using ImageRGBAF = Image<PixelRGBAF>;
 
     /// @brief 灰度图像
     using ImageGrey = Image<PixelGrey>;
