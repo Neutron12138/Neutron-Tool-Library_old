@@ -33,6 +33,13 @@ int main()
         }
     }
 
+    for (int x = -123; x < 567; x++)
+        image2.get_pixel(x, 250) =
+            ntl::PixelRGBA(std::array<ntl::UInt8, 4>{0, 0, 0, 1});
+    for (int y = -123; y < 567; y++)
+        image2.get_pixel(250, y) =
+            ntl::PixelRGBA(std::array<ntl::UInt8, 4>{0, 0, 0, 1});
+
     image2.save_as_png("output2.png");
 
     return 0;
