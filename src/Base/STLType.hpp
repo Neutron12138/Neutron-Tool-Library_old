@@ -56,13 +56,14 @@ namespace ntl
         ~STLType() override = default;
 
     public:
-        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
+        constexpr SelfType &operator=(const SelfType &from) noexcept = default;
     };
 
     /// @brief 标准库单字节字符类型
     using STypes = STLType<char>;
     /// @brief 标准库宽字符类型
     using SWTypes = STLType<wchar_t>;
+
 } // namespace ntl
 
 #endif

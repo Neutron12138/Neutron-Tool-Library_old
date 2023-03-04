@@ -38,6 +38,7 @@
 
 #include "Maths/MathsContants.hpp"
 #include "Maths/Sphere.hpp"
+#include "Maths/Angle.hpp"
 
 #include "Time/Time.hpp"
 #include "Time/Timer.hpp"
@@ -61,21 +62,27 @@
 #include "Log/LogItem.hpp"
 #include "Log/Log.hpp"
 
-#include "Meta/TypeInfo/FundamentalTypeInfo.hpp"
-#include "Meta/TypeInfo/CompoundTypeInfo.hpp"
-#include "Meta/TypeInfo/TypeAttributeInfo.hpp"
-#include "Meta/TypeInfo/AttributeQueryInfo.hpp"
-#include "Meta/TypeInfo/SupportedOperationsInfo.hpp"
-#include "Meta/TypeInfo/TypeInfo.hpp"
-#include "Meta/TypeInfo/TypeUtils.hpp"
+#include "TypeInfo/FundamentalTypeInfo.hpp"
+#include "TypeInfo/CompoundTypeInfo.hpp"
+#include "TypeInfo/TypeAttributeInfo.hpp"
+#include "TypeInfo/AttributeQueryInfo.hpp"
+#include "TypeInfo/SupportedOperationsInfo.hpp"
+#include "TypeInfo/TypeInfo.hpp"
+#include "TypeInfo/TypeUtils.hpp"
 
 #include "Misc/PrintUtils.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
 
+#include "Image/Color.hpp"
 #include "Image/Pixel.hpp"
 #include "Image/Image.hpp"
+
+#include "Serialization/Serialization.hpp"
+#include "Serialization/Serializable.hpp"
+#include "Serialization/Serializer.hpp"
+#include "Serialization/Deserializer.hpp"
 
 // ---------- 静态实例 ----------
 

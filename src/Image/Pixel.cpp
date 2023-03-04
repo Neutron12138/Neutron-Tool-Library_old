@@ -6,19 +6,42 @@
 
 namespace ntl
 {
-    template <typename m_ComponentType, UInt32 m_color_channels>
-    BasicPixel<m_ComponentType, m_color_channels>::BasicPixel(
+    template <SizeT m_color_channels>
+    BasicPixel<m_color_channels>::BasicPixel(
         const ComponentHolder &components)
         : m_components(components) {}
 
-    template <typename m_ComponentType, UInt32 m_color_channels>
-    typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &
-    BasicPixel<m_ComponentType, m_color_channels>::operator[](
+    template <SizeT m_color_channels>
+    BasicPixel<m_color_channels>::BasicPixel(
+        const Color &color)
+    {
+        operator=(color);
+    }
+
+    template <SizeT m_color_channels>
+    typename BasicPixel<m_color_channels>::SelfType &
+    BasicPixel<m_color_channels>::operator=(
+        const Color &color)
+    {
+        if (m_color_channels >= 1)
+            m_components.at(0) = static_cast<UInt8>(color.red * 256.0f);
+        if (m_color_channels >= 2)
+            m_components.at(1) = static_cast<UInt8>(color.green * 256.0f);
+        if (m_color_channels >= 3)
+            m_components.at(2) = static_cast<UInt8>(color.blue * 256.0f);
+        if (m_color_channels >= 4)
+            m_components.at(3) = static_cast<UInt8>(color.alpha * 256.0f);
+        return *this;
+    }
+
+    template <SizeT m_color_channels>
+    UInt8 &
+    BasicPixel<m_color_channels>::operator[](
         UInt32 index)
     {
         try
         {
-            typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &
+            UInt8 &
                 result =
                     m_components.at(index);
             return result;
@@ -28,18 +51,18 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <typename m_ComponentType, UInt32 m_color_channels> typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &BasicPixel<m_ComponentType, m_color_channels>::operator[](UInt32 index)"));
+                    "template <SizeT m_color_channels> UInt8 &BasicPixel< m_color_channels>::operator[](UInt32 index)"));
         }
     }
 
-    template <typename m_ComponentType, UInt32 m_color_channels>
-    const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &
-    BasicPixel<m_ComponentType, m_color_channels>::operator[](
+    template <SizeT m_color_channels>
+    const UInt8 &
+    BasicPixel<m_color_channels>::operator[](
         UInt32 index) const
     {
         try
         {
-            const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &
+            const UInt8 &
                 result =
                     m_components.at(index);
             return result;
@@ -49,28 +72,58 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <typename m_ComponentType, UInt32 m_color_channels> const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentType &BasicPixel<m_ComponentType, m_color_channels>::operator[](UInt32 index) const"));
+                    "template <SizeT m_color_channels> const UInt8 &BasicPixel< m_color_channels>::operator[](UInt32 index) const"));
         }
     }
 
-    template <typename m_ComponentType, UInt32 m_color_channels>
-    const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentHolder &
-    BasicPixel<m_ComponentType, m_color_channels>::get_components() const
+    template <SizeT m_color_channels>
+    BasicPixel<m_color_channels>::operator Color()
+    {
+        Color result;
+        if (m_color_channels >= 1)
+            result.red = static_cast<float>(result.red) / 256.0f;
+        if (m_color_channels >= 2)
+            result.green = static_cast<float>(result.green) / 256.0f;
+        if (m_color_channels >= 3)
+            result.blue = static_cast<float>(result.blue) / 256.0f;
+        if (m_color_channels >= 4)
+            result.alpha = static_cast<float>(result.alpha) / 256.0f;
+        return result;
+    }
+
+    template <SizeT m_color_channels>
+    BasicPixel<m_color_channels>::operator Color() const
+    {
+        Color result;
+        if (m_color_channels >= 1)
+            result.red = static_cast<float>(result.red) / 256.0f;
+        if (m_color_channels >= 2)
+            result.green = static_cast<float>(result.green) / 256.0f;
+        if (m_color_channels >= 3)
+            result.blue = static_cast<float>(result.blue) / 256.0f;
+        if (m_color_channels >= 4)
+            result.alpha = static_cast<float>(result.alpha) / 256.0f;
+        return result;
+    }
+
+    template <SizeT m_color_channels>
+    const typename BasicPixel<m_color_channels>::ComponentHolder &
+    BasicPixel<m_color_channels>::get_components() const
     {
         return m_components;
     }
 
-    template <typename m_ComponentType, UInt32 m_color_channels>
+    template <SizeT m_color_channels>
     void
-    BasicPixel<m_ComponentType, m_color_channels>::set_components(
-        const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentHolder &components)
+    BasicPixel<m_color_channels>::set_components(
+        const typename BasicPixel<m_color_channels>::ComponentHolder &components)
     {
         m_components = components;
     }
 
-    template <typename m_ComponentType, UInt32 m_color_channels>
+    template <SizeT m_color_channels>
     UInt32
-    BasicPixel<m_ComponentType, m_color_channels>::get_color_channels()
+    BasicPixel<m_color_channels>::get_color_channels()
     {
         return m_color_channels;
     }

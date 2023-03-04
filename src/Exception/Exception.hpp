@@ -6,11 +6,13 @@
 #include <stdexcept>
 #include "../Base/Object.hpp"
 #include "../Base/Type.hpp"
+#include "../Serialization/Serializable.hpp"
+#include "../Serialization/Serialization.hpp"
 
 namespace ntl
 {
     /// @brief 基础异常类
-    class NTL_ALIGN Exception : public Object
+    class NTL_ALIGN Exception : public Serializable
     {
     public:
         using SelfType = Exception;
@@ -48,8 +50,14 @@ namespace ntl
         inline const String &where() const;
 
     public:
-        /// @brief 打印自身至输出流
-        virtual void print_self(OutputStream &os) const;
+        /// @brief 打印自身
+        /// @param os 输出流
+        void print_self(OutputStream &os) const;
+
+    public:
+        Serialization serialize() override;
+        Serialization serialize() const override;
+        SelfType &deserialize(const Serialization &serialization) override;
     };
 
     OutputStream &operator<<(OutputStream &os, const Exception &exception);

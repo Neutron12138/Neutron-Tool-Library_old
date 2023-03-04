@@ -100,24 +100,6 @@ namespace ntl
         static SizeT cut_off(UInt32 value, SizeT max);
     };
 
-    /// @brief RGB图像
-    using ImageRGB = Image<PixelRGB>;
-
-    /// @brief 浮点型RGB图像
-    using ImageRGBF = Image<PixelRGBF>;
-
-    /// @brief RGBA图像
-    using ImageRGBA = Image<PixelRGBA>;
-
-    /// @brief 浮点型RGBA图像
-    using ImageRGBAF = Image<PixelRGBAF>;
-
-    /// @brief 灰度图像
-    using ImageGrey = Image<PixelGrey>;
-
-    /// @brief 灰度+透明度图像
-    using ImageGA = Image<PixelGA>;
-
 } // namespace ntl
 
 #endif

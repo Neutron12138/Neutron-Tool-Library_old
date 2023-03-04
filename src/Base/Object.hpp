@@ -13,7 +13,7 @@ namespace ntl
     public:
         /// @brief 自身类型
         using SelfType = Object;
-        /// @brief 父类类型
+        /// @brief 基类类型
         using ParentType = BasicObject;
 
     public:

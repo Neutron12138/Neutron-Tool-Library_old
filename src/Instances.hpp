@@ -7,6 +7,7 @@
 #include "Time/Time.hpp"
 #include "Base/Type.hpp"
 #include "Log/Log.hpp"
+#include "Image/Color.hpp"
 
 namespace ntl
 {
@@ -46,6 +47,26 @@ namespace ntl
     /// @brief 标准日志输出流
     static OutputStream &nlog = std::clog;
 #endif
+
+    /// @brief 预定义的颜色
+    namespace Colors
+    {
+        /// @brief 红色
+        static Color Red = Color(1.0f, 0.0f, 0.0f, 1.0f);
+
+        /// @brief 绿色
+        static Color Green = Color(0.0f, 1.0f, 0.0f, 1.0f);
+
+        /// @brief 蓝色
+        static Color Blue = Color(0.0f, 0.0f, 1.0f, 1.0f);
+
+        /// @brief 黑色
+        static Color Black = Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        /// @brief 白色
+        static Color White = Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+    } // namespace Colors
 
 } // namespace ntl
 

@@ -21,6 +21,7 @@
 #include "Exception/CaughtException.cpp"
 
 #include "Maths/Sphere.cpp"
+#include "Maths/Angle.cpp"
 
 #include "Time/Time.cpp"
 #include "Time/Timer.cpp"
@@ -43,8 +44,8 @@
 #include "Log/LogItem.cpp"
 #include "Log/Log.cpp"
 
-#include "Meta/TypeInfo/TypeInfo.cpp"
-#include "Meta/TypeInfo/TypeUtils.cpp"
+#include "TypeInfo/TypeInfo.cpp"
+#include "TypeInfo/TypeUtils.cpp"
 
 #include "Misc/PrintUtils.cpp"
 
@@ -52,7 +53,12 @@
 #include "Application/ConsoleApplication.cpp"
 #include "Application/Main.cpp"
 
+#include "Image/Color.cpp"
 #include "Image/Pixel.cpp"
 #include "Image/Image.cpp"
+
+#include "Serialization/Serialization.cpp"
+#include "Serialization/Serializer.cpp"
+#include "Serialization/Deserializer.cpp"
 
 #endif

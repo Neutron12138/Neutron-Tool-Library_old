@@ -208,6 +208,32 @@ namespace ntl
         return result;
     }
 
+#ifdef NEUTRON_CONFIG_USE_WCHAR
+    int StringUtils::to_int(const String &str)
+    {
+        return std::wcstoi(str);
+    }
+    long StringUtils::to_long(const String &str) { return std::wcstol(str); }
+    long long StringUtils::to_llong(const String &str) { return std::wcstoll(str); }
+    unsigned int StringUtils::to_uint(const String &str) { return static_cast<unsigned int>(std::wcstoi(str)); }
+    unsigned long StringUtils::to_ulong(const String &str) { return std::wcstoul(str); }
+    unsigned long long StringUtils::to_ullong(const String &str) { return std::wcstoull(str); }
+    float StringUtils::to_float(const String &str) { return std::wcstof(str); }
+    double StringUtils::to_double(const String &str) { return std::wcstod(str); }
+#else
+    int StringUtils::to_int(const String &str)
+    {
+        return std::stoi(str);
+    }
+    long StringUtils::to_long(const String &str) { return std::stol(str); }
+    long long StringUtils::to_llong(const String &str) { return std::stoll(str); }
+    unsigned int StringUtils::to_uint(const String &str) { return static_cast<unsigned int>(std::stoi(str)); }
+    unsigned long StringUtils::to_ulong(const String &str) { return std::stoul(str); }
+    unsigned long long StringUtils::to_ullong(const String &str) { return std::stoull(str); }
+    float StringUtils::to_float(const String &str) { return std::stof(str); }
+    double StringUtils::to_double(const String &str) { return std::stod(str); }
+#endif
+
     std::wostream &
     operator<<(
         std::wostream &os,

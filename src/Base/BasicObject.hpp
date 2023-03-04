@@ -5,12 +5,15 @@
 
 namespace ntl
 {
-    /// @brief 基础对象类，所有NTL对象的基类
+    /// @brief 基础对象类，所有对象的基类
     class NTL_ALIGN BasicObject
     {
     public:
         /// @brief 自身类型
         using SelfType = BasicObject;
+
+        /// @brief 基类类型
+        using ParentType = BasicObject;
 
     public:
         constexpr BasicObject() noexcept = default;

@@ -153,6 +153,16 @@ namespace ntl
         /// @param data 数据
         /// @return 分割结果
         static std::vector<String> split_by_line(const String &data);
+
+    public:
+        static int to_int(const String &str);
+        static long to_long(const String &str);
+        static long long to_llong(const String &str);
+        static unsigned int to_uint(const String &str);
+        static unsigned long to_ulong(const String &str);
+        static unsigned long long to_ullong(const String &str);
+        static float to_float(const String &str);
+        static double to_double(const String &str);
     };
 
     std::wostream &operator<<(std::wostream &os, const std::string &str);
