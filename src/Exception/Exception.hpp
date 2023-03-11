@@ -52,7 +52,7 @@ namespace ntl
     public:
         /// @brief 打印自身
         /// @param os 输出流
-        void print_self(OutputStream &os) const;
+        virtual void print_self(OutputStream &os) const;
 
     public:
         Serialization serialize() override;

@@ -73,4 +73,8 @@
 #include "Reflection/Reflectible.cpp"
 #include "Reflection/Reflector.cpp"
 
+#include "Signal/Slot.cpp"
+#include "Signal/Signal.cpp"
+#include "Signal/Signalable.cpp"
+
 #endif

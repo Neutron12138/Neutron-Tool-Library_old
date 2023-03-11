@@ -39,7 +39,7 @@ namespace ntl
         const Exception &get_caught_exception() const;
 
     public:
-        void print_self(OutputStream &os) const;
+        void print_self(OutputStream &os) const override;
     };
 
 } // namespace ntl

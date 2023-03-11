@@ -96,6 +96,10 @@
 #include "Reflection/Reflectible.hpp"
 #include "Reflection/Reflector.hpp"
 
+#include "Signal/Slot.hpp"
+#include "Signal/Signal.hpp"
+#include "Signal/Signalable.hpp"
+
 // ---------- 静态实例 ----------
 
 #include "Instances.hpp"
