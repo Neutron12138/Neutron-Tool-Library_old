@@ -8,7 +8,7 @@
 
 namespace ntl
 {
-    /// @brief 可发送/接受信号的对象
+    /// @brief 可发送/接收信号的对象
     class NTL_ALIGN Signalable : public Reflectible
     {
     public:
