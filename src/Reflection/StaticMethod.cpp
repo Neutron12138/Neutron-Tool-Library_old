@@ -13,7 +13,7 @@ namespace ntl
     StaticMethod::StaticMethod(
         MethodType pointer,
         SizeT args_count)
-        : StaticMethod(
+        : Method(
               pointer,
               args_count) {}
 
@@ -37,9 +37,8 @@ namespace ntl
                     NTL_STRING(" are provided")),
                 NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType StaticMethod::call(ArgsType &&...args) const"));
 
-        using MethodType = ReturnType (Reflectible::*)(ArgsType...);
-        return (object.*
-                reinterpret_cast<MethodType>(m_pointer))(
+        using MethodType = ReturnType (*)(ArgsType...);
+        return (*reinterpret_cast<MethodType>(m_pointer))(
             std::forward<ArgsType>(args)...);
     }
 

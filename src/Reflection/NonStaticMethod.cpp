@@ -13,17 +13,17 @@ namespace ntl
     NonStaticMethod::NonStaticMethod(
         MethodType pointer,
         SizeT args_count)
-        : NonStaticMethod(
+        : NonStaticMethod::ParentType(
               pointer,
               args_count) {}
 
     template <typename ReturnType, typename... ArgsType>
     ReturnType
     NonStaticMethod::call(
-        Reflectible &object,
+        void *object,
         ArgsType &&...args) const
     {
-        if (m_pointer == nullptr)
+        if (m_pointer == nullptr || object == nullptr)
             throw NullPointerException(
                 NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(Reflectible &object,ArgsType &&...args) const"));
 
@@ -39,8 +39,7 @@ namespace ntl
                 NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(Reflectible &object,ArgsType &&...args) const"));
 
         using MethodType = ReturnType (Reflectible::*)(ArgsType...);
-        return (object.*
-                reinterpret_cast<MethodType>(m_pointer))(
+        return (reinterpret_cast<Reflectible *>(object)->*reinterpret_cast<MethodType>(m_pointer))(
             std::forward<ArgsType>(args)...);
     }
 

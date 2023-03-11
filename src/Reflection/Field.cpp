@@ -6,28 +6,13 @@
 
 namespace ntl
 {
+    template <typename m_FieldPointer>
     template <typename FieldType>
-    Field::Field(FieldType pointer)
-        : m_pointer(reinterpret_cast<Field::FieldPointer>(pointer)) {}
-
-    typename Field::FieldPointer
-    Field::get_pointer() const
-    {
-        return m_pointer;
-    }
-
-    template <typename ReturnType>
-    ReturnType &
-    Field::of(
-        Reflectible &object) const
-    {
-        if (m_pointer == nullptr)
-            throw NullPointerException(
-                NTL_STRING("template <typename ReturnType> ReturnType &Field::of(Reflectible &object) const"));
-
-        using FieldType = ReturnType(Reflectible::*);
-        return object.*reinterpret_cast<FieldType>(m_pointer);
-    }
+    Field<m_FieldPointer>::Field(FieldType pointer)
+        : m_pointer(
+              reinterpret_cast<
+                  Field<m_FieldPointer>::FieldPointer>(
+                  pointer)) {}
 
 } // namespace ntl
 

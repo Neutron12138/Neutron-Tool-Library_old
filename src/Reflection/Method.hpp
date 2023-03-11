@@ -9,19 +9,16 @@ namespace ntl
 
     /// @brief 方法
     template <typename m_MethodPointer>
-    class Method : public BasicObject
+    class Method : public Member<m_MethodPointer>
     {
     public:
         /// @brief 储存用的类型
         using MethodPointer = m_MethodPointer;
 
         using SelfType = Method;
-        using ParentType = BasicObject;
+        using ParentType = Member<m_MethodPointer>;
 
     protected:
-        /// @brief 指针
-        MethodPointer m_pointer = nullptr;
-
         /// @brief 方法参数总数
         SizeT m_args_count = 0;
 

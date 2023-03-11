@@ -5,19 +5,14 @@
 
 namespace ntl
 {
-    /// @brief 方法
+    /// @brief 非静态方法
     class NonStaticMethod : public Method<void (Reflectible::*)()>
     {
     public:
-        /// @brief 储存用的方法类型
         using MethodPointer = void (Reflectible::*)();
 
         using SelfType = NonStaticMethod;
         using ParentType = Method<MethodPointer>;
-
-    protected:
-        /// @brief 参数总数
-        SizeT m_args_count;
 
     public:
         NonStaticMethod() = default;
@@ -31,7 +26,7 @@ namespace ntl
 
     public:
         template <typename ReturnType, typename... ArgsType>
-        ReturnType call(Reflectible &object, ArgsType &&...args) const;
+        ReturnType call(void *object, ArgsType &&...args) const;
     };
 
 } // namespace ntl

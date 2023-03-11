@@ -5,19 +5,14 @@
 
 namespace ntl
 {
-    /// @brief 方法
+    /// @brief 静态方法
     class StaticMethod : public Method<void (*)()>
     {
     public:
-        /// @brief 储存用的方法类型
         using MethodPointer = void (*)();
 
         using SelfType = StaticMethod;
         using ParentType = Method<MethodPointer>;
-
-    protected:
-        /// @brief 参数总数
-        SizeT m_args_count;
 
     public:
         StaticMethod() = default;

@@ -9,10 +9,27 @@ namespace ntl
     Details
     Reflectible::get_reflection_details()
     {
+        Details::StaticMethodMap methods;
+
+        methods.insert(
+            Details::StaticMethodMap::value_type(
+                Details::get_reflection_details_name,
+                StaticMethod(&Reflectible::get_reflection_details, 0)));
+        methods.insert(
+            Details::StaticMethodMap::value_type(
+                Details::construction_name,
+                StaticMethod(&Reflectible::construct, 0)));
+        methods.insert(
+            Details::StaticMethodMap::value_type(
+                Details::destruction_name,
+                StaticMethod(&Reflectible::destruct, 1)));
+
         return Details(
-            Details::FieldMap(),
-            Details::MethodMap(),
-            sizeof(Reflectible));
+            sizeof(Reflectible),
+            Details::NonStaticFieldMap(),
+            Details::StaticFieldMap(),
+            Details::NonStaticMethodMap(),
+            methods);
     }
 
     Reflectible *
@@ -25,7 +42,7 @@ namespace ntl
     Reflectible::destruct(
         Byte *ptr)
     {
-        delete[] reinterpret_cast<Reflectible *>(ptr);
+        delete reinterpret_cast<Reflectible *>(ptr);
     }
 
 } // namespace ntl

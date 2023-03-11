@@ -48,6 +48,7 @@
 #include "TypeInfo/TypeUtils.cpp"
 
 #include "Misc/PrintUtils.cpp"
+#include "Misc/ContainerOperation.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"
@@ -60,5 +61,16 @@
 #include "Serialization/Serialization.cpp"
 #include "Serialization/Serializer.cpp"
 #include "Serialization/Deserializer.cpp"
+
+#include "Reflection/Member.cpp"
+#include "Reflection/Method.cpp"
+#include "Reflection/NonStaticMethod.cpp"
+#include "Reflection/StaticMethod.cpp"
+#include "Reflection/Field.cpp"
+#include "Reflection/NonStaticField.cpp"
+#include "Reflection/StaticField.cpp"
+#include "Reflection/Details.cpp"
+#include "Reflection/Reflectible.cpp"
+#include "Reflection/Reflector.cpp"
 
 #endif

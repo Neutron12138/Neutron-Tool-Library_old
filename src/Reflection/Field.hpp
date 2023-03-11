@@ -8,14 +8,15 @@ namespace ntl
     class Reflectible;
 
     /// @brief 属性
+    template <typename m_FieldPointer>
     class Field : public BasicObject
     {
     public:
+        /// @brief 属性指针
+        using FieldPointer = m_FieldPointer;
+
         using SelfType = Field;
         using ParentType = BasicObject;
-
-        /// @brief 属性指针
-        using FieldPointer = void *(Reflectible::*);
 
     protected:
         /// @brief 属性
@@ -27,13 +28,6 @@ namespace ntl
         explicit Field(FieldType pointer);
         explicit Field(const SelfType &from) = default;
         ~Field() = default;
-
-    public:
-        FieldPointer get_pointer() const;
-
-    public:
-        template <typename ReturnType>
-        ReturnType &of(Reflectible &object) const;
     };
 
 } // namespace ntl
