@@ -6,7 +6,7 @@
 namespace ntl
 {
     /// @brief 静态属性
-    class StaticField : public Field<void *(*)>
+    class NTL_ALIGN StaticField : public Field<void *(*)>
     {
     public:
         using FieldPointer = void *(*);

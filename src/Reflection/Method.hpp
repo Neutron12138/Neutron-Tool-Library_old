@@ -9,7 +9,7 @@ namespace ntl
 
     /// @brief 方法
     template <typename m_MethodPointer>
-    class Method : public Member<m_MethodPointer>
+    class NTL_ALIGN Method : public Member<m_MethodPointer>
     {
     public:
         /// @brief 储存用的类型

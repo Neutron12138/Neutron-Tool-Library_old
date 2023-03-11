@@ -7,7 +7,7 @@
 namespace ntl
 {
     /// @brief 槽
-    class Slot : public BasicObject
+    class NTL_ALIGN Slot : public BasicObject
     {
     public:
         using SelfType = Slot;

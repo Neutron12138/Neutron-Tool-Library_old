@@ -7,7 +7,7 @@
 namespace ntl
 {
     /// @brief 序列
-    class Serialization : public Object
+    class NTL_ALIGN Serialization : public Object
     {
     public:
         using SelfType = Serialization;

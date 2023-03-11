@@ -6,6 +6,7 @@
 #include "../Exception/CaughtException.hpp"
 #include "../String/StringUtils.hpp"
 #include "../Misc/ContainerOperation.hpp"
+#include "../Exception/InvalidArgumentException.hpp"
 
 namespace ntl
 {

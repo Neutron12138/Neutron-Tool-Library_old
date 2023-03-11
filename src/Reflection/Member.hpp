@@ -10,7 +10,7 @@ namespace ntl
 
     /// @brief 类成员
     template <typename m_MemberPointer>
-    class Member : public BasicObject
+    class NTL_ALIGN Member : public BasicObject
     {
     public:
         /// @brief 储存用的类型

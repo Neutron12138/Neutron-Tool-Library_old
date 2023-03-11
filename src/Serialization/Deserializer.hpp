@@ -8,7 +8,7 @@
 namespace ntl
 {
     /// @brief 反序列化器
-    class Deserializer : public Object
+    class NTL_ALIGN Deserializer : public Object
     {
     public:
         using SelfType = Deserializer;

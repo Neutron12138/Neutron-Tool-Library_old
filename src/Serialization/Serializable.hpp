@@ -8,7 +8,7 @@ namespace ntl
     class Serialization;
 
     /// @brief 可序列化的对象
-    class Serializable : public Object
+    class NTL_ALIGN Serializable : public Object
     {
     public:
         using SelfType = Serializable;

@@ -1,23 +1,23 @@
 #ifndef __NEUTRONTL_REFLECTION_REFLECTIBLE_HPP__
 #define __NEUTRONTL_REFLECTION_REFLECTIBLE_HPP__
 
-#include "../Base/Object.hpp"
+#include "../Base/BasicObject.hpp"
 
 namespace ntl
 {
     class Details;
 
     /// @brief 可反射的对象
-    class Reflectible : public Object
+    class NTL_ALIGN Reflectible : public BasicObject
     {
     public:
         using SelfType = Reflectible;
-        using ParentType = Object;
+        using ParentType = BasicObject;
 
     public:
         constexpr Reflectible() noexcept = default;
         constexpr explicit Reflectible(const SelfType &from) noexcept = default;
-        ~Reflectible() override = default;
+        ~Reflectible() = default;
 
     public:
         constexpr SelfType &operator=(const SelfType &from) noexcept = default;

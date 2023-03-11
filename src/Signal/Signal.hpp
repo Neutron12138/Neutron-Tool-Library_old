@@ -8,7 +8,7 @@
 namespace ntl
 {
     /// @brief 信号
-    class Signal : public BasicObject
+    class NTL_ALIGN Signal : public BasicObject
     {
     public:
         using SelfType = Signal;

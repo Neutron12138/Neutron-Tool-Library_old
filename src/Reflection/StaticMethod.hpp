@@ -6,7 +6,7 @@
 namespace ntl
 {
     /// @brief 静态方法
-    class StaticMethod : public Method<void (*)()>
+    class NTL_ALIGN StaticMethod : public Method<void (*)()>
     {
     public:
         using MethodPointer = void (*)();

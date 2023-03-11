@@ -9,7 +9,7 @@ namespace ntl
 
     /// @brief 属性
     template <typename m_FieldPointer>
-    class Field : public BasicObject
+    class NTL_ALIGN Field : public BasicObject
     {
     public:
         /// @brief 属性指针

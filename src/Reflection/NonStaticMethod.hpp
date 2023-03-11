@@ -6,7 +6,7 @@
 namespace ntl
 {
     /// @brief 非静态方法
-    class NonStaticMethod : public Method<void (Reflectible::*)()>
+    class NTL_ALIGN NonStaticMethod : public Method<void (Reflectible::*)()>
     {
     public:
         using MethodPointer = void (Reflectible::*)();

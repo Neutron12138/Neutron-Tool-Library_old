@@ -9,7 +9,7 @@
 namespace ntl
 {
     /// @brief 可发送/接受信号的对象
-    class Signalable : public Reflectible
+    class NTL_ALIGN Signalable : public Reflectible
     {
     public:
         using SelfType = Signalable;

@@ -3,28 +3,25 @@
 
 #include <vector>
 #include "../Base/Type.hpp"
-#include "../Memory/SharedPointer.hpp"
-#include "Details.hpp"
+#include "../Base/Object.hpp"
+#include "Reflector.hpp"
 
 namespace ntl
 {
     /// @brief 实例
-    class Instance : public Object
+    class NTL_ALIGN Instance : public Object
     {
     public:
         using SelfType = Instance;
         using ParentType = Object;
 
-        using DetailsPointer = SharedPointer<Details>;
-        using Memory = std::vector<Byte>;
-
     protected:
-        DetailsPointer m_details;
-        Memory m_memory;
+        typename Reflector::DetailsPointer m_details;
+        SharedPointer<Byte> m_memory;
 
     public:
         Instance() = default;
-        explicit Instance(const DetailsPointer &details, const Memory &memory);
+        explicit Instance(const typename Reflector::DetailsPointer &details, const SharedPointer<Byte> &memory);
         explicit Instance(const SelfType &from) = default;
         ~Instance() override = default;
 

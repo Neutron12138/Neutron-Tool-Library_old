@@ -14,7 +14,7 @@ namespace ntl
     class Reflectible;
 
     /// @brief 反射目标的细节
-    class Details : public BasicObject
+    class NTL_ALIGN Details : public BasicObject
     {
     public:
         using SelfType = Details;

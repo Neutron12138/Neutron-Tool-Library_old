@@ -8,7 +8,7 @@
 namespace ntl
 {
     /// @brief 反射器
-    class Reflector : public Object
+    class NTL_ALIGN Reflector : public Object
     {
     public:
         using SelfType = Reflector;
