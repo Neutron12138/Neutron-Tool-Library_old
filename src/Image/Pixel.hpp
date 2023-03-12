@@ -34,8 +34,8 @@ namespace ntl
     public:
         SelfType &operator=(const SelfType &from) = default;
         SelfType &operator=(const Color &color);
-        UInt8 &operator[](UInt32 index);
-        const UInt8 &operator[](UInt32 index) const;
+        UInt8 &operator[](SizeT index);
+        const UInt8 &operator[](SizeT index) const;
         operator Color();
         operator Color() const;
 
@@ -48,9 +48,14 @@ namespace ntl
         /// @param components 分量
         void set_components(const ComponentHolder &components);
 
+        /// @brief 与另一个对象交换
+        /// @param another 另一个对象
+        /// @return 本对象
+        SelfType &swap(SelfType &another);
+
     public:
         /// @brief 获取颜色通道总数
-        static UInt32 get_color_channels();
+        static SizeT get_color_channels();
     };
 
     /// @brief 灰度像素

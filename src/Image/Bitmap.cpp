@@ -80,8 +80,8 @@ namespace ntl
 	template <typename m_PixelType>
 	typename Bitmap<m_PixelType>::PixelType &
 	Bitmap<m_PixelType>::get_pixel(
-		UInt32 x,
-		UInt32 y,
+		SizeT x,
+		SizeT y,
 		bool repeat)
 	{
 		SizeT coord_x = x;
@@ -121,8 +121,8 @@ namespace ntl
 	template <typename m_PixelType>
 	const typename Bitmap<m_PixelType>::PixelType &
 	Bitmap<m_PixelType>::get_pixel(
-		UInt32 x,
-		UInt32 y,
+		SizeT x,
+		SizeT y,
 		bool repeat) const
 	{
 		SizeT coord_x = x;
@@ -257,10 +257,10 @@ namespace ntl
 	template <typename m_PixelType>
 	SizeT
 	Bitmap<m_PixelType>::cut_off(
-		UInt32 value,
+		SizeT value,
 		SizeT max)
 	{
-		UInt32 result = value;
+		SizeT result = value;
 
 		if (result < 0)
 		{

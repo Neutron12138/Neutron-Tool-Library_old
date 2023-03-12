@@ -53,14 +53,14 @@ namespace ntl
         /// @param y 纵坐标（以左上角为原点）
         /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
         /// @return 像素
-        PixelType &get_pixel(UInt32 x, UInt32 y, bool repeat = true);
+        PixelType &get_pixel(SizeT x, SizeT y, bool repeat = true);
 
         /// @brief 获取像素
         /// @param x 横坐标（以左上角为原点）
         /// @param y 纵坐标（以左上角为原点）
         /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
         /// @return 像素
-        const PixelType &get_pixel(UInt32 x, UInt32 y, bool repeat = true) const;
+        const PixelType &get_pixel(SizeT x, SizeT y, bool repeat = true) const;
 
         /// @brief 获取图像宽度
         /// @return 图像的宽
@@ -97,7 +97,7 @@ namespace ntl
         /// @param value 值
         /// @param max 最大值
         /// @return 值
-        static SizeT cut_off(UInt32 value, SizeT max);
+        static SizeT cut_off(SizeT value, SizeT max);
     };
 
 } // namespace ntl

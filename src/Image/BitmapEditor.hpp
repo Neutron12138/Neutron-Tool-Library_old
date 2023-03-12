@@ -3,6 +3,7 @@
 
 #include "../Base/Object.hpp"
 #include "Bitmap.hpp"
+#include "../Maths/Angle.hpp"
 
 namespace ntl
 {
@@ -29,13 +30,16 @@ namespace ntl
         static void flip_y(Bitmap<PixelType> &result);
 
         template <typename PixelType>
-        static void draw_point(Bitmap<PixelType> &result, const PixelType &pixel);
+        static void draw_point(Bitmap<PixelType> &result, SizeT x, SizeT y, const PixelType &pixel);
 
         template <typename PixelType>
-        static void draw_line(Bitmap<PixelType> &result, const PixelType &pixel);
+        static void draw_line(Bitmap<PixelType> &result, SizeT x0, SizeT y0, SizeT x1, SizeT y1, const PixelType &pixel);
 
         template <typename PixelType>
-        static void stretch(Bitmap<PixelType> &result);
+        static Bitmap<PixelType> stretch(const Bitmap<PixelType> &source, float scale_x, float scale_y);
+
+        template <typename PixelType, typename ValueType>
+        static void rotate(Bitmap<PixelType> &result, const Angle<ValueType> &angle);
     };
 
 } // namespace ntl

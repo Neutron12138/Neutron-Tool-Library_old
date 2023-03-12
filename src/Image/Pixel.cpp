@@ -37,7 +37,7 @@ namespace ntl
     template <SizeT m_color_channels>
     UInt8 &
     BasicPixel<m_color_channels>::operator[](
-        UInt32 index)
+        SizeT index)
     {
         try
         {
@@ -51,14 +51,14 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <SizeT m_color_channels> UInt8 &BasicPixel< m_color_channels>::operator[](UInt32 index)"));
+                    "template <SizeT m_color_channels> UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index)"));
         }
     }
 
     template <SizeT m_color_channels>
     const UInt8 &
     BasicPixel<m_color_channels>::operator[](
-        UInt32 index) const
+        SizeT index) const
     {
         try
         {
@@ -72,7 +72,7 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <SizeT m_color_channels> const UInt8 &BasicPixel< m_color_channels>::operator[](UInt32 index) const"));
+                    "template <SizeT m_color_channels> const UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index) const"));
         }
     }
 
@@ -122,7 +122,16 @@ namespace ntl
     }
 
     template <SizeT m_color_channels>
-    UInt32
+    typename BasicPixel<m_color_channels>::SelfType &
+    BasicPixel<m_color_channels>::swap(
+        typename BasicPixel<m_color_channels>::SelfType &another)
+    {
+        m_components.swap(another.m_components);
+        return *this;
+    }
+
+    template <SizeT m_color_channels>
+    SizeT
     BasicPixel<m_color_channels>::get_color_channels()
     {
         return m_color_channels;
