@@ -17,10 +17,10 @@ namespace ntl
     {
         if (m_pointer == nullptr || object == nullptr)
             throw NullPointerException(
-                NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(Reflectible &object) const"));
+                NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
 
-        using FieldType = ReturnType(Reflectible::*);
-        return reinterpret_cast<Reflectible *>(object)->*reinterpret_cast<FieldType>(m_pointer);
+        using FieldType = ReturnType(BasicObject::*);
+        return reinterpret_cast<BasicObject *>(object)->*reinterpret_cast<FieldType>(m_pointer);
     }
 
 } // namespace ntl

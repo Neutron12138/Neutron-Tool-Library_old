@@ -4,6 +4,7 @@
 #include "Reflector.hpp"
 #include "../Exception/OutOfRangeException.hpp"
 #include "../String/StringUtils.hpp"
+#include "../Exception/InvalidArgumentException.hpp"
 
 namespace ntl
 {
@@ -12,14 +13,56 @@ namespace ntl
     Reflector::register_class(
         const String &name)
     {
+        if (has_class(name))
+            throw InvalidArgumentException(
+                StringUtils::to_string(
+                    NTL_STRING("Class (\""),
+                    name,
+                    NTL_STRING("\") already exists")),
+                NTL_STRING("template <typename ClassType> const typename Reflector::DetailsPointer &Reflector::register_class(const String &name)"));
+
+        return register_class(
+            name,
+            ClassType::get_reflection_details());
+    }
+
+    const typename Reflector::DetailsPointer &
+    Reflector::register_class(
+        const String &name,
+        const Details &details)
+    {
+        if (has_class(name))
+            throw InvalidArgumentException(
+                StringUtils::to_string(
+                    NTL_STRING("Class (\""),
+                    name,
+                    NTL_STRING("\") already exists")),
+                NTL_STRING("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const Details &details)"));
+
         typename Reflector::DetailsPointer pointer(
             new Details(
-                ClassType::get_reflection_details()));
+                details));
+
+        return register_class(name, pointer);
+    }
+
+    const typename Reflector::DetailsPointer &
+    Reflector::register_class(
+        const String &name,
+        const typename Reflector::DetailsPointer &details)
+    {
+        if (has_class(name))
+            throw InvalidArgumentException(
+                StringUtils::to_string(
+                    NTL_STRING("Class (\""),
+                    name,
+                    NTL_STRING("\") already exists")),
+                NTL_STRING("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const typename Reflector::DetailsPointer &details)"));
 
         m_classes.insert(
             Reflector::ClassMap::value_type(
                 name,
-                pointer));
+                details));
 
         return m_classes.at(name);
     }

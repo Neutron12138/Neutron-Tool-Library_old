@@ -35,6 +35,8 @@ namespace ntl
     public:
         template <typename ClassType>
         const DetailsPointer &register_class(const String &name);
+        const DetailsPointer &register_class(const String &name, const Details &details);
+        const DetailsPointer &register_class(const String &name, const DetailsPointer &details);
 
         const DetailsPointer &get_class(const String &name) const;
 

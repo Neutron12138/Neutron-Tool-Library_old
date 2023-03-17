@@ -6,10 +6,10 @@
 namespace ntl
 {
     /// @brief 非静态属性
-    class NTL_ALIGN NonStaticField : public Field<void *(Reflectible::*)>
+    class NTL_ALIGN NonStaticField : public Field<void *(BasicObject::*)>
     {
     public:
-        using FieldPointer = void *(Reflectible::*);
+        using FieldPointer = void *(BasicObject::*);
 
         using SelfType = NonStaticField;
         using ParentType = Field<FieldPointer>;

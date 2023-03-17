@@ -32,6 +32,8 @@
 #include "Memory/SharedPointer.cpp"
 #include "Memory/UniquePointer.cpp"
 #include "Memory/WeakPointer.cpp"
+#include "Memory/MemoryTracker.cpp"
+#include "Memory/DefaultMemoryTracker.cpp"
 
 #include "Resource/ResourceDeleter.cpp"
 
@@ -42,6 +44,7 @@
 
 #include "Log/LogLevel.cpp"
 #include "Log/LogItem.cpp"
+#include "Log/BasicLog.cpp"
 #include "Log/Log.cpp"
 
 #include "TypeInfo/TypeInfo.cpp"
@@ -49,6 +52,7 @@
 
 #include "Misc/PrintUtils.cpp"
 #include "Misc/ContainerOperation.cpp"
+#include "Misc/ClassMerger.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"
@@ -56,7 +60,8 @@
 
 #include "Image/Color.cpp"
 #include "Image/Pixel.cpp"
-#include "Image/Image.cpp"
+#include "Image/Bitmap.cpp"
+#include "Image/BitmapEditor.cpp"
 
 #include "Serialization/Serialization.cpp"
 #include "Serialization/Serializer.cpp"

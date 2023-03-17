@@ -6,8 +6,6 @@
 
 namespace ntl
 {
-    class Reflectible;
-
     /// @brief 类成员
     template <typename m_MemberPointer>
     class NTL_ALIGN Member : public BasicObject

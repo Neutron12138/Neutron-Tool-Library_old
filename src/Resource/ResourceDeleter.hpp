@@ -26,8 +26,8 @@ namespace ntl
         virtual ~ResourceDeleter() override = default;
 
     public:
-        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
-        virtual void operator()(ResourceObjectType *ptr);
+        constexpr SelfType &operator=(const SelfType &from) noexcept = default;
+        void operator()(ResourceObjectType *ptr) const override;
     };
 
 } // namespace ntl

@@ -25,7 +25,7 @@ namespace ntl
     {
         if (m_pointer == nullptr || object == nullptr)
             throw NullPointerException(
-                NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(Reflectible &object,ArgsType &&...args) const"));
+                NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(BasicObject &object,ArgsType &&...args) const"));
 
         const SizeT args_count = sizeof...(args);
         if (args_count != m_args_count)
@@ -36,10 +36,10 @@ namespace ntl
                     NTL_STRING(" are required, but "),
                     args_count,
                     NTL_STRING(" are provided")),
-                NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(Reflectible &object,ArgsType &&...args) const"));
+                NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType NonStaticMethod::call(BasicObject &object,ArgsType &&...args) const"));
 
-        using MethodType = ReturnType (Reflectible::*)(ArgsType...);
-        return (reinterpret_cast<Reflectible *>(object)->*reinterpret_cast<MethodType>(m_pointer))(
+        using MethodType = ReturnType (BasicObject::*)(ArgsType...);
+        return (reinterpret_cast<BasicObject *>(object)->*reinterpret_cast<MethodType>(m_pointer))(
             std::forward<ArgsType>(args)...);
     }
 

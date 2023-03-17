@@ -6,6 +6,7 @@
 #include <regex>
 #include <iostream>
 #include <fstream>
+#include "../Misc/ClassMerger.hpp"
 
 namespace ntl
 {

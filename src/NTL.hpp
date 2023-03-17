@@ -27,6 +27,7 @@
 #include "Base/Object.hpp"
 #include "Base/NonCopyable.hpp"
 #include "Base/NamedObject.hpp"
+#include "Base/Copyable.hpp"
 
 #include "String/StringUtils.hpp"
 
@@ -49,6 +50,8 @@
 #include "Memory/SharedPointer.hpp"
 #include "Memory/UniquePointer.hpp"
 #include "Memory/WeakPointer.hpp"
+#include "Memory/MemoryTracker.hpp"
+#include "Memory/DefaultMemoryTracker.hpp"
 
 #include "Resource/ResourceObject.hpp"
 #include "Resource/ResourceDeleter.hpp"
@@ -60,6 +63,7 @@
 
 #include "Log/LogLevel.hpp"
 #include "Log/LogItem.hpp"
+#include "Log/BasicLog.hpp"
 #include "Log/Log.hpp"
 
 #include "TypeInfo/FundamentalTypeInfo.hpp"
@@ -72,13 +76,15 @@
 
 #include "Misc/PrintUtils.hpp"
 #include "Misc/ContainerOperation.hpp"
+#include "Misc/ClassMerger.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
 
 #include "Image/Color.hpp"
 #include "Image/Pixel.hpp"
-#include "Image/Image.hpp"
+#include "Image/Bitmap.hpp"
+#include "Image/BitmapEditor.hpp"
 
 #include "Serialization/Serialization.hpp"
 #include "Serialization/Serializable.hpp"

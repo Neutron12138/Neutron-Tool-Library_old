@@ -8,11 +8,12 @@
 #include "Base/Type.hpp"
 #include "Log/Log.hpp"
 #include "Image/Color.hpp"
+#include "Reflection/Reflector.hpp"
 
 namespace ntl
 {
     /// @brief 日志对象
-    static Log log;
+    static Log<> log;
     /// @brief 字符串工具
     static StringUtils string_utils;
 
@@ -67,6 +68,9 @@ namespace ntl
         static Color White = Color(1.0f, 1.0f, 1.0f, 1.0f);
 
     } // namespace Colors
+
+    /// @brief 默认的反射器
+    static Reflector reflector;
 
 } // namespace ntl
 
