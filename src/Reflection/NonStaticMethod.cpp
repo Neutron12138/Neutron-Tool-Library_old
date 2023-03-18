@@ -17,6 +17,16 @@ namespace ntl
               pointer,
               args_count) {}
 
+    template <typename MethodType>
+    NonStaticMethod::NonStaticMethod(
+        MethodType pointer,
+        SizeT args_count,
+        const MethodSign &sign)
+        : NonStaticMethod::ParentType(
+              pointer,
+              args_count,
+              sign) {}
+
     template <typename ReturnType, typename... ArgsType>
     ReturnType
     NonStaticMethod::call(

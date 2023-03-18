@@ -1,12 +1,12 @@
 #ifndef __NEUTRONTL_REFLECTION_METHOD_HPP__
 #define __NEUTRONTL_REFLECTION_METHOD_HPP__
 
+#include <optional>
 #include "Member.hpp"
+#include "MethodSign.hpp"
 
 namespace ntl
-{
-    class Reflectible;
-
+{ 
     /// @brief 方法
     template <typename m_MethodPointer>
     class NTL_ALIGN Method : public Member<m_MethodPointer>
@@ -22,10 +22,15 @@ namespace ntl
         /// @brief 方法参数总数
         SizeT m_args_count = 0;
 
+        /// @brief 方法的签名
+        std::optional<MethodSign> m_sign;
+
     public:
         Method() = default;
         template <typename MethodType>
         explicit Method(MethodType pointer, SizeT args_count);
+        template <typename MethodType>
+        explicit Method(MethodType pointer, SizeT args_count, const MethodSign &sign);
         explicit Method(const SelfType &from) = default;
         ~Method() = default;
 
@@ -34,6 +39,8 @@ namespace ntl
 
     public:
         SizeT get_args_count() const;
+
+        const std::optional<MethodSign> &get_sign() const;
     };
 
 } // namespace ntl

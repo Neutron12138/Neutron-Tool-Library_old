@@ -11,6 +11,7 @@
 
 #include "Base/Object.cpp"
 #include "Base/NamedObject.cpp"
+#include "Base/StdIOType.cpp"
 
 #include "String/StringUtils.cpp"
 
@@ -19,6 +20,7 @@
 #include "Exception/NullPointerException.cpp"
 #include "Exception/InvalidArgumentException.cpp"
 #include "Exception/CaughtException.cpp"
+#include "Exception/TypeErrorException.cpp"
 
 #include "Maths/Sphere.cpp"
 #include "Maths/Angle.cpp"
@@ -49,6 +51,7 @@
 
 #include "TypeInfo/TypeInfo.cpp"
 #include "TypeInfo/TypeUtils.cpp"
+#include "TypeInfo/Type.cpp"
 
 #include "Misc/PrintUtils.cpp"
 #include "Misc/ContainerOperation.cpp"
@@ -67,6 +70,8 @@
 #include "Serialization/Serializer.cpp"
 #include "Serialization/Deserializer.cpp"
 
+#include "Reflection/FieldSign.cpp"
+#include "Reflection/MethodSign.cpp"
 #include "Reflection/Member.cpp"
 #include "Reflection/Method.cpp"
 #include "Reflection/NonStaticMethod.cpp"

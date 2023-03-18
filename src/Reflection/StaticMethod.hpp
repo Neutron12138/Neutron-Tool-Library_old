@@ -18,6 +18,8 @@ namespace ntl
         StaticMethod() = default;
         template <typename MethodType>
         explicit StaticMethod(MethodType pointer, SizeT args_count);
+        template <typename MethodType>
+        explicit StaticMethod(MethodType pointer, SizeT args_count, const MethodSign &sign);
         explicit StaticMethod(const SelfType &from) = default;
         ~StaticMethod() = default;
 

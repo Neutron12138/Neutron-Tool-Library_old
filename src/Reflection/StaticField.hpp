@@ -18,6 +18,8 @@ namespace ntl
         StaticField() = default;
         template <typename FieldType>
         explicit StaticField(FieldType pointer);
+        template <typename FieldType>
+        explicit StaticField(FieldType pointer, const FieldSign &sign);
         explicit StaticField(const SelfType &from) = default;
         ~StaticField() = default;
 

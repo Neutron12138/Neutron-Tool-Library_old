@@ -3,12 +3,21 @@
 
 #include "StaticField.hpp"
 #include "../Exception/NullPointerException.hpp"
+#include "../Exception/TypeErrorException.hpp"
+#include "../String/StringUtils.hpp"
 
 namespace ntl
 {
     template <typename FieldType>
-    StaticField::StaticField(FieldType pointer)
+    StaticField::StaticField(
+        FieldType pointer)
         : StaticField::ParentType(pointer) {}
+
+    template <typename FieldType>
+    StaticField::StaticField(
+        FieldType pointer,
+        const FieldSign &sign)
+        : StaticField::ParentType(pointer, sign) {}
 
     template <typename ReturnType>
     ReturnType &
@@ -19,6 +28,18 @@ namespace ntl
                 NTL_STRING("template <typename ReturnType> ReturnType &StaticField::of() const"));
 
         using FieldType = ReturnType(*);
+
+        if (m_sign.has_value())
+            if (!m_sign->check<ReturnType>())
+                throw TypeErrorException(
+                    StringUtils::to_string(
+                        NTL_STRING("The type of the field is \""),
+                        m_sign->get_field_type().get_info().name(),
+                        NTL_STRING("\", but the return type is \""),
+                        get_type<ReturnType>().get_info().name(),
+                        NTL_STRING("\"")),
+                    NTL_STRING("template <typename ReturnType> ReturnType &StaticField::of() const"));
+
         return *reinterpret_cast<FieldType>(m_pointer);
     }
 

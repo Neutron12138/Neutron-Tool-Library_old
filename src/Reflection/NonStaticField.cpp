@@ -7,8 +7,15 @@
 namespace ntl
 {
     template <typename FieldType>
-    NonStaticField::NonStaticField(FieldType pointer)
+    NonStaticField::NonStaticField(
+        FieldType pointer)
         : NonStaticField::ParentType(pointer) {}
+
+    template <typename FieldType>
+    NonStaticField::NonStaticField(
+        FieldType pointer,
+        const FieldSign &sign)
+        : NonStaticField::ParentType(pointer, sign) {}
 
     template <typename ReturnType>
     ReturnType &
@@ -20,6 +27,18 @@ namespace ntl
                 NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
 
         using FieldType = ReturnType(BasicObject::*);
+
+        if (m_sign.has_value())
+            if (!m_sign->check<ReturnType>())
+                throw TypeErrorException(
+                    StringUtils::to_string(
+                        NTL_STRING("The type of the field is \""),
+                        m_sign->get_field_type().get_info().name(),
+                        NTL_STRING("\", but the return type is \""),
+                        get_type<ReturnType>().get_info().name(),
+                        NTL_STRING("\"")),
+                    NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
+
         return reinterpret_cast<BasicObject *>(object)->*reinterpret_cast<FieldType>(m_pointer);
     }
 

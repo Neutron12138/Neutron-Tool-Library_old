@@ -18,6 +18,8 @@ namespace ntl
         NonStaticField() = default;
         template <typename FieldType>
         explicit NonStaticField(FieldType pointer);
+        template <typename FieldType>
+        explicit NonStaticField(FieldType pointer, const FieldSign &sign);
         explicit NonStaticField(const SelfType &from) = default;
         ~NonStaticField() = default;
 

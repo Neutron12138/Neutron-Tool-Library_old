@@ -36,6 +36,7 @@
 #include "Exception/NullPointerException.hpp"
 #include "Exception/InvalidArgumentException.hpp"
 #include "Exception/CaughtException.hpp"
+#include "Exception/TypeErrorException.hpp"
 
 #include "Maths/MathsContants.hpp"
 #include "Maths/Sphere.hpp"
@@ -73,6 +74,7 @@
 #include "TypeInfo/SupportedOperationsInfo.hpp"
 #include "TypeInfo/TypeInfo.hpp"
 #include "TypeInfo/TypeUtils.hpp"
+#include "TypeInfo/Type.hpp"
 
 #include "Misc/PrintUtils.hpp"
 #include "Misc/ContainerOperation.hpp"
@@ -91,6 +93,8 @@
 #include "Serialization/Serializer.hpp"
 #include "Serialization/Deserializer.hpp"
 
+#include "Reflection/FieldSign.hpp"
+#include "Reflection/MethodSign.hpp"
 #include "Reflection/Member.hpp"
 #include "Reflection/Method.hpp"
 #include "Reflection/NonStaticMethod.hpp"

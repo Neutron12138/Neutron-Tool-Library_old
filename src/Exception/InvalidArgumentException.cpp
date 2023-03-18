@@ -2,7 +2,6 @@
 #define __NEUTRONTL_EXCEPTION_INVALIDARGUMENTEXCEPTION_CPP__
 
 #include "InvalidArgumentException.hpp"
-#include "../String/StringUtils.hpp"
 
 namespace ntl
 {
