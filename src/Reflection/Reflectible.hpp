@@ -33,7 +33,7 @@ namespace ntl
 
         /// @brief 析构一个可反射的对象
         /// @param ptr 内存地址
-        static void destruct(Byte *ptr);
+        static void destruct(Reflectible *ptr);
     };
 
 } // namespace ntl

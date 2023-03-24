@@ -49,7 +49,7 @@ namespace ntl
 
         using MethodType = ReturnType (*)(ArgsType...);
 
-        if (m_sign.has_value())
+        /*if (m_sign.has_value())
         {
             if (!m_sign->check_return<ReturnType>())
                 throw TypeErrorException(
@@ -65,7 +65,7 @@ namespace ntl
                 throw TypeErrorException(
                     NTL_STRING("The type of the arguments is error"),
                     NTL_STRING("template <typename ReturnType, typename... ArgsType> ReturnType StaticMethod::call(ArgsType &&...args) const"));
-        }
+        }*/
 
         return (*reinterpret_cast<MethodType>(m_pointer))(
             std::forward<ArgsType>(args)...);

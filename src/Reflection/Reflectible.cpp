@@ -40,9 +40,9 @@ namespace ntl
 
     void
     Reflectible::destruct(
-        Byte *ptr)
+        Reflectible *ptr)
     {
-        delete reinterpret_cast<Reflectible *>(ptr);
+        delete[] ptr;
     }
 
 } // namespace ntl
