@@ -14,17 +14,19 @@ namespace ntl
     /// @brief 类型信息
     /// @tparam m_Type 类型
     template <typename m_Type>
-    class TypeInfo : virtual public FundamentalTypeInfo<m_Type>, virtual public CompoundTypeInfo<m_Type>, virtual public TypeAttributeInfo<m_Type>, virtual public SupportedOperationsInfo<m_Type>, virtual public AttributeQueryInfo<m_Type>
+    class TypeInfo
+        : virtual public FundamentalTypeInfo<m_Type>,
+          virtual public CompoundTypeInfo<m_Type>,
+          virtual public TypeAttributeInfo<m_Type>,
+          virtual public SupportedOperationsInfo<m_Type>,
+          virtual public AttributeQueryInfo<m_Type>
     {
     public:
+        /// @brief 类型
         using Type = m_Type;
 
         using SelfType = TypeInfo<Type>;
         using ParentType = Object;
-
-    public:
-        /// @brief 类型名称
-        // static constexpr char *type_name = ""; // typeid(Type).name();
 
     public:
         constexpr TypeInfo() = default;
@@ -46,6 +48,7 @@ namespace ntl
     /// @return 类型信息
     template <typename Type>
     TypeInfo<Type> get_type_info();
+
 } // namespace ntl
 
 #endif
