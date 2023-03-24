@@ -8,10 +8,22 @@ __attribute__((constructor)) void prepare()
     ntl::reflector.register_class<MyClass>("MyClass");
 }
 
+void f(int) {}
+
 int main()
 {
     try
     {
+        /*{
+            ntl::StaticMethod m(&f,
+                                1,
+                                ntl::MethodSign(
+                                    ntl::get_type<void>(),
+                                    std::vector<ntl::Type>{
+                                        ntl::get_type<int>()}));
+            m.call<void>("123");
+        }*/
+
         {
             ntl::NonStaticMethod method(&MyClass::func, 1);
             ntl::NonStaticField field(&MyClass::var);
@@ -28,14 +40,12 @@ int main()
         std::cout << "----------" << std::endl;
 
         {
-            ntl::Byte *object2 = ntl::reflector.get_class("MyClass")->get_static_methods().at(ntl::Details::construction_name).call<ntl::Byte *>();
-            // ntl::Byte *object2 = new ntl::Byte[ntl::reflector.get_class("MyClass")->get_size()];
+            ntl::BasicObject *object2 = ntl::reflector.get_class("MyClass")->get_static_methods().at(ntl::Details::construction_name).call<ntl::BasicObject *>();
             ntl::reflector.get_class("MyClass")->get_nonstatic_fields().at("var").of<int>(object2) = 1;
             ntl::reflector.get_class("MyClass")->get_nonstatic_methods().at("func(int)").call<void>(object2, 10);
             ntl::reflector.get_class("MyClass")->get_static_fields().at("var2").of<int>() = 100;
             ntl::reflector.get_class("MyClass")->get_static_methods().at("func2(int)").call<void>(1000);
             ntl::reflector.get_class("MyClass")->get_static_methods().at(ntl::Details::destruction_name).call<void>(object2);
-            // delete[] object2;
         }
     }
     catch (const ntl::Exception &exception)

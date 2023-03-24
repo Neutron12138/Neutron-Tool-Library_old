@@ -84,18 +84,15 @@ public:
             static_methods);
     }
 
-    static ntl::Byte *construct()
+    static ntl::BasicObject *construct()
     {
-        return reinterpret_cast<ntl::Byte *>(
-            new ntl::DefaultMemoryTracker<MyClass>());
+        return reinterpret_cast<ntl::BasicObject *>(new MyClass());
     }
 
-    static void destruct(ntl::Byte *ptr)
+    static void destruct(ntl::BasicObject *ptr)
     {
         std::cout << "ready to delete" << std::endl;
-        delete reinterpret_cast<
-            ntl::DefaultMemoryTracker<MyClass> *>(
-            ptr);
+        delete reinterpret_cast<MyClass *>(ptr);
         std::cout << "succeed to delete" << std::endl;
     }
 };
