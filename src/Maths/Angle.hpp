@@ -2,6 +2,7 @@
 #define __NEUTRONTL_MATHS_ANGLE_HPP__
 
 #include "../Base/BasicObject.hpp"
+#include "../Base/Type.hpp"
 
 namespace ntl
 {
@@ -49,6 +50,23 @@ namespace ntl
     public:
         SelfType &operator=(const SelfType &from) = default;
 
+        bool operator==(const SelfType &another) const;
+        bool operator!=(const SelfType &another) const;
+
+        SelfType operator+(const SelfType &another) const;
+        SelfType operator-(const SelfType &another) const;
+
+        SelfType operator*(const ValueType &another) const;
+        SelfType operator/(const ValueType &another) const;
+
+        SelfType &operator+=(const SelfType &another);
+        SelfType &operator-=(const SelfType &another);
+
+        SelfType &operator*=(const ValueType &another);
+        SelfType &operator/=(const ValueType &another);
+
+        operator ValueType() const;
+
     public:
         /// @brief 转换为弧度
         /// @return 弧度
@@ -57,6 +75,9 @@ namespace ntl
         /// @brief 转换为角度
         /// @return 角度
         ValueType as_degree() const;
+
+        /// @brief 转换为相同的角度单位
+        SelfType as_same_unit(const SelfType &another) const;
 
     public:
         /// @brief 转换为弧度
@@ -69,6 +90,9 @@ namespace ntl
         /// @return 角度
         static ValueType as_degree(const ValueType &value);
     };
+
+    template <typename ValueType>
+    OutputStream &operator<<(OutputStream &os, const Angle<ValueType> &angle);
 
 } // namespace ntl
 

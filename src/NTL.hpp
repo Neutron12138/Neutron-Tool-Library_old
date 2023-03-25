@@ -41,6 +41,8 @@
 #include "Maths/MathsContants.hpp"
 #include "Maths/Sphere.hpp"
 #include "Maths/Angle.hpp"
+#include "Maths/Vector.hpp"
+#include "Maths/Matrix.hpp"
 
 #include "Time/Time.hpp"
 #include "Time/Timer.hpp"

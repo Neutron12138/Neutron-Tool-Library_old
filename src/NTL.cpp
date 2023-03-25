@@ -24,6 +24,8 @@
 
 #include "Maths/Sphere.cpp"
 #include "Maths/Angle.cpp"
+#include "Maths/Vector.cpp"
+#include "Maths/Matrix.cpp"
 
 #include "Time/Time.cpp"
 #include "Time/Timer.cpp"
