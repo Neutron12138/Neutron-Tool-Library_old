@@ -39,8 +39,14 @@ int main()
     std::cout << "vec1.normalized():";
     print(vec1.normalized());
 
+    std::cout << "vec1.normalized().is_normalized():"
+              << vec1.normalized().is_normalized() << std::endl;
+
     std::cout << "vec1 + 2.0f * vec2:";
     print(vec1 + 2.0f * vec2);
+
+    std::cout << "vec1.included_angle_with(vec2):"
+              << vec1.included_angle_with(vec2) << std::endl;
 
     std::cout << "-vec1.reflect(vec3):";
     print(-vec1.reflect(vec3));
