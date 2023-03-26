@@ -154,6 +154,34 @@ namespace ntl
 
     template <typename m_ComponentType, SizeT m_dimensions>
     typename Vector<m_ComponentType, m_dimensions>::SelfType
+    Vector<m_ComponentType, m_dimensions>::operator+(
+        const typename Vector<m_ComponentType, m_dimensions>::ComponentType &another) const
+    {
+        SelfType result = SelfType(*this);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
+                        { element = element + another; },
+                        another);
+
+        return SelfType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
+    typename Vector<m_ComponentType, m_dimensions>::SelfType
+    Vector<m_ComponentType, m_dimensions>::operator-(
+        const typename Vector<m_ComponentType, m_dimensions>::ComponentType &another) const
+    {
+        SelfType result = SelfType(*this);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
+                        { element = element - another; },
+                        another);
+
+        return SelfType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
+    typename Vector<m_ComponentType, m_dimensions>::SelfType
     Vector<m_ComponentType, m_dimensions>::operator*(
         const typename Vector<m_ComponentType, m_dimensions>::ComponentType &another) const
     {
@@ -236,6 +264,24 @@ namespace ntl
         const typename Vector<m_ComponentType, m_dimensions>::SelfType &another)
     {
         *this = *this % another;
+        return *this;
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
+    typename Vector<m_ComponentType, m_dimensions>::SelfType &
+    Vector<m_ComponentType, m_dimensions>::operator+=(
+        const typename Vector<m_ComponentType, m_dimensions>::ComponentType &another)
+    {
+        *this = *this + another;
+        return *this;
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
+    typename Vector<m_ComponentType, m_dimensions>::SelfType &
+    Vector<m_ComponentType, m_dimensions>::operator-=(
+        const typename Vector<m_ComponentType, m_dimensions>::ComponentType &another)
+    {
+        *this = *this - another;
         return *this;
     }
 
@@ -341,6 +387,19 @@ namespace ntl
     }
 
     template <typename m_ComponentType, SizeT m_dimensions>
+    Angle<typename Vector<m_ComponentType, m_dimensions>::ComponentType>
+    Vector<m_ComponentType, m_dimensions>::included_angle_with(
+        const typename Vector<m_ComponentType, m_dimensions>::SelfType &another) const
+    {
+        using AngleType = Angle<typename Vector<m_ComponentType, m_dimensions>::ComponentType>;
+
+        ComponentType dot_product = normalized().dot(another.normalized());
+        return AngleType(
+            std::acos(dot_product),
+            AngleType::AngleUnit::Radian);
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
     typename Vector<m_ComponentType, m_dimensions>::ComponentType
     Vector<m_ComponentType, m_dimensions>::length() const
     {
@@ -373,6 +432,13 @@ namespace ntl
     }
 
     template <typename m_ComponentType, SizeT m_dimensions>
+    bool
+    Vector<m_ComponentType, m_dimensions>::is_normalized() const
+    {
+        return length() == 1;
+    }
+
+    template <typename m_ComponentType, SizeT m_dimensions>
     SizeT
     Vector<m_ComponentType, m_dimensions>::get_dimensions()
     {
@@ -381,11 +447,87 @@ namespace ntl
 
     template <typename ComponentType, SizeT dimensions>
     Vector<ComponentType, dimensions>
+    operator+(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector)
+    {
+        using SelfType = Vector<ComponentType, dimensions>;
+
+        SelfType result = SelfType(vector);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
+                        { element = value + element; },
+                        value);
+
+        return SelfType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
+    operator-(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector)
+    {
+        using SelfType = Vector<ComponentType, dimensions>;
+
+        SelfType result = SelfType(vector);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
+                        { element = value - element; },
+                        value);
+
+        return SelfType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
     operator*(
         const ComponentType &value,
         const Vector<ComponentType, dimensions> &vector)
     {
-        return vector * value;
+        using SelfType = Vector<ComponentType, dimensions>;
+
+        SelfType result = SelfType(vector);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
+                        { element = value * element; },
+                        value);
+
+        return SelfType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
+    operator/(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector)
+    {
+        using SelfType = Vector<ComponentType, dimensions>;
+
+        SelfType result = SelfType(vector);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
+                        { element = value / element; },
+                        value);
+
+        return SelfType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
+    operator%(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector)
+    {
+        using SelfType = Vector<ComponentType, dimensions>;
+
+        SelfType result = SelfType(vector);
+
+        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
+                        { element = value % element; },
+                        value);
+
+        return SelfType(result);
     }
 
     template <typename ComponentType>

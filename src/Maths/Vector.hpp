@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include "../Base/Type.hpp"
 #include "../Base/BasicObject.hpp"
+#include "Angle.hpp"
 
 namespace ntl
 {
@@ -49,6 +50,8 @@ namespace ntl
         SelfType operator*(const SelfType &another) const;
         SelfType operator/(const SelfType &another) const;
         SelfType operator%(const SelfType &another) const;
+        SelfType operator+(const ComponentType &another) const;
+        SelfType operator-(const ComponentType &another) const;
         SelfType operator*(const ComponentType &another) const;
         SelfType operator/(const ComponentType &another) const;
         SelfType operator%(const ComponentType &another) const;
@@ -58,6 +61,8 @@ namespace ntl
         SelfType &operator*=(const SelfType &another);
         SelfType &operator/=(const SelfType &another);
         SelfType &operator%=(const SelfType &another);
+        SelfType &operator+=(const ComponentType &another);
+        SelfType &operator-=(const ComponentType &another);
         SelfType &operator*=(const ComponentType &another);
         SelfType &operator/=(const ComponentType &another);
         SelfType &operator%=(const ComponentType &another);
@@ -83,6 +88,11 @@ namespace ntl
         /// @return 反射后的向量
         SelfType reflect(const SelfType &normal) const;
 
+        /// @brief 计算与另一向量之间的夹角
+        /// @param another 另一个向量
+        /// @return 与另一向量之间的夹角
+        Angle<ComponentType> included_angle_with(const SelfType &another) const;
+
     public:
         /// @brief 获取向量的模（module），但是与C++20关键字相冲突
         /// @return 向量的模（长度）
@@ -96,6 +106,10 @@ namespace ntl
         /// @return 本向量的单位向量
         SelfType normalized() const;
 
+        /// @brief 判断本向量是否为单位向量，由于精度问题，不一定对
+        /// @return 本向量是否为单位向量
+        bool is_normalized() const;
+
     public:
         /// @brief 获取本向量的维数
         /// @return 本向量的维数
@@ -103,7 +117,23 @@ namespace ntl
     };
 
     template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> operator+(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector);
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> operator-(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector);
+    template <typename ComponentType, SizeT dimensions>
     Vector<ComponentType, dimensions> operator*(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector);
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> operator/(
+        const ComponentType &value,
+        const Vector<ComponentType, dimensions> &vector);
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> operator%(
         const ComponentType &value,
         const Vector<ComponentType, dimensions> &vector);
 
