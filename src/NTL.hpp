@@ -28,6 +28,7 @@
 #include "Base/NonCopyable.hpp"
 #include "Base/NamedObject.hpp"
 #include "Base/Copyable.hpp"
+#include "Base/Comparable.hpp"
 
 #include "String/StringUtils.hpp"
 
@@ -81,6 +82,7 @@
 #include "Misc/PrintUtils.hpp"
 #include "Misc/ContainerOperation.hpp"
 #include "Misc/ClassMerger.hpp"
+#include "Misc/Enumeration.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"

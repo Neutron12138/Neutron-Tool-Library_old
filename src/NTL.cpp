@@ -58,6 +58,7 @@
 #include "Misc/PrintUtils.cpp"
 #include "Misc/ContainerOperation.cpp"
 #include "Misc/ClassMerger.cpp"
+#include "Misc/Enumeration.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"
