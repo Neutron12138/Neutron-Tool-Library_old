@@ -11,6 +11,48 @@ namespace ntl
         const String &serialization)
         : m_serialization(serialization) {}
 
+    bool
+    Serialization::operator>(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization > another.m_serialization;
+    }
+
+    bool
+    Serialization::operator<(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization < another.m_serialization;
+    }
+
+    bool
+    Serialization::operator>=(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization >= another.m_serialization;
+    }
+
+    bool
+    Serialization::operator<=(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization <= another.m_serialization;
+    }
+
+    bool
+    Serialization::operator==(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization == another.m_serialization;
+    }
+
+    bool
+    Serialization::operator!=(
+        const typename Serialization::SelfType &another)
+    {
+        return m_serialization != another.m_serialization;
+    }
+
     Serialization::operator String()
     {
         return m_serialization;
@@ -33,6 +75,15 @@ namespace ntl
     {
         m_serialization = serialization;
         return *this;
+    }
+
+    OutputStream &
+    operator<<(
+        OutputStream &os,
+        const Serialization &serialization)
+    {
+        os << serialization.get_serialization();
+        return os;
     }
 
 } // namespace ntl

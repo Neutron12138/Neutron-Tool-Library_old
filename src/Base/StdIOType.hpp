@@ -87,6 +87,13 @@ namespace ntl
     using OutputFileStream = std::ofstream;
 
 #endif
+
+    template <typename StreamTraitsType, typename StringTraitsType, typename StringAllocatorType>
+    std::basic_ostream<wchar_t, StreamTraitsType> &
+    operator<<(
+        std::basic_ostream<wchar_t, StreamTraitsType> &os,
+        const std::basic_string<char, StringTraitsType, StringAllocatorType> &str);
+
 } // namespace ntl
 
 #endif
