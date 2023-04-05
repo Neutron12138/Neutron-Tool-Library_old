@@ -92,6 +92,8 @@ int main()
         std::cout << "vec4:" << std::endl;
         ntl::PrintUtils::print_array(std::cout, vec4.cbegin(), vec4.cend());
         std::cout << std::endl;
+
+        std::cout << (ser2 == ser3) << std::endl;
     }
     catch (const ntl::Exception &exception)
     {
