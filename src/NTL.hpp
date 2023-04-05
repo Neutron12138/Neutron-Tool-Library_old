@@ -38,6 +38,7 @@
 #include "Exception/InvalidArgumentException.hpp"
 #include "Exception/CaughtException.hpp"
 #include "Exception/TypeErrorException.hpp"
+#include "Exception/RuntimeException.hpp"
 
 #include "Maths/MathsContants.hpp"
 #include "Maths/Sphere.hpp"

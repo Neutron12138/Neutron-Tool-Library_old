@@ -21,6 +21,7 @@
 #include "Exception/InvalidArgumentException.cpp"
 #include "Exception/CaughtException.cpp"
 #include "Exception/TypeErrorException.cpp"
+#include "Exception/RuntimeException.cpp"
 
 #include "Maths/Sphere.cpp"
 #include "Maths/Angle.cpp"
