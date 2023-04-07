@@ -32,6 +32,11 @@ namespace ntl
         bool operator==(const SelfType &another) const;
         bool operator!=(const SelfType &another) const;
 
+        bool operator>(const SelfType &another) const;
+        bool operator>=(const SelfType &another) const;
+        bool operator<(const SelfType &another) const;
+        bool operator<=(const SelfType &another) const;
+
         SelfType operator|(const SelfType &another) const;
         SelfType operator&(const SelfType &another) const;
 

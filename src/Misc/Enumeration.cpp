@@ -23,7 +23,39 @@ namespace ntl
     BasicEnumeration<m_ValueType>::operator!=(
         const typename BasicEnumeration<m_ValueType>::SelfType &another) const
     {
-        return !operator==(another);
+        return m_value != another.m_value;
+    }
+
+    template <typename m_ValueType>
+    bool
+    BasicEnumeration<m_ValueType>::operator>(
+        const typename BasicEnumeration<m_ValueType>::SelfType &another) const
+    {
+        return m_value > another.m_value;
+    }
+
+    template <typename m_ValueType>
+    bool
+    BasicEnumeration<m_ValueType>::operator>=(
+        const typename BasicEnumeration<m_ValueType>::SelfType &another) const
+    {
+        return m_value >= another.m_value;
+    }
+
+    template <typename m_ValueType>
+    bool
+    BasicEnumeration<m_ValueType>::operator<(
+        const typename BasicEnumeration<m_ValueType>::SelfType &another) const
+    {
+        return m_value < another.m_value;
+    }
+
+    template <typename m_ValueType>
+    bool
+    BasicEnumeration<m_ValueType>::operator<=(
+        const typename BasicEnumeration<m_ValueType>::SelfType &another) const
+    {
+        return m_value <= another.m_value;
     }
 
     template <typename m_ValueType>
@@ -105,7 +137,7 @@ namespace ntl
     BasicEnumeration<String>::operator!=(
         const typename BasicEnumeration<String>::SelfType &another) const
     {
-        return !operator==(another);
+        return m_value != another.m_value;
     }
 
     BasicEnumeration<String>::operator BasicEnumeration<String>::ValueType() const

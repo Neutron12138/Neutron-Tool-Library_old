@@ -16,13 +16,17 @@
 // 实现：
 
 #ifdef NEUTRONTL_CONFIG_USE_WCHAR
+
 #define NTL_CHAR(ch) L##ch
 #define NTL_CSTRING(str) L##str
 #define NTL_STRING(str) ntl::String(L##str)
+
 #else
+
 #define NTL_CHAR(ch) ch
 #define NTL_CSTRING(str) str
 #define NTL_STRING(str) ntl::String(str)
+
 #endif
 
 // 禁用内存对齐
