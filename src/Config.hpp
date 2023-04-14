@@ -13,6 +13,8 @@
 // NEUTRONTL_CONFIG_USE_WCHAR 使用宽字节字符串而不是多字节字符串
 // NEUTRONTL_CONFIG_USE_APPLICATION 使用NTL提供的Main入口
 
+// NEUTRONTL_CONFIG_USE_CPP20 使用C++20
+
 // 实现：
 
 #ifdef NEUTRONTL_CONFIG_USE_WCHAR
@@ -31,5 +33,17 @@
 
 // 禁用内存对齐
 #define NTL_ALIGN alignas(1)
+
+#if defined(NEUTRONTL_CONFIG_USE_CPP20)
+#if __cplusplus >= 202002L
+#define NEUTRONTL_CPP20 true
+#else
+#error The compiler does not support C++20.
+#endif
+#endif
+
+#ifndef NEUTRONTL_CPP20
+#define NEUTRONTL_CPP20 false
+#endif
 
 #endif

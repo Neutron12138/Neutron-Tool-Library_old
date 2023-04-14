@@ -84,6 +84,7 @@
 #include "Misc/ContainerOperation.hpp"
 #include "Misc/ClassMerger.hpp"
 #include "Misc/Enumeration.hpp"
+#include "Misc/AnyType.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
