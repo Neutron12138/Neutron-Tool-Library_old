@@ -23,12 +23,12 @@ namespace ntl
     public:
         /// @brief 复制本对象
         /// @return 复制结果
-        virtual SelfType &copy() = 0;
+        virtual SelfType copy() const;
 
         /// @brief 与另一个对象交换值
         /// @param another 另一个对象
         /// @return 本对象
-        virtual SelfType &swap(const SelfType &another) = 0;
+        virtual SelfType &swap(SelfType &another);
     };
 
 } // namespace ntl

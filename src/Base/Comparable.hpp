@@ -21,12 +21,12 @@ namespace ntl
         constexpr SelfType &operator=(const SelfType &from) noexcept = default;
 
     public:
-        virtual bool operator>(const Comparable &another) = 0;
-        virtual bool operator<(const Comparable &another) = 0;
-        virtual bool operator>=(const Comparable &another) = 0;
-        virtual bool operator<=(const Comparable &another) = 0;
-        virtual bool operator==(const Comparable &another) = 0;
-        virtual bool operator!=(const Comparable &another) = 0;
+        virtual bool operator>(const SelfType &another) = 0;
+        virtual bool operator<(const SelfType &another) = 0;
+        virtual bool operator>=(const SelfType &another) = 0;
+        virtual bool operator<=(const SelfType &another) = 0;
+        virtual bool operator==(const SelfType &another) = 0;
+        virtual bool operator!=(const SelfType &another) = 0;
     };
 
 } // namespace ntl

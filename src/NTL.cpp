@@ -12,6 +12,7 @@
 #include "Base/Object.cpp"
 #include "Base/NamedObject.cpp"
 #include "Base/StdIOType.cpp"
+#include "Base/Copyable.cpp"
 
 #include "String/StringUtils.cpp"
 
