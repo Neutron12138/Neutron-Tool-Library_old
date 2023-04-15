@@ -20,6 +20,7 @@ namespace ntl
         constexpr explicit NonCopyable(const SelfType &from) noexcept = delete;
         constexpr SelfType &operator=(const SelfType &from) noexcept = delete;
     };
+
 } // namespace ntl
 
 #endif

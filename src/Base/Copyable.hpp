@@ -31,6 +31,25 @@ namespace ntl
         virtual SelfType &swap(SelfType &another);
     };
 
+    namespace cpp20
+    {
+#if NEUTRONTL_CPP20
+        /// @brief 可拷贝的类型
+        template <typename T>
+        concept CopyableType =
+            requires(T object, T another) {
+                // 拥有拷贝构造函数
+
+                // 拥有copy()函数且返回另一个对象
+                another = T(object.copy());
+
+                // 拥有swap()函数且返回对象，但不一定是本对象
+                object.swap(another);
+            };
+#endif
+
+    } // namespace cpp20
+
 } // namespace ntl
 
 #endif

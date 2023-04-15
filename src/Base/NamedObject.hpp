@@ -29,12 +29,28 @@ namespace ntl
     public:
         /// @brief 获取本对象的名称
         /// @return 本对象的名称
-        inline const String &get_name() const;
+        const String &get_name() const;
 
-        /// @brief 设置本对象的名称，如果要禁用，可以覆写为空（什么都不执行）
+        /// @brief 设置本对象的名称
         /// @param name 本对象的名称
-        virtual void set_name(const String &name);
+        SelfType &set_name(const String &name);
     };
+
+    namespace cpp20
+    {
+#if NEUTRONTL_CPP20
+        /// @brief 可拷贝的类型
+        template <typename T>
+        concept NamedObjectType =
+            requires(T object, String name) {
+                // 拥有get_name()和set_name()
+                name = object.get_name();
+                object.set_name(name);
+            };
+#endif
+
+    } // namespace cpp20
+
 } // namespace ntl
 
 #endif

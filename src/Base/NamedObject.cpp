@@ -5,21 +5,22 @@
 
 namespace ntl
 {
-    inline NamedObject::NamedObject(
+    NamedObject::NamedObject(
         const String &name)
         : m_name(name) {}
 
-    inline const String &
+    const String &
     NamedObject::get_name() const
     {
         return m_name;
     }
 
-    void
+    typename NamedObject::SelfType &
     NamedObject::set_name(
         const String &name)
     {
         m_name = name;
+        return *this;
     }
 } // namespace ntl
 

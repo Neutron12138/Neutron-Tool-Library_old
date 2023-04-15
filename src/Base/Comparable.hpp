@@ -29,6 +29,24 @@ namespace ntl
         virtual bool operator!=(const SelfType &another) = 0;
     };
 
+    namespace cpp20
+    {
+#if NEUTRONTL_CPP20
+        /// @brief 可拷贝的类型
+        template <typename T>
+        concept ComparableType =
+            requires(T object,T another) {
+                object > another;
+                object < another;
+                object >= another;
+                object <= another;
+                object == another;
+                object != another;
+            };
+#endif
+
+    } // namespace cpp20
+
 } // namespace ntl
 
 #endif

@@ -7,17 +7,6 @@ namespace ntl
     {
 #if not NEUTRONTL_CPP20
 
-        template <typename TargetType>
-        TargetType any_type()
-        {
-            return TargetType();
-        }
-
-        namespace details
-        {
-
-        } // namespace details
-
 #endif
 
     } // namespace cpp20
