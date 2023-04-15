@@ -28,9 +28,12 @@ int main()
 
     std::cout << "----------" << std::endl;
 
-    ntl::Vec2 vec1 = ntl::make_vector(1.0f, 1.0f);
-    ntl::Vec2 vec2 = ntl::make_vector(0.1f, 0.2f);
-    ntl::Vec2 vec3 = ntl::make_vector(0.0f, 1.0f);
+    ntl::Vec2 vec1 = ntl::make_vector2(ntl::make_vector(1.0f, 1.0f));
+    ntl::Vec2 vec2 = ntl::make_vector2(ntl::make_vector(0.1f, 0.2f));
+    ntl::Vec2 vec3 = ntl::make_vector2(ntl::make_vector(0.0f, 1.0f));
+
+    glm::vec2 vec = vec1;
+    std::cout << "vec:" << vec.x << "," << vec.y << std::endl;
 
     std::cout << "vec1.dot(vec2):" << vec1.dot(vec2) << std::endl;
 
