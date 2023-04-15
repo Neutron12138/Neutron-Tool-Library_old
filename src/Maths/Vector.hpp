@@ -19,6 +19,7 @@ namespace ntl
     public:
         /// @brief 分量类型
         using ComponentType = m_ComponentType;
+
         /// @brief 分量持有者
         using ComponentHolder = std::array<ComponentType, m_dimensions>;
 
@@ -116,6 +117,10 @@ namespace ntl
         static SizeT get_dimensions();
     };
 
+    //
+    // 运算符重载函数
+    //
+
     template <typename ComponentType, SizeT dimensions>
     Vector<ComponentType, dimensions> operator+(
         const ComponentType &value,
@@ -137,45 +142,19 @@ namespace ntl
         const ComponentType &value,
         const Vector<ComponentType, dimensions> &vector);
 
-    /// @brief 2维向量
-    template <typename ComponentType>
-    using Vector2 = Vector<ComponentType, 2>;
-    /// @brief 3维向量
-    template <typename ComponentType>
-    using Vector3 = Vector<ComponentType, 3>;
-    /// @brief 4维向量
-    template <typename ComponentType>
-    using Vector4 = Vector<ComponentType, 4>;
+    //
+    // 工具函数
+    //
 
-    // 浮点数向量
+    template<typename ComponentType,SizeT dimensions,SizeT size>
+    Vector<ComponentType,dimensions> make_vector(const Vector<ComponentType,size>&another);
 
-    using Vector2f = Vector2<float>;
-    using Vector3f = Vector3<float>;
-    using Vector4f = Vector4<float>;
-
-    // 双精度数向量
-
-    using Vector2d = Vector2<double>;
-    using Vector3d = Vector3<double>;
-    using Vector4d = Vector4<double>;
-
-    // 有符号整数向量
-
-    using Vector2i = Vector2<int>;
-    using Vector3i = Vector3<int>;
-    using Vector4i = Vector4<int>;
-
-    // 无符号整数向量
-
-    using Vector2u = Vector2<unsigned int>;
-    using Vector3u = Vector3<unsigned int>;
-    using Vector4u = Vector4<unsigned int>;
-
-    // 默认的向量
-
-    using Vec2 = Vector2f;
-    using Vec3 = Vector3f;
-    using Vec4 = Vector4f;
+    template <typename ComponentType, SizeT dimensions,SizeT size>
+    Vector<ComponentType, dimensions> make_vector(std::array<ComponentType,size> &components);
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> make_vector(std::vector<ComponentType> &components);
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions> make_vector(std::initializer_list<ComponentType> &components);
 
     template <typename ComponentType>
     Vector<ComponentType, 2> make_vector(

@@ -530,6 +530,58 @@ namespace ntl
         return SelfType(result);
     }
 
+    template <typename ComponentType, SizeT dimensions, SizeT size>
+    Vector<ComponentType, dimensions>
+    make_vector(
+        const Vector<ComponentType, size> &another)
+    {
+        using VectorType = Vector<ComponentType, dimensions>;
+
+        VectorType result;
+        for (SizeT i = 0; i < dimensions && i < size; i++)
+            result[i] = another[i];
+
+        return VectorType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions, SizeT size>
+    Vector<ComponentType, dimensions>
+    make_vector(
+        std::array<ComponentType, size> &components)
+    {
+        using VectorType = Vector<ComponentType, dimensions>;
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
+    make_vector(
+        std::vector<ComponentType> &components)
+    {
+        using VectorType = Vector<ComponentType, dimensions>;
+        const SizeT size = components.size();
+
+        VectorType result;
+        for (SizeT i = 0; i < dimensions && i < size; i++)
+            result[i] = components.at(i);
+
+        return VectorType(result);
+    }
+
+    template <typename ComponentType, SizeT dimensions>
+    Vector<ComponentType, dimensions>
+    make_vector(
+        std::initializer_list<ComponentType> &components)
+    {
+        using VectorType = Vector<ComponentType, dimensions>;
+        const SizeT size = components.size();
+
+        VectorType result;
+        for (SizeT i = 0; i < dimensions && i < size; i++)
+            result[i] = *(components.begin() + i);
+
+        return VectorType(result);
+    }
+
     template <typename ComponentType>
     Vector<ComponentType, 2> make_vector(
         const ComponentType &comp0,

@@ -44,6 +44,7 @@
 #include "Maths/Sphere.hpp"
 #include "Maths/Angle.hpp"
 #include "Maths/Vector.hpp"
+#include "Maths/GLMVector.hpp"
 #include "Maths/Matrix.hpp"
 
 #include "Time/Time.hpp"
