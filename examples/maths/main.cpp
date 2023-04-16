@@ -60,7 +60,25 @@ int main()
     for (size_t i = 0; i < 2; i++)
         for (size_t j = 0; j < 3; j++)
             mat1[i][j] = i * 3 + j;
-    print(2.0f * -mat1);
+    ntl::Matrix3x2<float> mat2;
+    for (size_t i = 0; i < 3; i++)
+        for (size_t j = 0; j < 2; j++)
+            mat2[i][j] = i * 2 + j;
+    ntl::Vec3 vec4 = ntl::make_vector3(ntl::make_vector(1.0f, 2.0f, 3.0f));
+
+    std::cout << "-mat1:" << std::endl;
+    print(-mat1);
+    std::cout << "2.0f / mat2:" << std::endl;
+    print(2.0f / mat2);
+
+    std::cout << "ntl::make_identity_matrix2().multiply(mat1):" << std::endl;
+    print(ntl::make_identity_matrix2<float>().multiply(mat1));
+    std::cout << "mat1.multiply(vec4):" << std::endl;
+    print(mat1.multiply(vec4));
+    std::cout << "mat1.multiply(mat2):" << std::endl;
+    print(mat1.multiply(mat2));
+    std::cout << "mat2.multiply(mat1):" << std::endl;
+    print(mat2.multiply(mat1));
 
     return 0;
 }
