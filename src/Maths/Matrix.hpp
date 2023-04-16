@@ -49,6 +49,8 @@ namespace ntl
         SelfType operator*(const SelfType &another) const;
         SelfType operator/(const SelfType &another) const;
         SelfType operator%(const SelfType &another) const;
+        SelfType operator+(const ComponentType &another) const;
+        SelfType operator-(const ComponentType &another) const;
         SelfType operator*(const ComponentType &another) const;
         SelfType operator/(const ComponentType &another) const;
         SelfType operator%(const ComponentType &another) const;
@@ -58,6 +60,8 @@ namespace ntl
         SelfType &operator*=(const SelfType &another);
         SelfType &operator/=(const SelfType &another);
         SelfType &operator%=(const SelfType &another);
+        SelfType &operator+=(const ComponentType &another);
+        SelfType &operator-=(const ComponentType &another);
         SelfType &operator*=(const ComponentType &another);
         SelfType &operator/=(const ComponentType &another);
         SelfType &operator%=(const ComponentType &another);
@@ -73,42 +77,61 @@ namespace ntl
         void for_each(FuncType func, ArgsType &&...args) const;
 
     public:
+        Vector<ComponentType, m_rows> multiply(
+            const Vector<ComponentType, m_columns> &another) const;
+        template <SizeT columns>
+        Matrix<ComponentType, m_rows, columns> multiply(
+            const Matrix<ComponentType, m_columns, columns> &another) const;
+
+    public:
         static SizeT get_rows();
         static SizeT get_columns();
     };
 
     template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns> operator+(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix);
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns> operator-(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix);
+    template <typename ComponentType, SizeT rows, SizeT columns>
     Matrix<ComponentType, rows, columns> operator*(
         const ComponentType &value,
         const Matrix<ComponentType, rows, columns> &matrix);
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns> operator/(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix);
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns> operator%(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix);
+
+    //
+    // 工具函数
+    //
 
     template <typename ComponentType>
-    using Matrix2x2 = Matrix<ComponentType, 2, 2>;
+    Matrix<ComponentType, 2, 2> make_identity_matrix2();
     template <typename ComponentType>
-    using Matrix2x3 = Matrix<ComponentType, 2, 3>;
+    Matrix<ComponentType, 3, 3> make_identity_matrix3();
     template <typename ComponentType>
-    using Matrix2x4 = Matrix<ComponentType, 2, 4>;
+    Matrix<ComponentType, 4, 4> make_identity_matrix4();
 
     template <typename ComponentType>
-    using Matrix3x2 = Matrix<ComponentType, 3, 2>;
+    Matrix<ComponentType, 2, 2> make_matrix(const Vector<ComponentType, 2> &row0,
+                                            const Vector<ComponentType, 2> &row1);
     template <typename ComponentType>
-    using Matrix3x3 = Matrix<ComponentType, 3, 3>;
+    Matrix<ComponentType, 3, 3> make_matrix(const Vector<ComponentType, 3> &row0,
+                                            const Vector<ComponentType, 3> &row1,
+                                            const Vector<ComponentType, 3> &row2);
     template <typename ComponentType>
-    using Matrix3x4 = Matrix<ComponentType, 3, 4>;
-
-    template <typename ComponentType>
-    using Matrix4x2 = Matrix<ComponentType, 4, 2>;
-    template <typename ComponentType>
-    using Matrix4x3 = Matrix<ComponentType, 4, 3>;
-    template <typename ComponentType>
-    using Matrix4x4 = Matrix<ComponentType, 4, 4>;
-
-    template <typename ComponentType>
-    using Matrix2 = Matrix2x2<ComponentType>;
-    template <typename ComponentType>
-    using Matrix3 = Matrix3x3<ComponentType>;
-    template <typename ComponentType>
-    using Matrix4 = Matrix4x4<ComponentType>;
+    Matrix<ComponentType, 4, 4> make_matrix(const Vector<ComponentType, 4> &row0,
+                                            const Vector<ComponentType, 4> &row1,
+                                            const Vector<ComponentType, 4> &row2,
+                                            const Vector<ComponentType, 4> &row3);
 
 } // namespace ntl
 

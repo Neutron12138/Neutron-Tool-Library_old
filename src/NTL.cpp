@@ -24,11 +24,13 @@
 #include "Exception/TypeErrorException.cpp"
 #include "Exception/RuntimeException.cpp"
 
+#include "Maths/Number.cpp"
 #include "Maths/Sphere.cpp"
 #include "Maths/Angle.cpp"
 #include "Maths/Vector.cpp"
 #include "Maths/GLMVector.cpp"
 #include "Maths/Matrix.cpp"
+#include "Maths/GLMMatrix.cpp"
 
 #include "Time/Time.cpp"
 #include "Time/Timer.cpp"

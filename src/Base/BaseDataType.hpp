@@ -38,6 +38,9 @@ namespace ntl
     /// @brief 64位浮点数
     using Float64 = double;
 
+    /// @brief 128位浮点数
+    using Float128 = long double;
+
     /// @brief 8位字符
     using Char8 = char;
 

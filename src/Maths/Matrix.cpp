@@ -4,6 +4,7 @@
 #include "Matrix.hpp"
 #include "../Exception/OutOfRangeException.hpp"
 #include "../String/StringUtils.hpp"
+#include "Number.hpp"
 
 namespace ntl
 {
@@ -86,9 +87,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const SelfType &another) -> void
-                        { element = element + another[i][j]; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element + another[i][j]; });
 
         return SelfType(result);
     }
@@ -100,9 +100,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const SelfType &another) -> void
-                        { element = element - another[i][j]; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element - another[i][j]; });
 
         return SelfType(result);
     }
@@ -114,9 +113,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const SelfType &another) -> void
-                        { element = element * another[i][j]; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element * another[i][j]; });
 
         return SelfType(result);
     }
@@ -128,9 +126,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const SelfType &another) -> void
-                        { element = element / another[i][j]; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element / another[i][j]; });
 
         return SelfType(result);
     }
@@ -142,9 +139,34 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const SelfType &another) -> void
-                        { element = element % another[i][j]; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element % another[i][j]; });
+
+        return SelfType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    typename Matrix<m_ComponentType, m_rows, m_columns>::SelfType
+    Matrix<m_ComponentType, m_rows, m_columns>::operator+(
+        const typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType &another) const
+    {
+        SelfType result = SelfType(*this);
+
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element + another; });
+
+        return SelfType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    typename Matrix<m_ComponentType, m_rows, m_columns>::SelfType
+    Matrix<m_ComponentType, m_rows, m_columns>::operator-(
+        const typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType &another) const
+    {
+        SelfType result = SelfType(*this);
+
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element - another; });
 
         return SelfType(result);
     }
@@ -156,9 +178,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const ComponentType &another) -> void
-                        { element = element * another; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element * another; });
 
         return SelfType(result);
     }
@@ -170,9 +191,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const ComponentType &another) -> void
-                        { element = element / another; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element / another; });
 
         return SelfType(result);
     }
@@ -184,9 +204,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT i, SizeT j, ComponentType &element, const ComponentType &another) -> void
-                        { element = element % another; },
-                        another);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = element % another; });
 
         return SelfType(result);
     }
@@ -321,6 +340,45 @@ namespace ntl
     }
 
     template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    Vector<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows>
+    Matrix<m_ComponentType, m_rows, m_columns>::multiply(
+        const Vector<m_ComponentType, m_columns> &another) const
+    {
+        using VectorType = Vector<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows>;
+
+        VectorType result;
+        result.for_each([=](SizeT i, ComponentType &element) -> void
+                        {
+                            element = Numbers::Zero();
+                            for(SizeT j = 0;j < m_columns;j++)
+                            {
+                                element += operator[](i)[j] * another[j];
+                            } });
+
+        return VectorType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    template <SizeT columns>
+    Matrix<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows, columns>
+    Matrix<m_ComponentType, m_rows, m_columns>::multiply(
+        const Matrix<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_columns, columns> &another) const
+    {
+        using MatrixType = Matrix<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows, columns>;
+
+        MatrixType result;
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { 
+                            element = Numbers::Zero();
+                            for(SizeT k = 0;k < m_columns;k++)
+                            {
+                                element += operator[](i)[k] * another[k][j];
+                            } });
+
+        return MatrixType(result);
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
     SizeT
     Matrix<m_ComponentType, m_rows, m_columns>::get_rows()
     {
@@ -336,11 +394,167 @@ namespace ntl
 
     template <typename ComponentType, SizeT rows, SizeT columns>
     Matrix<ComponentType, rows, columns>
+    operator+(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix)
+    {
+        using MatrixType = Matrix<ComponentType, rows, columns>;
+
+        MatrixType result = MatrixType(matrix);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = value + element; });
+
+        return MatrixType(result);
+    }
+
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns>
+    operator-(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix)
+    {
+        using MatrixType = Matrix<ComponentType, rows, columns>;
+
+        MatrixType result = MatrixType(matrix);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = value - element; });
+
+        return MatrixType(result);
+    }
+
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns>
     operator*(
         const ComponentType &value,
         const Matrix<ComponentType, rows, columns> &matrix)
     {
-        return matrix * value;
+        using MatrixType = Matrix<ComponentType, rows, columns>;
+
+        MatrixType result = MatrixType(matrix);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = value * element; });
+
+        return MatrixType(result);
+    }
+
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns>
+    operator/(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix)
+    {
+        using MatrixType = Matrix<ComponentType, rows, columns>;
+
+        MatrixType result = MatrixType(matrix);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = value / element; });
+
+        return MatrixType(result);
+    }
+
+    template <typename ComponentType, SizeT rows, SizeT columns>
+    Matrix<ComponentType, rows, columns>
+    operator%(
+        const ComponentType &value,
+        const Matrix<ComponentType, rows, columns> &matrix)
+    {
+        using MatrixType = Matrix<ComponentType, rows, columns>;
+
+        MatrixType result = MatrixType(matrix);
+        result.for_each([=](SizeT i, SizeT j, ComponentType &element) -> void
+                        { element = value % element; });
+
+        return MatrixType(result);
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 2, 2>
+    make_identity_matrix2()
+    {
+        return make_matrix(
+            make_vector<ComponentType>(
+                Numbers::One(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::One()));
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 3, 3>
+    make_identity_matrix3()
+    {
+        return make_matrix(
+            make_vector<ComponentType>(
+                Numbers::One(), Numbers::Zero(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::One(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::Zero(), Numbers::One()));
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 4, 4>
+    make_identity_matrix4()
+    {
+        return make_matrix(
+            make_vector<ComponentType>(
+                Numbers::One(), Numbers::Zero(), Numbers::Zero(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::One(), Numbers::Zero(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::Zero(), Numbers::One(), Numbers::Zero()),
+            make_vector<ComponentType>(
+                Numbers::Zero(), Numbers::Zero(), Numbers::Zero(), Numbers::One()));
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 2, 2>
+    make_matrix(
+        const Vector<ComponentType, 2> &row0,
+        const Vector<ComponentType, 2> &row1)
+    {
+        using VectorType = Vector<ComponentType, 2>;
+        return Matrix<ComponentType, 2, 2>(
+            typename Matrix<ComponentType, 2, 2>::ComponentHolder(
+                {
+                    VectorType(row0),
+                    VectorType(row1),
+                }));
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 3, 3>
+    make_matrix(
+        const Vector<ComponentType, 3> &row0,
+        const Vector<ComponentType, 3> &row1,
+        const Vector<ComponentType, 3> &row2)
+    {
+        using VectorType = Vector<ComponentType, 3>;
+        return Matrix<ComponentType, 3, 3>(
+            typename Matrix<ComponentType, 3, 3>::ComponentHolder(
+                {
+                    VectorType(row0),
+                    VectorType(row1),
+                    VectorType(row2),
+                }));
+    }
+
+    template <typename ComponentType>
+    Matrix<ComponentType, 4, 4>
+    make_matrix(
+        const Vector<ComponentType, 4> &row0,
+        const Vector<ComponentType, 4> &row1,
+        const Vector<ComponentType, 4> &row2,
+        const Vector<ComponentType, 4> &row3)
+    {
+        using VectorType = Vector<ComponentType, 4>;
+        return Matrix<ComponentType, 4, 4>(
+            typename Matrix<ComponentType, 4, 4>::ComponentHolder(
+                {
+                    VectorType(row0),
+                    VectorType(row1),
+                    VectorType(row2),
+                    VectorType(row3),
+                }));
     }
 
 } // namespace ntl

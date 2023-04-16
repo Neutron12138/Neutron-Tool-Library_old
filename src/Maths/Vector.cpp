@@ -89,9 +89,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const SelfType &another) -> void
-                        { element = element + another[index]; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element + another[index]; });
 
         return SelfType(result);
     }
@@ -103,9 +102,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const SelfType &another) -> void
-                        { element = element - another[index]; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element - another[index]; });
 
         return SelfType(result);
     }
@@ -117,9 +115,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const SelfType &another) -> void
-                        { element = element * another[index]; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element * another[index]; });
 
         return SelfType(result);
     }
@@ -131,9 +128,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const SelfType &another) -> void
-                        { element = element / another[index]; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element / another[index]; });
 
         return SelfType(result);
     }
@@ -145,9 +141,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const SelfType &another) -> void
-                        { element = element % another[index]; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element % another[index]; });
 
         return SelfType(result);
     }
@@ -159,9 +154,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
-                        { element = element + another; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element + another; });
 
         return SelfType(result);
     }
@@ -173,9 +167,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
-                        { element = element - another; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element - another; });
 
         return SelfType(result);
     }
@@ -187,9 +180,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
-                        { element = element * another; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element * another; });
 
         return SelfType(result);
     }
@@ -201,9 +193,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
-                        { element = element / another; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element / another; });
 
         return SelfType(result);
     }
@@ -215,9 +206,8 @@ namespace ntl
     {
         SelfType result = SelfType(*this);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &another) -> void
-                        { element = element % another; },
-                        another);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = element % another; });
 
         return SelfType(result);
     }
@@ -455,9 +445,8 @@ namespace ntl
 
         SelfType result = SelfType(vector);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
-                        { element = value + element; },
-                        value);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = value + element; });
 
         return SelfType(result);
     }
@@ -472,9 +461,8 @@ namespace ntl
 
         SelfType result = SelfType(vector);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
-                        { element = value - element; },
-                        value);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = value - element; });
 
         return SelfType(result);
     }
@@ -489,9 +477,8 @@ namespace ntl
 
         SelfType result = SelfType(vector);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
-                        { element = value * element; },
-                        value);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = value * element; });
 
         return SelfType(result);
     }
@@ -506,9 +493,8 @@ namespace ntl
 
         SelfType result = SelfType(vector);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
-                        { element = value / element; },
-                        value);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = value / element; });
 
         return SelfType(result);
     }
@@ -523,9 +509,8 @@ namespace ntl
 
         SelfType result = SelfType(vector);
 
-        result.for_each([](SizeT index, ComponentType &element, const ComponentType &value) -> void
-                        { element = value % element; },
-                        value);
+        result.for_each([=](SizeT index, ComponentType &element) -> void
+                        { element = value % element; });
 
         return SelfType(result);
     }

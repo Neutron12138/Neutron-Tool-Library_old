@@ -40,12 +40,14 @@
 #include "Exception/TypeErrorException.hpp"
 #include "Exception/RuntimeException.hpp"
 
+#include "Maths/Number.hpp"
 #include "Maths/MathsContants.hpp"
 #include "Maths/Sphere.hpp"
 #include "Maths/Angle.hpp"
 #include "Maths/Vector.hpp"
 #include "Maths/GLMVector.hpp"
 #include "Maths/Matrix.hpp"
+#include "Maths/GLMMatrix.hpp"
 
 #include "Time/Time.hpp"
 #include "Time/Timer.hpp"
