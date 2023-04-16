@@ -44,6 +44,19 @@
 
 #ifndef NEUTRONTL_CPP20
 #define NEUTRONTL_CPP20 false
+namespace ntl
+{
+    namespace cpp20
+    {
+        enum
+        {
+            /// @brief 不支持C++20
+            NotSupport
+        };
+    } // namespace cpp20
+
+} // namespace ntl
+
 #endif
 
 #endif
