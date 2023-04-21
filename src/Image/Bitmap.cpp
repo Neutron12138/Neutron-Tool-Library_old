@@ -8,6 +8,7 @@
 #include "Bitmap.hpp"
 #include "../Exception/OutOfRangeException.hpp"
 #include "../String/StringUtils.hpp"
+#include "../Exception/NullPointerException.hpp"
 
 namespace ntl
 {
@@ -29,44 +30,36 @@ namespace ntl
 		  m_pixels(pixels) {}
 
 	template <typename m_PixelType>
-	typename Bitmap<m_PixelType>::PixelType &
+	typename Bitmap<m_PixelType>::PixelRow
 	Bitmap<m_PixelType>::operator[](
 		SizeT index)
 	{
 		try
 		{
-			typename Bitmap<m_PixelType>::PixelType &
-				pixel =
-					m_pixels.at(index);
-			return pixel;
+			return get_row(index);
 		}
-		catch (const std::out_of_range &exception)
+		catch (const OutOfRangeException &exception)
 		{
-			throw OutOfRangeException(
+			throw CaughtException(
 				exception,
-				NTL_STRING(
-					"template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::operator[](SizeT index)"));
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow &Bitmap<m_PixelType>::operator[](SizeT index)"));
 		}
 	}
 
 	template <typename m_PixelType>
-	const typename Bitmap<m_PixelType>::PixelType &
+	typename Bitmap<m_PixelType>::PixelRowConst
 	Bitmap<m_PixelType>::operator[](
 		SizeT index) const
 	{
 		try
 		{
-			const typename Bitmap<m_PixelType>::PixelType &
-				pixel =
-					m_pixels.at(index);
-			return pixel;
+			return get_row(index);
 		}
-		catch (const std::out_of_range &exception)
+		catch (const OutOfRangeException &exception)
 		{
 			throw OutOfRangeException(
 				exception,
-				NTL_STRING(
-					"template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::operator[](SizeT index) const"));
+				NTL_STRING("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelRowConst &Bitmap<m_PixelType>::operator[](SizeT index) const"));
 		}
 	}
 
@@ -80,83 +73,103 @@ namespace ntl
 	template <typename m_PixelType>
 	typename Bitmap<m_PixelType>::PixelType &
 	Bitmap<m_PixelType>::get_pixel(
-		SizeT x,
-		SizeT y,
-		bool repeat)
+		SizeT index)
 	{
-		SizeT coord_x = x;
-		SizeT coord_y = y;
-
-		if (!repeat)
+		try
 		{
-			if (x < 0 || x >= m_width)
-				throw OutOfRangeException(
-					StringUtils::to_string(
-						NTL_STRING("X is out of range. x: "),
-						x,
-						NTL_STRING(" but the width is only: "),
-						m_width),
-					NTL_STRING(
-						"template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat)"));
-
-			if (y < 0 || y >= m_height)
-				throw OutOfRangeException(
-					StringUtils::to_string(
-						NTL_STRING("Y is out of range. y: "),
-						y,
-						NTL_STRING(" but the height is only: "),
-						m_height),
-					NTL_STRING(
-						"template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat)"));
+			return m_pixels.at(index);
 		}
-		else
+		catch (const std::out_of_range &exception)
 		{
-			coord_x = cut_off(x, m_width);
-			coord_y = cut_off(y, m_height);
+			throw OutOfRangeException(
+				exception,
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index)"));
 		}
-
-		return operator[](coord_y *m_width + coord_x);
 	}
 
 	template <typename m_PixelType>
 	const typename Bitmap<m_PixelType>::PixelType &
 	Bitmap<m_PixelType>::get_pixel(
-		SizeT x,
-		SizeT y,
-		bool repeat) const
+		SizeT index) const
 	{
-		SizeT coord_x = x;
-		SizeT coord_y = y;
-
-		if (!repeat)
+		try
 		{
-			if (x < 0 || x >= m_width)
-				throw OutOfRangeException(
-					StringUtils::to_string(
-						NTL_STRING("X is out of range. x: "),
-						x,
-						NTL_STRING(" but the width is only: "),
-						m_width),
-					NTL_STRING(
-						"template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat) const"));
-
-			if (y < 0 || y >= m_height)
-				throw OutOfRangeException(
-					StringUtils::to_string(
-						NTL_STRING("Y is out of range. y: "),
-						y,
-						NTL_STRING(" but the height is only: "),
-						m_height),
-					NTL_STRING(
-						"template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT x,SizeT y,bool repeat) const"));
+			return m_pixels.at(index);
 		}
+		catch (const std::out_of_range &exception)
+		{
+			throw OutOfRangeException(
+				exception,
+				NTL_STRING("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index) const"));
+		}
+	}
+
+	template <typename m_PixelType>
+	typename Bitmap<m_PixelType>::PixelRow
+	Bitmap<m_PixelType>::get_row(
+		SizeT index)
+	{
+		if (index < m_height)
+			return PixelRow(*this, index);
 		else
-		{
-			coord_x = cut_off(x, m_width);
-			coord_y = cut_off(y, m_height);
-		}
+			throw OutOfRangeException(
+				StringUtils::to_string(
+					NTL_STRING("Index out of range, index: "),
+					index,
+					NTL_STRING(", bitmap height: "),
+					m_height),
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow Bitmap<m_PixelType>::get_row(SizeT index)"));
+	}
 
-		return operator[](coord_y *m_width + coord_x);
+	template <typename m_PixelType>
+	typename Bitmap<m_PixelType>::PixelRowConst
+	Bitmap<m_PixelType>::get_row(
+		SizeT index) const
+	{
+		if (index < m_height)
+			return PixelRowConst(*this, index);
+		else
+			throw OutOfRangeException(
+				StringUtils::to_string(
+					NTL_STRING("Index out of range, index: "),
+					index,
+					NTL_STRING(", bitmap height: "),
+					m_height),
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRowConst Bitmap<m_PixelType>::get_row(SizeT index) const"));
+	}
+
+	template <typename m_PixelType>
+	typename Bitmap<m_PixelType>::PixelColumn
+	Bitmap<m_PixelType>::get_column(
+		SizeT index)
+	{
+		if (index < m_width)
+			return PixelColumn(*this, index);
+		else
+			throw OutOfRangeException(
+				StringUtils::to_string(
+					NTL_STRING("Index out of range, index: "),
+					index,
+					NTL_STRING(", bitmap width: "),
+					m_width),
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumn Bitmap<m_PixelType>::get_column(SizeT index)"));
+	}
+
+	template <typename m_PixelType>
+	typename Bitmap<m_PixelType>::PixelColumnConst
+	Bitmap<m_PixelType>::get_column(
+		SizeT index) const
+	{
+		if (index < m_width)
+			return PixelColumnConst(*this, index);
+		else
+			throw OutOfRangeException(
+				StringUtils::to_string(
+					NTL_STRING("Index out of range, index: "),
+					index,
+					NTL_STRING(", bitmap width: "),
+					m_width),
+				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumnConst Bitmap<m_PixelType>::get_column(SizeT index) const"));
 	}
 
 	template <typename m_PixelType>
@@ -180,13 +193,18 @@ namespace ntl
 		m_pixels.clear();
 	}
 
-	template <typename m_PixelType>
+	template <>
 	bool
-	Bitmap<m_PixelType>::load_from_file(
+	Bitmap<PixelGrey>::load_from_file(
 		const std::string &filename)
 	{
 		int width, height, comp;
-		stbi_uc *pixels = stbi_load(filename.data(), &width, &height, &comp, 4);
+		stbi_uc *pixels = stbi_load(
+			filename.data(),
+			&width,
+			&height,
+			&comp,
+			PixelType::get_color_channels());
 
 		if (pixels != nullptr)
 		{
@@ -197,31 +215,130 @@ namespace ntl
 			m_pixels.resize(width * height);
 			memcpy_s(
 				m_pixels.data(),
-				m_pixels.size() * sizeof(Bitmap<m_PixelType>::PixelType),
+				m_pixels.size() * sizeof(PixelType),
 				pixels,
-				width * height * 4);
+				width * height * PixelType::get_color_channels());
 
 			stbi_image_free(pixels);
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
-	template <typename m_PixelType>
+	template <>
 	bool
-	Bitmap<m_PixelType>::load_from_memory(
+	Bitmap<PixelGA>::load_from_file(
+		const std::string &filename)
+	{
+		int width, height, comp;
+		stbi_uc *pixels = stbi_load(
+			filename.data(),
+			&width,
+			&height,
+			&comp,
+			PixelType::get_color_channels());
+
+		if (pixels != nullptr)
+		{
+			m_width = width;
+			m_height = height;
+
+			m_pixels.clear();
+			m_pixels.resize(width * height);
+			memcpy_s(
+				m_pixels.data(),
+				m_pixels.size() * sizeof(PixelType),
+				pixels,
+				width * height * PixelType::get_color_channels());
+
+			stbi_image_free(pixels);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	template <>
+	bool
+	Bitmap<PixelRGB>::load_from_file(
+		const std::string &filename)
+	{
+		int width, height, comp;
+		stbi_uc *pixels = stbi_load(
+			filename.data(),
+			&width,
+			&height,
+			&comp,
+			PixelType::get_color_channels());
+
+		if (pixels != nullptr)
+		{
+			m_width = width;
+			m_height = height;
+
+			m_pixels.clear();
+			m_pixels.resize(width * height);
+			memcpy_s(
+				m_pixels.data(),
+				m_pixels.size() * sizeof(PixelType),
+				pixels,
+				width * height * PixelType::get_color_channels());
+
+			stbi_image_free(pixels);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	template <>
+	bool
+	Bitmap<PixelRGBA>::load_from_file(
+		const std::string &filename)
+	{
+		int width, height, comp;
+		stbi_uc *pixels = stbi_load(
+			filename.data(),
+			&width,
+			&height,
+			&comp,
+			PixelType::get_color_channels());
+
+		if (pixels != nullptr)
+		{
+			m_width = width;
+			m_height = height;
+
+			m_pixels.clear();
+			m_pixels.resize(width * height);
+			memcpy_s(
+				m_pixels.data(),
+				m_pixels.size() * sizeof(PixelType),
+				pixels,
+				width * height * PixelType::get_color_channels());
+
+			stbi_image_free(pixels);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	template <>
+	bool
+	Bitmap<PixelGrey>::load_from_memory(
 		SizeT width,
 		SizeT height,
 		void *source)
 	{
 		if (source == nullptr)
 			throw NullPointerException(
-				NTL_STRING(
-					"bool Bitmap::load_from_memory(SizeT width,SizeT height,void *source)"));
+				NTL_STRING("bool Bitmap<PixelGrey>::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;
@@ -230,16 +347,91 @@ namespace ntl
 		m_pixels.resize(width * height);
 		memcpy_s(
 			m_pixels.data(),
-			m_pixels.size() * sizeof(Bitmap<m_PixelType>::PixelType),
+			m_pixels.size() * sizeof(PixelType),
 			source,
-			width * height * 4);
+			width * height * PixelType::get_color_channels());
 
 		return true;
 	}
 
-	template <typename m_PixelType>
+	template <>
+	bool
+	Bitmap<PixelGA>::load_from_memory(
+		SizeT width,
+		SizeT height,
+		void *source)
+	{
+		if (source == nullptr)
+			throw NullPointerException(
+				NTL_STRING("bool Bitmap<PixelGA>::load_from_memory(SizeT width,SizeT height,void *source)"));
+
+		m_width = width;
+		m_height = height;
+
+		m_pixels.clear();
+		m_pixels.resize(width * height);
+		memcpy_s(
+			m_pixels.data(),
+			m_pixels.size() * sizeof(PixelType),
+			source,
+			width * height * PixelType::get_color_channels());
+
+		return true;
+	}
+
+	template <>
+	bool
+	Bitmap<PixelRGB>::load_from_memory(
+		SizeT width,
+		SizeT height,
+		void *source)
+	{
+		if (source == nullptr)
+			throw NullPointerException(
+				NTL_STRING("bool Bitmap<PixelRGB>::load_from_memory(SizeT width,SizeT height,void *source)"));
+
+		m_width = width;
+		m_height = height;
+
+		m_pixels.clear();
+		m_pixels.resize(width * height);
+		memcpy_s(
+			m_pixels.data(),
+			m_pixels.size() * sizeof(PixelType),
+			source,
+			width * height * PixelType::get_color_channels());
+
+		return true;
+	}
+
+	template <>
+	bool
+	Bitmap<PixelRGBA>::load_from_memory(
+		SizeT width,
+		SizeT height,
+		void *source)
+	{
+		if (source == nullptr)
+			throw NullPointerException(
+				NTL_STRING("bool Bitmap<PixelRGBA>::load_from_memory(SizeT width,SizeT height,void *source)"));
+
+		m_width = width;
+		m_height = height;
+
+		m_pixels.clear();
+		m_pixels.resize(width * height);
+		memcpy_s(
+			m_pixels.data(),
+			m_pixels.size() * sizeof(PixelType),
+			source,
+			width * height * PixelType::get_color_channels());
+
+		return true;
+	}
+
+	template <>
 	void
-	Bitmap<m_PixelType>::save_as_png(
+	Bitmap<PixelGrey>::save_as_png(
 		const std::string &filename,
 		bool need_flip)
 	{
@@ -249,30 +441,60 @@ namespace ntl
 			filename.data(),
 			m_width,
 			m_height,
-			Bitmap<m_PixelType>::PixelType::get_color_channels(),
+			PixelType::get_color_channels(),
 			m_pixels.data(),
 			0);
 	}
 
-	template <typename m_PixelType>
-	SizeT
-	Bitmap<m_PixelType>::cut_off(
-		SizeT value,
-		SizeT max)
+	template <>
+	void
+	Bitmap<PixelGA>::save_as_png(
+		const std::string &filename,
+		bool need_flip)
 	{
-		SizeT result = value;
+		stbi_flip_vertically_on_write(need_flip);
 
-		if (result < 0)
-		{
-			result %= max;
-			result += max;
-		}
-		else if (result >= max)
-		{
-			result %= max;
-		}
+		stbi_write_png(
+			filename.data(),
+			m_width,
+			m_height,
+			PixelType::get_color_channels(),
+			m_pixels.data(),
+			0);
+	}
 
-		return static_cast<SizeT>(result);
+	template <>
+	void
+	Bitmap<PixelRGB>::save_as_png(
+		const std::string &filename,
+		bool need_flip)
+	{
+		stbi_flip_vertically_on_write(need_flip);
+
+		stbi_write_png(
+			filename.data(),
+			m_width,
+			m_height,
+			PixelType::get_color_channels(),
+			m_pixels.data(),
+			0);
+	}
+
+	template <>
+	void
+	Bitmap<PixelRGBA>::save_as_png(
+		const std::string &filename,
+		bool need_flip)
+	{
+		stbi_flip_vertically_on_write(need_flip);
+
+		stbi_write_png(
+			filename.data(),
+			m_width,
+			m_height,
+			PixelType::get_color_channels(),
+			m_pixels.data(),
+			0);
 	}
 
 } // namespace ntl

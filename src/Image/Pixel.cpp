@@ -6,21 +6,21 @@
 
 namespace ntl
 {
-    template <SizeT m_color_channels>
-    BasicPixel<m_color_channels>::BasicPixel(
+    template <typename m_ComponentType, SizeT m_color_channels>
+    BasicPixel<m_ComponentType, m_color_channels>::BasicPixel(
         const ComponentHolder &components)
         : m_components(components) {}
 
-    template <SizeT m_color_channels>
-    BasicPixel<m_color_channels>::BasicPixel(
+    template <typename m_ComponentType, SizeT m_color_channels>
+    BasicPixel<m_ComponentType, m_color_channels>::BasicPixel(
         const Color &color)
     {
         operator=(color);
     }
 
-    template <SizeT m_color_channels>
-    typename BasicPixel<m_color_channels>::SelfType &
-    BasicPixel<m_color_channels>::operator=(
+    template <typename m_ComponentType, SizeT m_color_channels>
+    typename BasicPixel<m_ComponentType, m_color_channels>::SelfType &
+    BasicPixel<m_ComponentType, m_color_channels>::operator=(
         const Color &color)
     {
         if (m_color_channels >= 1)
@@ -34,9 +34,9 @@ namespace ntl
         return *this;
     }
 
-    template <SizeT m_color_channels>
+    template <typename m_ComponentType, SizeT m_color_channels>
     UInt8 &
-    BasicPixel<m_color_channels>::operator[](
+    BasicPixel<m_ComponentType, m_color_channels>::operator[](
         SizeT index)
     {
         try
@@ -51,13 +51,13 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <SizeT m_color_channels> UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index)"));
+                    "template <typename m_ComponentType, SizeT m_color_channels> UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index)"));
         }
     }
 
-    template <SizeT m_color_channels>
+    template <typename m_ComponentType, SizeT m_color_channels>
     const UInt8 &
-    BasicPixel<m_color_channels>::operator[](
+    BasicPixel<m_ComponentType, m_color_channels>::operator[](
         SizeT index) const
     {
         try
@@ -72,12 +72,12 @@ namespace ntl
             throw OutOfRangeException(
                 exception,
                 NTL_STRING(
-                    "template <SizeT m_color_channels> const UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index) const"));
+                    "template <typename m_ComponentType, SizeT m_color_channels> const UInt8 &BasicPixel< m_color_channels>::operator[](SizeT index) const"));
         }
     }
 
-    template <SizeT m_color_channels>
-    BasicPixel<m_color_channels>::operator Color()
+    template <typename m_ComponentType, SizeT m_color_channels>
+    BasicPixel<m_ComponentType, m_color_channels>::operator Color()
     {
         Color result;
         if (m_color_channels >= 1)
@@ -91,8 +91,8 @@ namespace ntl
         return result;
     }
 
-    template <SizeT m_color_channels>
-    BasicPixel<m_color_channels>::operator Color() const
+    template <typename m_ComponentType, SizeT m_color_channels>
+    BasicPixel<m_ComponentType, m_color_channels>::operator Color() const
     {
         Color result;
         if (m_color_channels >= 1)
@@ -106,33 +106,33 @@ namespace ntl
         return result;
     }
 
-    template <SizeT m_color_channels>
-    const typename BasicPixel<m_color_channels>::ComponentHolder &
-    BasicPixel<m_color_channels>::get_components() const
+    template <typename m_ComponentType, SizeT m_color_channels>
+    const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentHolder &
+    BasicPixel<m_ComponentType, m_color_channels>::get_components() const
     {
         return m_components;
     }
 
-    template <SizeT m_color_channels>
+    template <typename m_ComponentType, SizeT m_color_channels>
     void
-    BasicPixel<m_color_channels>::set_components(
-        const typename BasicPixel<m_color_channels>::ComponentHolder &components)
+    BasicPixel<m_ComponentType, m_color_channels>::set_components(
+        const typename BasicPixel<m_ComponentType, m_color_channels>::ComponentHolder &components)
     {
         m_components = components;
     }
 
-    template <SizeT m_color_channels>
-    typename BasicPixel<m_color_channels>::SelfType &
-    BasicPixel<m_color_channels>::swap(
-        typename BasicPixel<m_color_channels>::SelfType &another)
+    template <typename m_ComponentType, SizeT m_color_channels>
+    typename BasicPixel<m_ComponentType, m_color_channels>::SelfType &
+    BasicPixel<m_ComponentType, m_color_channels>::swap(
+        typename BasicPixel<m_ComponentType, m_color_channels>::SelfType &another)
     {
         m_components.swap(another.m_components);
         return *this;
     }
 
-    template <SizeT m_color_channels>
+    template <typename m_ComponentType, SizeT m_color_channels>
     SizeT
-    BasicPixel<m_color_channels>::get_color_channels()
+    BasicPixel<m_ComponentType, m_color_channels>::get_color_channels()
     {
         return m_color_channels;
     }

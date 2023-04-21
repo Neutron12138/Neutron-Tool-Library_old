@@ -10,14 +10,16 @@ namespace ntl
 {
     /// @brief 基本像素类
     /// @tparam m_color_channels 颜色通道总数
-    template <SizeT m_color_channels>
+    template <typename m_ComponentType, SizeT m_color_channels>
     class NTL_ALIGN BasicPixel : public BasicObject
     {
     public:
+        /// @brief 分量类型
+        using ComponentType = m_ComponentType;
         /// @brief 分量持有者
-        using ComponentHolder = std::array<UInt8, m_color_channels>;
+        using ComponentHolder = std::array<ComponentType, m_color_channels>;
 
-        using SelfType = BasicPixel<m_color_channels>;
+        using SelfType = BasicPixel<ComponentType, m_color_channels>;
         using ParentType = BasicObject;
 
     protected:
@@ -59,16 +61,16 @@ namespace ntl
     };
 
     /// @brief 灰度像素
-    using PixelGrey = BasicPixel<1>;
+    using PixelGrey = BasicPixel<UInt8, 1>;
 
     /// @brief 灰度+透明度像素
-    using PixelGA = BasicPixel<2>;
+    using PixelGA = BasicPixel<UInt8, 2>;
 
     /// @brief RGB像素
-    using PixelRGB = BasicPixel<3>;
+    using PixelRGB = BasicPixel<UInt8, 3>;
 
     /// @brief RGBA像素
-    using PixelRGBA = BasicPixel<4>;
+    using PixelRGBA = BasicPixel<UInt8, 4>;
 
     /// @brief 普通像素
     using Pixel = PixelRGBA;

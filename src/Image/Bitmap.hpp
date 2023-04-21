@@ -7,16 +7,24 @@
 #include <stb/stb_image_write.h>
 #include "../Base/Object.hpp"
 #include "Pixel.hpp"
+#include "PixelStrip.hpp"
+#include "PixelStripConst.hpp"
 
 namespace ntl
 {
     /// @brief 位图类
+    /// @tparam m_PixelType 像素类型
     template <typename m_PixelType>
     class Bitmap : public Object
     {
     public:
         using PixelType = m_PixelType;
         using PixelHolder = std::vector<PixelType>;
+
+        using PixelRow = PixelStrip<PixelType, true>;
+        using PixelColumn = PixelStrip<PixelType, false>;
+        using PixelRowConst = PixelStripConst<PixelType, true>;
+        using PixelColumnConst = PixelStripConst<PixelType, false>;
 
         using SelfType = Bitmap<PixelType>;
         using ParentType = Object;
@@ -32,16 +40,16 @@ namespace ntl
         SizeT m_height = 0;
 
     public:
-        constexpr Bitmap() = default;
+        Bitmap() = default;
         explicit Bitmap(SizeT width, SizeT height);
         explicit Bitmap(SizeT width, SizeT height, const PixelHolder &pixels);
-        constexpr explicit Bitmap(const SelfType &from) = default;
+        explicit Bitmap(const SelfType &from) = default;
         ~Bitmap() override = default;
 
     public:
-        constexpr SelfType &operator=(const SelfType &from);
-        PixelType &operator[](SizeT index);
-        const PixelType &operator[](SizeT index) const;
+        SelfType &operator=(const SelfType &from);
+        PixelRow operator[](SizeT index);
+        PixelRowConst operator[](SizeT index) const;
 
     public:
         /// @brief 获取图像的数据
@@ -49,18 +57,20 @@ namespace ntl
         const PixelHolder &get_pixels() const;
 
         /// @brief 获取像素
-        /// @param x 横坐标（以左上角为原点）
-        /// @param y 纵坐标（以左上角为原点）
-        /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
+        /// @param index 索引
         /// @return 像素
-        PixelType &get_pixel(SizeT x, SizeT y, bool repeat = true);
+        PixelType &get_pixel(SizeT index);
 
         /// @brief 获取像素
-        /// @param x 横坐标（以左上角为原点）
-        /// @param y 纵坐标（以左上角为原点）
-        /// @param repeat 重复，如果为真，则x/y超出后会回到第一个/最后一个像素
+        /// @param index 索引
         /// @return 像素
-        const PixelType &get_pixel(SizeT x, SizeT y, bool repeat = true) const;
+        const PixelType &get_pixel(SizeT index) const;
+
+        PixelRow get_row(SizeT index);
+        PixelRowConst get_row(SizeT index) const;
+
+        PixelColumn get_column(SizeT index);
+        PixelColumnConst get_column(SizeT index) const;
 
         /// @brief 获取图像宽度
         /// @return 图像的宽
@@ -72,7 +82,7 @@ namespace ntl
 
     public:
         /// @brief 手动释放图像资源
-        virtual void release();
+        void release();
 
     public:
         /// @brief 从文件加载图像
@@ -91,13 +101,6 @@ namespace ntl
         /// @param filename 输出文件名
         /// @param need_flip 输出图像时是否将其反转
         virtual void save_as_png(const std::string &filename, bool need_flip = false);
-
-    public:
-        /// @brief 把值截断在[0,max)之间
-        /// @param value 值
-        /// @param max 最大值
-        /// @return 值
-        static SizeT cut_off(SizeT value, SizeT max);
     };
 
 } // namespace ntl

@@ -24,7 +24,8 @@
 #include "Exception/TypeErrorException.cpp"
 #include "Exception/RuntimeException.cpp"
 
-#include "Maths/Number.cpp"
+#include "Maths/Numbers.cpp"
+#include "Maths/MathsUtils.cpp"
 #include "Maths/Sphere.cpp"
 #include "Maths/Angle.cpp"
 #include "Maths/Vector.cpp"
@@ -72,6 +73,8 @@
 
 #include "Image/Color.cpp"
 #include "Image/Pixel.cpp"
+#include "Image/PixelStrip.cpp"
+#include "Image/PixelStripConst.cpp"
 #include "Image/Bitmap.cpp"
 #include "Image/BitmapEditor.cpp"
 

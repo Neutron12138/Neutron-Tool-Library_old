@@ -40,8 +40,9 @@
 #include "Exception/TypeErrorException.hpp"
 #include "Exception/RuntimeException.hpp"
 
-#include "Maths/Number.hpp"
+#include "Maths/Numbers.hpp"
 #include "Maths/MathsContants.hpp"
+#include "Maths/MathsUtils.hpp"
 #include "Maths/Sphere.hpp"
 #include "Maths/Angle.hpp"
 #include "Maths/Vector.hpp"
@@ -94,6 +95,8 @@
 
 #include "Image/Color.hpp"
 #include "Image/Pixel.hpp"
+#include "Image/PixelStrip.hpp"
+#include "Image/PixelStripConst.hpp"
 #include "Image/Bitmap.hpp"
 #include "Image/BitmapEditor.hpp"
 

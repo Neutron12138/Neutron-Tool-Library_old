@@ -22,8 +22,8 @@ namespace ntl
         {
             for (SizeT y = 0; y < height; y++)
             {
-                result.get_pixel(x, y).swap(
-                    result.get_pixel(end_index - x, y));
+                result[y][x].swap(
+                    result[y][end_index - x]);
             }
         }
     }
@@ -42,8 +42,8 @@ namespace ntl
         {
             for (SizeT x = 0; x < height; x++)
             {
-                result.get_pixel(x, y).swap(
-                    result.get_pixel(end_index - x, y));
+                result[y][x].swap(
+                    result[y][end_index - x]);
             }
         }
     }
