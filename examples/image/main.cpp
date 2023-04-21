@@ -7,7 +7,7 @@ int main()
 {
     srand(time(nullptr));
 
-    ntl::ImageRGBA image;
+    ntl::Bitmap<ntl::Pixel> image;
 
     if (!image.load_from_file("105460306_p0.png"))
     {
@@ -15,30 +15,31 @@ int main()
         return 1;
     }
 
-    image.save_as_png("output.png", true);
+    ntl::BitmapEditor::flip_x(image);
+    ntl::Bitmap<ntl::Pixel> result = ntl::BitmapEditor::stretch(image, 2.0f, 2.0f);
 
-    ntl::ImageRGBA image2(500, 500);
+    result.save_as_png("output.png", false);
+
+    ntl::Bitmap<ntl::Pixel> image2(500, 500);
 
     for (ntl::UInt32 y = 0; y < 500; y++)
     {
         for (ntl::UInt32 x = 0; x < 500; x++)
         {
-            image2[y * image2.get_width() + x] =
-                ntl::PixelRGBA(std::array<ntl::UInt8, 4>{
+            image2[y][x] =
+                ntl::Pixel(std::array<ntl::UInt8, 4>{
                     ntl::UInt8(rand() % 256),
                     ntl::UInt8(rand() % 256),
                     ntl::UInt8(rand() % 256),
-                    ntl::UInt8(rand() % 256),
+                    255,
                 });
         }
     }
 
     for (int x = -123; x < 567; x++)
-        image2.get_pixel(x, 250) =
-            ntl::PixelRGBA(std::array<ntl::UInt8, 4>{0, 0, 0, 1});
+        image2.get_row(250).get_pixel(x, true) = ntl::Colors::Black;
     for (int y = -123; y < 567; y++)
-        image2.get_pixel(250, y) =
-            ntl::PixelRGBA(std::array<ntl::UInt8, 4>{0, 0, 0, 1});
+        image2.get_column(250).get_pixel(y, true) = ntl::Colors::Black;
 
     image2.save_as_png("output2.png");
 
