@@ -39,6 +39,11 @@ namespace ntl
         m_is_running = false;
         m_exit_code = code;
     }
+
+    void Application::onCreated() {}
+    void Application::onDestroyed() {}
+    void Application::onIdle() {}
+
 } // namespace ntl
 
 #endif

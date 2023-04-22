@@ -59,13 +59,13 @@ namespace ntl
 
     protected:
         /// @brief 当程序创建时调用
-        virtual void onCreated() = 0;
+        virtual void onCreated();
 
         /// @brief 当程序销毁时调用
-        virtual void onDestroyed() = 0;
+        virtual void onDestroyed();
 
         /// @brief 当系统空闲时调用
-        virtual void onIdle() = 0;
+        virtual void onIdle();
     };
 } // namespace ntl
 

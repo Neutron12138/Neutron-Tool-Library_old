@@ -347,7 +347,7 @@ namespace ntl
         using VectorType = Vector<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows>;
 
         VectorType result;
-        result.for_each([another](SizeT i, ComponentType &element) -> void
+        result.for_each([another, this](SizeT i, ComponentType &element) -> void
                         {
                             element = Numbers::Zero();
                             for(SizeT j = 0;j < m_columns;j++)
@@ -367,7 +367,7 @@ namespace ntl
         using MatrixType = Matrix<typename Matrix<m_ComponentType, m_rows, m_columns>::ComponentType, m_rows, columns>;
 
         MatrixType result;
-        result.for_each([another](SizeT i, SizeT j, ComponentType &element) -> void
+        result.for_each([another, this](SizeT i, SizeT j, ComponentType &element) -> void
                         { 
                             element = Numbers::Zero();
                             for(SizeT k = 0;k < m_columns;k++)

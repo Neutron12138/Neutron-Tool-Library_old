@@ -41,16 +41,16 @@ namespace ntl
         const ValueType &max)
     {
         ValueType result = value;
+        ValueType delta = max - min;
 
-        if (result < 0)
+        if (result < min)
         {
-            result = get_remainder(result, max);
-            result += max;
+            result = get_remainder(result, delta) + min + delta;
         }
 
         if (result >= max)
         {
-            result = get_remainder(result, max);
+            result = get_remainder(result, delta) + min;
         }
 
         return static_cast<ValueType>(result);
