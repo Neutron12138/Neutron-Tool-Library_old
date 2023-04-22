@@ -10,8 +10,17 @@ void print(const ntl::Matrix<ComponentType, rows, columns> &mat);
 
 int main()
 {
-    std::cout << "ntl::MathsConstants::PI:" << ntl::MathsConstants::PI << std::endl;
-    std::cout << "ntl::MathsConstants::exact::ePI:" << ntl::MathsConstants::exact::ePI << std::endl;
+    std::cout << "ntl::MathsConstants::PI:"
+              << ntl::MathsConstants::PI << std::endl;
+    std::cout << "ntl::MathsConstants::exact::ePI:"
+              << ntl::MathsConstants::exact::ePI << std::endl;
+
+    std::cout << "----------" << std::endl;
+
+    std::cout << "ntl::cut_off(128,10,20):"
+              << ntl::cut_off(128, 10, 20) << std::endl;
+
+    std::cout << "----------" << std::endl;
 
     ntl::Angle<float> a1(ntl::MathsConstants::PI_HALF, ntl::Angle<float>::AngleUnit::Radian);
     ntl::Angle<float> a2(180.0f, ntl::Angle<float>::AngleUnit::Degree);
