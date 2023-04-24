@@ -19,7 +19,8 @@ public:
 
     virtual ~MyNode()
     {
-        std::cout << "~MyNode()" << "\t" << m_name << std::endl;
+        std::cout << "~MyNode()"
+                  << "\t" << m_name << std::endl;
     }
 };
 
@@ -58,6 +59,12 @@ int main()
 
     std::cout << "--------------------" << std::endl;
 
+    ntl::SharedPointer<ntl::DefaultNode> node(new ntl::DataNode<int>(666));
+    std::cout << "dynamic_cast<ntl::DataNode<int>*>(node.get())->get_data():"
+              << dynamic_cast<ntl::DataNode<int> *>(node.get())->get_data() << std::endl;
+
+    std::cout << "--------------------" << std::endl;
+
     return 0;
 }
 
@@ -68,7 +75,7 @@ void traverse_all(
     for (int i = 0; i < tabs; i++)
         std::cout << "\t";
     std::cout << root->get_name() << "\t\t"
-               << dynamic_cast<MyNode *>(root.get())->data << std::endl;
+              << dynamic_cast<MyNode *>(root.get())->data << std::endl;
 
     auto &nodes = root->get_child_nodes();
     for (auto iter = nodes.cbegin(); iter != nodes.cend(); iter++)
