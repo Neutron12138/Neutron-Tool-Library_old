@@ -31,8 +31,8 @@ int main()
 {
     try
     {
-        std::cout << "ntl::Deserializer::deserialize<int>(ntl::Serialization(\"123\")):" << ntl::Deserializer::deserialize<int>(ntl::Serialization("123")) << std::endl
-                  << "ntl::Deserializer::deserialize<double>(ntl::Serialization(\"12.3d\")):" << ntl::Deserializer::deserialize<double>(ntl::Serialization("12.3d")) << std::endl;
+        std::cout << "ntl::deserialize<int>(ntl::Serialization(\"123\")):" << ntl::deserialize<int>(ntl::Serialization("123")) << std::endl
+                  << "ntl::deserialize<double>(ntl::Serialization(\"12.3d\")):" << ntl::deserialize<double>(ntl::Serialization("12.3d")) << std::endl;
 
         std::cout << std::endl;
 
@@ -41,7 +41,8 @@ int main()
         cls.b = 456;
         ntl::Serialization ser = cls.serialize();
         std::cout << "ser.get_serialization():" << ser.get_serialization() << std::endl;
-        MyClass cls2 = ntl::Deserializer::deserialize<MyClass>(ser);
+        MyClass cls2;
+        cls2.deserialize(ser);
         std::cout << "a:" << cls2.a << ",b:" << cls2.b << std::endl;
 
         std::cout << std::endl;
@@ -51,14 +52,14 @@ int main()
                   << exception << std::endl;
         std::cout << "exception.serialize().get_serialization():" << std::endl
                   << exception.serialize().get_serialization() << std::endl;
-        ntl::Exception exception2 = ntl::Deserializer::deserialize<ntl::Exception>(exception.serialize());
+        ntl::Exception exception2 = ntl::deserialize<ntl::Exception>(exception.serialize());
         std::cout << "exception2:" << std::endl
                   << exception2 << std::endl;
 
         std::cout << std::endl;
 
-        ntl::Serialization ser1 = ntl::Serializer::serialize("\"abc\"");
-        ntl::String result = ntl::Deserializer::deserialize<ntl::String>(ser1);
+        ntl::Serialization ser1 = ntl::serialize("\"abc\"");
+        ntl::String result = ntl::deserialize<ntl::String>(ser1);
         std::cout << "result:" << result << std::endl;
 
         std::cout << std::endl;
@@ -67,9 +68,9 @@ int main()
         std::initializer_list<int> lst = {951, 623};
         std::vector<int> vec = {123, 456, 789};
 
-        ntl::Serialization ser2 = ntl::Serializer::serialize(arr);
-        ntl::Serialization ser3 = ntl::Serializer::serialize(lst);
-        ntl::Serialization ser4 = ntl::Serializer::serialize(vec);
+        ntl::Serialization ser2 = ntl::serialize(arr);
+        ntl::Serialization ser3 = ntl::serialize(lst);
+        ntl::Serialization ser4 = ntl::serialize(vec);
 
         std::cout << "ser2.get_serialization():" << ser2.get_serialization() << std::endl;
         std::cout << "ser3.get_serialization():" << ser3.get_serialization() << std::endl;
@@ -79,9 +80,9 @@ int main()
         std::vector<int> vec3;
         std::vector<int> vec4;
 
-        ntl::Deserializer::deserialize(ser2, vec2);
-        ntl::Deserializer::deserialize(ser3, vec3);
-        ntl::Deserializer::deserialize(ser4, vec4);
+        vec2 = ntl::deserialize_vector<int>(ser2);
+        vec3 = ntl::deserialize_vector<int>(ser3);
+        vec4 = ntl::deserialize_vector<int>(ser4);
 
         std::cout << "vec2:" << std::endl;
         ntl::PrintUtils::print_array(std::cout, vec2.cbegin(), vec2.cend());
