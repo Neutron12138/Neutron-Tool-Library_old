@@ -7,14 +7,14 @@
 namespace ntl
 {
     Serialization
-    Serializer::serialize(
+    serialize(
         const Serializable &object)
     {
         return object.serialize();
     }
 
     Serialization
-    Serializer::serialize(
+    serialize(
         char value)
     {
         return Serialization(StringUtils::to_string(static_cast<int>(value)));
@@ -22,7 +22,7 @@ namespace ntl
 
     template <typename ValueType>
     Serialization
-    Serializer::serialize(
+    serialize(
         const ValueType &value)
     {
         return Serialization(StringUtils::to_string(value));
@@ -30,7 +30,7 @@ namespace ntl
 
     template <typename CharTraitsType, typename AllocatorType>
     Serialization
-    Serializer::serialize(
+    serialize(
         const std::basic_string<Char, CharTraitsType, AllocatorType> &str)
     {
         ntl::StringStream sstr;
@@ -40,7 +40,7 @@ namespace ntl
 
     template <typename ElementType, std::size_t size>
     Serialization
-    Serializer::serialize(
+    serialize(
         const std::array<ElementType, size> &container)
     {
         return serialize_container(container.cbegin(), container.cend());
@@ -48,7 +48,7 @@ namespace ntl
 
     template <typename ElementType, typename AllocatorType>
     Serialization
-    Serializer::serialize(
+    serialize(
         const std::vector<ElementType, AllocatorType> &container)
     {
         return serialize_container(container.cbegin(), container.cend());
@@ -56,7 +56,7 @@ namespace ntl
 
     template <typename ElementType>
     Serialization
-    Serializer::serialize(
+    serialize(
         const std::initializer_list<ElementType> &container)
     {
         return serialize_container(container.begin(), container.end());
@@ -64,7 +64,7 @@ namespace ntl
 
     template <typename IteratorType>
     Serialization
-    Serializer::serialize_container(
+    serialize_container(
         const IteratorType &begin,
         const IteratorType &end)
     {
@@ -79,7 +79,7 @@ namespace ntl
 
     template <typename ElementType>
     Serialization
-    Serializer::serialize_container(
+    serialize_container(
         const ElementType *begin,
         SizeT size)
     {

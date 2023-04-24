@@ -9,47 +9,29 @@
 
 namespace ntl
 {
-    /// @brief 序列化器
-    class NTL_ALIGN Serializer : public Object
-    {
-    public:
-        using SelfType = Serializer;
-        using ParentType = Object;
 
-    public:
-        Serializer() = default;
-        explicit Serializer(const SelfType &from) = default;
-        ~Serializer() override = default;
+    Serialization serialize(char value);
 
-    public:
-        SelfType &operator=(const SelfType &from) = default;
+    template <typename ValueType>
+    Serialization serialize(const ValueType &value);
 
-    public:
-        static Serialization serialize(const Serializable &object);
+    template <typename CharTraitsType, typename AllocatorType>
+    Serialization serialize(const std::basic_string<Char, CharTraitsType, AllocatorType> &str);
 
-        static Serialization serialize(char value);
+    template <typename ElementType, std::size_t size>
+    Serialization serialize(const std::array<ElementType, size> &container);
 
-        template <typename ValueType>
-        static Serialization serialize(const ValueType &value);
+    template <typename ElementType, typename AllocatorType>
+    Serialization serialize(const std::vector<ElementType, AllocatorType> &container);
 
-        template <typename CharTraitsType, typename AllocatorType>
-        static Serialization serialize(const std::basic_string<Char, CharTraitsType, AllocatorType> &str);
+    template <typename ElementType>
+    Serialization serialize(const std::initializer_list<ElementType> &container);
 
-        template <typename ElementType, std::size_t size>
-        static Serialization serialize(const std::array<ElementType, size> &container);
+    template <typename IteratorType>
+    Serialization serialize_container(const IteratorType &begin, const IteratorType &end);
 
-        template <typename ElementType, typename AllocatorType>
-        static Serialization serialize(const std::vector<ElementType, AllocatorType> &container);
-
-        template <typename ElementType>
-        static Serialization serialize(const std::initializer_list<ElementType> &container);
-
-        template <typename IteratorType>
-        static Serialization serialize_container(const IteratorType &begin, const IteratorType &end);
-
-        template <typename ElementType>
-        static Serialization serialize_container(const ElementType *begin, SizeT size);
-    };
+    template <typename ElementType>
+    Serialization serialize_container(const ElementType *begin, SizeT size);
 
 } // namespace ntl
 

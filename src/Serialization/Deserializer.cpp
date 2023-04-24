@@ -3,139 +3,181 @@
 
 #include "Deserializer.hpp"
 #include "../String/StringUtils.hpp"
+#include "../Exception/CaughtException.hpp"
 
 namespace ntl
 {
-    String Deserializer::regex_is_integer = NTL_STRING("[0-9]+");
-    String Deserializer::regex_is_float0 = NTL_STRING("[0-9]+[fd]?");
-    String Deserializer::regex_is_float1 = NTL_STRING("[0-9]+.[fd]?");
-    String Deserializer::regex_is_float2 = NTL_STRING(".[0-9]+[fd]?");
-    String Deserializer::regex_is_float3 = NTL_STRING("[0-9]+.[0-9]+[fd]?");
-    String Deserializer::regex_is_string = NTL_STRING("\"(.*)\"");
+    namespace Deserializer
+    {
+        String regex_is_integer = NTL_STRING("[0-9]+");
+        String regex_is_float0 = NTL_STRING("[0-9]+[fd]?");
+        String regex_is_float1 = NTL_STRING("[0-9]+.[fd]?");
+        String regex_is_float2 = NTL_STRING(".[0-9]+[fd]?");
+        String regex_is_float3 = NTL_STRING("[0-9]+.[0-9]+[fd]?");
+        String regex_is_string = NTL_STRING("\"(.*)\"");
 
-    template <typename ResultType>
-    ResultType
-    Deserializer::deserialize(
+        InvalidArgumentException
+        make_exception(
+            const String &type)
+        {
+            return InvalidArgumentException(
+                StringUtils::to_string(
+                    NTL_STRING("The serialization content is not of "),
+                    type,
+                    NTL_STRING(" type")),
+                StringUtils::to_string(
+                    NTL_STRING("template<> "),
+                    type,
+                    NTL_STRING(" deserialize(const Serialization &serialization)")));
+        }
+
+        bool
+        is_integer(
+            const Serialization &serialization)
+        {
+            return StringUtils::match(serialization, Regex(regex_is_integer));
+        }
+
+        bool
+        is_float(
+            const Serialization &serialization)
+        {
+            return StringUtils::match(serialization, Regex(regex_is_float0)) ||
+                   StringUtils::match(serialization, Regex(regex_is_float1)) ||
+                   StringUtils::match(serialization, Regex(regex_is_float2)) ||
+                   StringUtils::match(serialization, Regex(regex_is_float3));
+        }
+
+        bool
+        is_string(
+            const Serialization &serialization)
+        {
+            return StringUtils::match(serialization, Regex(regex_is_string));
+        }
+
+    } // namespace Deserializer
+
+    template <>
+    char
+    deserialize(
         const Serialization &serialization)
     {
-        ResultType result;
-        deserialize(serialization, result);
-        return static_cast<ResultType>(result);
+        if (!Deserializer::is_integer(serialization))
+            throw Deserializer::make_exception(NTL_STRING("char"));
+
+        return static_cast<char>(StringUtils::to_int(serialization));
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        Serializable &result)
+    template <>
+    short
+    deserialize(
+        const Serialization &serialization)
     {
-        result.deserialize(serialization);
+        if (!Deserializer::is_integer(serialization))
+            throw Deserializer::make_exception(NTL_STRING("short"));
+
+        return static_cast<short>(StringUtils::to_int(serialization));
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        char &result)
+    template <>
+    int
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_integer(serialization))
-            throw make_exception(NTL_STRING("char"));
+        if (!Deserializer::is_integer(serialization))
+            throw Deserializer::make_exception(NTL_STRING("int"));
 
-        result = static_cast<char>(StringUtils::to_int(serialization));
+        return StringUtils::to_int(serialization);
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        short &result)
+    template <>
+    long
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_integer(serialization))
-            throw make_exception(NTL_STRING("short"));
+        if (!Deserializer::is_integer(serialization))
+            throw Deserializer::make_exception(NTL_STRING("long"));
 
-        result = static_cast<short>(StringUtils::to_int(serialization));
+        return StringUtils::to_long(serialization);
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        int &result)
+    template <>
+    long long
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_integer(serialization))
-            throw make_exception(NTL_STRING("int"));
+        if (!Deserializer::is_integer(serialization))
+            throw Deserializer::make_exception(NTL_STRING("long long"));
 
-        result = StringUtils::to_int(serialization);
+        return StringUtils::to_llong(serialization);
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        long &result)
+    template <>
+    float
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_integer(serialization))
-            throw make_exception(NTL_STRING("long"));
+        if (!Deserializer::is_float(serialization))
+            throw Deserializer::make_exception(NTL_STRING("float"));
 
-        result = StringUtils::to_long(serialization);
+        return StringUtils::to_float(serialization);
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        long long &result)
+    template <>
+    double
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_integer(serialization))
-            throw make_exception(NTL_STRING("long long"));
+        if (!Deserializer::is_float(serialization))
+            throw Deserializer::make_exception(NTL_STRING("double"));
 
-        result = StringUtils::to_llong(serialization);
+        return StringUtils::to_double(serialization);
     }
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        float &result)
+    template <>
+    String
+    deserialize(
+        const Serialization &serialization)
     {
-        if (!is_float(serialization))
-            throw make_exception(NTL_STRING("float"));
+        if (!Deserializer::is_string(serialization))
+            throw Deserializer::make_exception(NTL_STRING("String"));
 
-        result = StringUtils::to_float(serialization);
-    }
+        ntl::Match m;
+        StringUtils::search(serialization, m, Regex(Deserialize::regex_is_string));
 
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        double &result)
-    {
-        if (!is_float(serialization))
-            throw make_exception(NTL_STRING("double"));
+        ntl::String value = m.str(1);
 
-        result = StringUtils::to_double(serialization);
+        return value;
     }
 
     template <typename CharTraitsType, typename AllocatorType>
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        std::basic_string<Char, CharTraitsType, AllocatorType> &result)
+    std::basic_string<Char, CharTraitsType, AllocatorType>
+    deserialize_string(
+        const Serialization &serialization)
     {
-        if (!is_string(serialization))
-            throw make_exception(NTL_STRING("string"));
+        try
+        {
+            ntl::String value = deserialize<String>(serialization);
 
-        ntl::Match m;
-        StringUtils::search(serialization, m, Regex(regex_is_string));
-
-        ntl::String value = m.str(1);
-        result =
-            std::basic_string<Char, CharTraitsType, AllocatorType>(
+            return std::basic_string<Char, CharTraitsType, AllocatorType>(
                 value.cbegin(),
                 value.cend());
+        }
+        catch (const InvalidArgumentException &exception)
+        {
+            throw CaughtException(
+                exception,
+                NTL_STRING("template <typename CharTraitsType, typename AllocatorType> std::basic_string<Char, CharTraitsType, AllocatorType> deserialize_string(const Serialization &serialization)"));
+        }
     }
 
-    template <typename ElementType>
-    void
-    Deserializer::deserialize(
-        const Serialization &serialization,
-        std::vector<ElementType> &result)
+    template <typename ElementType, typename AllocatorType>
+    std::vector<ElementType, AllocatorType>
+    deserialize_vector(
+        const Serialization &serialization)
     {
+        std::vector<ElementType, AllocatorType> result;
         const ntl::String str = serialization.get_serialization();
-
-        result.clear();
 
         /*ntl::StringStream sstr;
         bool in_str=false;
@@ -148,47 +190,10 @@ namespace ntl
         // PrintUtils::print_array(std::cout, vec.cbegin(), vec.cend());
         for (auto iter = vec.cbegin(); iter != vec.cend(); iter++)
         {
-            result.push_back(Deserializer::deserialize<ElementType>(Serialization(*iter)));
+            result.push_back(deserialize<ElementType>(Serialization(*iter)));
         }
-    }
 
-    InvalidArgumentException
-    Deserializer::make_exception(
-        const String &type)
-    {
-        return InvalidArgumentException(
-            StringUtils::to_string(
-                NTL_STRING("The serialization content is not of "),
-                type,
-                NTL_STRING(" type")),
-            StringUtils::to_string(
-                NTL_STRING("void Deserializer::deserialize("),
-                type,
-                NTL_STRING(" &result)")));
-    }
-
-    bool
-    Deserializer::is_integer(
-        const Serialization &serialization)
-    {
-        return StringUtils::match(serialization, Regex(regex_is_integer));
-    }
-
-    bool
-    Deserializer::is_float(
-        const Serialization &serialization)
-    {
-        return StringUtils::match(serialization, Regex(regex_is_float0)) ||
-               StringUtils::match(serialization, Regex(regex_is_float1)) ||
-               StringUtils::match(serialization, Regex(regex_is_float2)) ||
-               StringUtils::match(serialization, Regex(regex_is_float3));
-    }
-
-    bool
-    Deserializer::is_string(
-        const Serialization &serialization)
-    {
-        return StringUtils::match(serialization, Regex(regex_is_string));
+        return result;
     }
 
 } // namespace ntl

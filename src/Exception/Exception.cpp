@@ -124,6 +124,15 @@ namespace ntl
         exception.print_self(os);
         return os;
     }
+
+    template <>
+    Exception deserialize(const Serialization &serialization)
+    {
+        Exception result;
+        result.deserialize(serialization);
+        return Exception(result);
+    }
+
 } // namespace ntl
 
 #endif
