@@ -11,16 +11,16 @@ namespace ntl
 
     DefaultNode::DefaultNode(
         const String &name,
-        const WeakPointer<DefaultNode> &parent_node)
+        const typename DefaultNode::ParentNodeType &parent_node)
         : DefaultNode::ParentType(name), m_parent_node(parent_node) {}
 
-    inline const WeakPointer<DefaultNode> &
+    const typename DefaultNode::ParentNodeType &
     DefaultNode::get_parent_node() const
     {
         return m_parent_node;
     }
 
-    inline bool
+    bool
     DefaultNode::has_parent() const
     {
         return m_parent_node.lock().get() != nullptr;
@@ -37,6 +37,7 @@ namespace ntl
         new_parent->add_child_node(name, self);
         old_parent->remove_child_node(name);
     }
+
 } // namespace ntl
 
 #endif

@@ -12,17 +12,20 @@ namespace ntl
     class NTL_ALIGN DefaultNode : public Node<SharedPointer<DefaultNode>>
     {
     public:
+        using ChildNodeType = SharedPointer<DefaultNode>;
+        using ParentNodeType = WeakPointer<DefaultNode>;
+
         using SelfType = DefaultNode;
         using ParentType = Node<SharedPointer<DefaultNode>>;
 
     protected:
         /// @brief 父节点
-        WeakPointer<DefaultNode> m_parent_node;
+        ParentNodeType m_parent_node;
 
     public:
         DefaultNode() = default;
         explicit DefaultNode(const String &name);
-        explicit DefaultNode(const String &name, const WeakPointer<DefaultNode> &parent_node);
+        explicit DefaultNode(const String &name, const ParentNodeType &parent_node);
         explicit DefaultNode(const SelfType &from) = default;
         ~DefaultNode() override = default;
 
@@ -32,14 +35,15 @@ namespace ntl
     public:
         /// @brief 获取父节点
         /// @return 父节点
-        inline virtual const WeakPointer<DefaultNode> &get_parent_node() const;
+        virtual const ParentNodeType &get_parent_node() const;
 
     public:
-        inline virtual bool has_parent() const override;
+        virtual bool has_parent() const override;
     };
 
     template <typename SelfType, typename ParentType>
     void reset_parent_node(const String &name, const SharedPointer<SelfType> &self, SharedPointer<ParentType> &old_parent, SharedPointer<ParentType> &new_parent);
+
 } // namespace ntl
 
 #endif

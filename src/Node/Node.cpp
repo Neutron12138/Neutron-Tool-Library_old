@@ -19,7 +19,7 @@ namespace ntl
     {
         try
         {
-            typename Node<m_ChildNodeType>::ChildNodeType &result = m_child_nodes.at(name);
+            ChildNodeType &result = m_child_nodes.at(name);
             return result;
         }
         catch (const std::out_of_range &exception)
@@ -41,9 +41,7 @@ namespace ntl
     }
 
     template <typename m_ChildNodeType>
-    inline const std::map<
-        String,
-        typename Node<m_ChildNodeType>::ChildNodeType> &
+    const typename Node<m_ChildNodeType>::ChildNodeHolder &
     Node<m_ChildNodeType>::get_child_nodes() const
     {
         return m_child_nodes;
@@ -123,7 +121,7 @@ namespace ntl
     }
 
     template <typename m_ChildNodeType>
-    inline bool
+    bool
     Node<m_ChildNodeType>::has_childs() const
     {
         return !m_child_nodes.empty();

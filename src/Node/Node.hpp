@@ -14,12 +14,13 @@ namespace ntl
     {
     public:
         using ChildNodeType = m_ChildNodeType;
+        using ChildNodeHolder = std::map<String, ChildNodeType>;
 
         using SelfType = Node<ChildNodeType>;
         using ParentType = BasicNode<ChildNodeType>;
 
     protected:
-        std::map<String, ChildNodeType> m_child_nodes;
+        ChildNodeHolder m_child_nodes;
 
     public:
         Node() = default;
@@ -32,7 +33,7 @@ namespace ntl
         virtual ChildNodeType &operator[](const String &name) override;
 
     public:
-        inline const std::map<String, ChildNodeType> &get_child_nodes() const;
+        const ChildNodeHolder &get_child_nodes() const;
 
     public:
         virtual const ChildNodeType &get_child_node(const String &name) const override;
@@ -40,7 +41,7 @@ namespace ntl
         virtual void add_child_node(const String &name, const ChildNodeType &child_node) override;
         virtual void remove_child_node(const String &name) override;
         virtual bool is_exist(const String &name) const override;
-        inline virtual bool has_childs() const override;
+        virtual bool has_childs() const override;
         virtual void clear_all() override;
     };
 

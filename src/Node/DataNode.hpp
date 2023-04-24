@@ -31,15 +31,15 @@ namespace ntl
     public:
         /// @brief 获取数据
         /// @return 数据
-        inline DataType &get();
+        DataType &get();
 
         /// @brief 获取数据
         /// @return 数据
-        inline const DataType &get_data() const;
+        const DataType &get_data() const;
 
         /// @brief 设置数据
         /// @param data 数据
-        inline virtual void set_data(const DataType &data);
+        virtual void set_data(const DataType &data);
     };
 } // namespace ntl
 

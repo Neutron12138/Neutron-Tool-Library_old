@@ -23,7 +23,7 @@ namespace ntl
         ~BasicNode() override = default;
 
     public:
-        inline SelfType &operator=(const SelfType &from) = default;
+        SelfType &operator=(const SelfType &from) = default;
         virtual ChildNodeType &operator[](const String &name) = 0;
 
     public:
@@ -53,11 +53,11 @@ namespace ntl
 
         /// @brief 判断本节点是否存在父级
         /// @return 是否存在父级
-        virtual inline bool has_parent() const = 0;
+        virtual bool has_parent() const = 0;
 
         /// @brief 判断本节点是否存在子级
         /// @return 是否存在子级
-        virtual inline bool has_childs() const = 0;
+        virtual bool has_childs() const = 0;
 
         /// @brief 清除所有子节点
         virtual void clear_all() = 0;

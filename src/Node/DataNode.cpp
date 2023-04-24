@@ -11,21 +11,21 @@ namespace ntl
         : m_data(data) {}
 
     template <typename m_DataType>
-    inline typename DataNode<m_DataType>::DataType &
+    typename DataNode<m_DataType>::DataType &
     DataNode<m_DataType>::get()
     {
         return m_data;
     }
 
     template <typename m_DataType>
-    inline const typename DataNode<m_DataType>::DataType &
+    const typename DataNode<m_DataType>::DataType &
     DataNode<m_DataType>::get_data() const
     {
         return m_data;
     }
 
     template <typename m_DataType>
-    inline void
+    void
     DataNode<m_DataType>::set_data(
         const typename DataNode<m_DataType>::DataType &data)
     {
