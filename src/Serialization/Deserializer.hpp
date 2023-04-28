@@ -7,25 +7,25 @@
 
 namespace ntl
 {
-    namespace Deserialize
+    namespace detail
     {
         /// @brief 整数
-        String regex_is_integer;
+        static const String regex_is_integer = NTL_STRING("[0-9]+");
 
         /// @brief 浮点数，形如123
-        String regex_is_float0;
+        static const String regex_is_float0 = NTL_STRING("[0-9]+[fd]?");
 
         /// @brief 浮点数，形如123.
-        String regex_is_float1;
+        static const String regex_is_float1 = NTL_STRING("[0-9]+.[fd]?");
 
         /// @brief 浮点数，形如.123
-        String regex_is_float2;
+        static const String regex_is_float2 = NTL_STRING(".[0-9]+[fd]?");
 
         /// @brief 浮点数，形如123.123
-        String regex_is_float3;
+        static const String regex_is_float3 = NTL_STRING("[0-9]+.[0-9]+[fd]?");
 
         /// @brief 是否为字符串，形如"abc"
-        String regex_is_string;
+        static const String regex_is_string = NTL_STRING("\"(.*)\"");
 
         /// @brief 生成一个异常
         /// @param type 类型
@@ -47,7 +47,7 @@ namespace ntl
         /// @return 是否为字符串
         bool is_string(const Serialization &serialization);
 
-    } // namespace Deserialize
+    } // namespace detail
 
     template <typename ResultType>
     ResultType deserialize(const Serialization &serialization);

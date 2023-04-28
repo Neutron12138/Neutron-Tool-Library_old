@@ -37,12 +37,12 @@ namespace ntl
     public:
         /// @brief 获取序列
         /// @return 序列
-        const ntl::String &get_serialization() const;
+        const String &get_serialization() const;
 
         /// @brief 设置序列
         /// @param serialization 序列
         /// @return 本对象
-        SelfType &set_serialization(const ntl::String &serialization);
+        SelfType &set_serialization(const String &serialization);
     };
 
     OutputStream &operator<<(OutputStream &os, const Serialization &serialization);

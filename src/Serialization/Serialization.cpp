@@ -63,7 +63,7 @@ namespace ntl
         return m_serialization;
     }
 
-    const ntl::String &
+    const String &
     Serialization::get_serialization() const
     {
         return m_serialization;
@@ -71,7 +71,7 @@ namespace ntl
 
     Serialization::SelfType &
     Serialization::set_serialization(
-        const ntl::String &serialization)
+        const String &serialization)
     {
         m_serialization = serialization;
         return *this;

@@ -7,15 +7,8 @@
 
 namespace ntl
 {
-    namespace Deserializer
+    namespace detail
     {
-        String regex_is_integer = NTL_STRING("[0-9]+");
-        String regex_is_float0 = NTL_STRING("[0-9]+[fd]?");
-        String regex_is_float1 = NTL_STRING("[0-9]+.[fd]?");
-        String regex_is_float2 = NTL_STRING(".[0-9]+[fd]?");
-        String regex_is_float3 = NTL_STRING("[0-9]+.[0-9]+[fd]?");
-        String regex_is_string = NTL_STRING("\"(.*)\"");
-
         InvalidArgumentException
         make_exception(
             const String &type)
@@ -55,15 +48,15 @@ namespace ntl
             return StringUtils::match(serialization, Regex(regex_is_string));
         }
 
-    } // namespace Deserializer
+    } // namespace detail
 
     template <>
     char
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_integer(serialization))
-            throw Deserializer::make_exception(NTL_STRING("char"));
+        if (!detail::is_integer(serialization))
+            throw detail::make_exception(NTL_STRING("char"));
 
         return static_cast<char>(StringUtils::to_int(serialization));
     }
@@ -73,8 +66,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_integer(serialization))
-            throw Deserializer::make_exception(NTL_STRING("short"));
+        if (!detail::is_integer(serialization))
+            throw detail::make_exception(NTL_STRING("short"));
 
         return static_cast<short>(StringUtils::to_int(serialization));
     }
@@ -84,8 +77,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_integer(serialization))
-            throw Deserializer::make_exception(NTL_STRING("int"));
+        if (!detail::is_integer(serialization))
+            throw detail::make_exception(NTL_STRING("int"));
 
         return StringUtils::to_int(serialization);
     }
@@ -95,8 +88,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_integer(serialization))
-            throw Deserializer::make_exception(NTL_STRING("long"));
+        if (!detail::is_integer(serialization))
+            throw detail::make_exception(NTL_STRING("long"));
 
         return StringUtils::to_long(serialization);
     }
@@ -106,8 +99,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_integer(serialization))
-            throw Deserializer::make_exception(NTL_STRING("long long"));
+        if (!detail::is_integer(serialization))
+            throw detail::make_exception(NTL_STRING("long long"));
 
         return StringUtils::to_llong(serialization);
     }
@@ -117,8 +110,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_float(serialization))
-            throw Deserializer::make_exception(NTL_STRING("float"));
+        if (!detail::is_float(serialization))
+            throw detail::make_exception(NTL_STRING("float"));
 
         return StringUtils::to_float(serialization);
     }
@@ -128,8 +121,8 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_float(serialization))
-            throw Deserializer::make_exception(NTL_STRING("double"));
+        if (!detail::is_float(serialization))
+            throw detail::make_exception(NTL_STRING("double"));
 
         return StringUtils::to_double(serialization);
     }
@@ -139,11 +132,11 @@ namespace ntl
     deserialize(
         const Serialization &serialization)
     {
-        if (!Deserializer::is_string(serialization))
-            throw Deserializer::make_exception(NTL_STRING("String"));
+        if (!detail::is_string(serialization))
+            throw detail::make_exception(NTL_STRING("String"));
 
         ntl::Match m;
-        StringUtils::search(serialization, m, Regex(Deserialize::regex_is_string));
+        StringUtils::search(serialization, m, Regex(detail::regex_is_string));
 
         ntl::String value = m.str(1);
 
