@@ -29,6 +29,7 @@
 #include "Base/NamedObject.hpp"
 #include "Base/Copyable.hpp"
 #include "Base/Comparable.hpp"
+#include "Base/NonMoveable.hpp"
 
 #include "String/StringUtils.hpp"
 
@@ -81,7 +82,6 @@
 #include "TypeInfo/AttributeQueryInfo.hpp"
 #include "TypeInfo/SupportedOperationsInfo.hpp"
 #include "TypeInfo/TypeInfo.hpp"
-#include "TypeInfo/TypeUtils.hpp"
 #include "TypeInfo/Type.hpp"
 
 #include "Misc/PrintUtils.hpp"
@@ -89,6 +89,7 @@
 #include "Misc/ClassMerger.hpp"
 #include "Misc/Enumeration.hpp"
 #include "Misc/AnyType.hpp"
+#include "Misc/InitializeOnly.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"

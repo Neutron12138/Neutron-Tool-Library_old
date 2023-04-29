@@ -58,7 +58,6 @@
 #include "Log/Log.cpp"
 
 #include "TypeInfo/TypeInfo.cpp"
-#include "TypeInfo/TypeUtils.cpp"
 #include "TypeInfo/Type.cpp"
 
 #include "Misc/PrintUtils.cpp"
@@ -66,6 +65,7 @@
 #include "Misc/ClassMerger.cpp"
 #include "Misc/Enumeration.cpp"
 #include "Misc/AnyType.cpp"
+#include "Misc/InitializeOnly.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"

@@ -15,6 +15,14 @@
 #include <string>
 #include <sstream>
 
+// 包含C++20标准
+#if NEUTRONTL_CPP20
+
+#include <concepts>
+#include <coroutine>
+
+#endif
+
 // GLM
 #include <glm/glm.hpp>
 
