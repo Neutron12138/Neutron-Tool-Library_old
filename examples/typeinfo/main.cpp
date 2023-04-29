@@ -37,11 +37,11 @@ int main()
     return 0;
 }
 
-template <typename Type>
-void print(const ntl::TypeInfo<Type> &info)
+template <typename T>
+void print(const ntl::TypeInfo<T> &info)
 {
-    std::cout << "sizeof(ntl::TypeInfo<Type>)"
-              << ":\t\t\t\t" << sizeof(ntl::TypeInfo<Type>) << std::endl;
+    std::cout << "sizeof(ntl::TypeInfo<T>)"
+              << ":\t\t\t\t" << sizeof(ntl::TypeInfo<T>) << std::endl;
 
     // std::cout << info.type_name << std::endl;
 
@@ -49,11 +49,6 @@ void print(const ntl::TypeInfo<Type> &info)
     std::cout << "compound_type:\t\t\t\t" << info.compound_type << std::endl;
     std::cout << "type_attribute:\t\t\t\t" << info.type_attribute << std::endl;
     std::cout << "supported_operations:\t\t\t\t" << info.supported_operations << std::endl;
-
-    std::cout << "ntl::TypeUtils::is_fit<Type>(info.fundamental_type):\t\t\t\t" << ntl::TypeUtils::is_fit<Type>(info.fundamental_type) << std::endl;
-    std::cout << "ntl::TypeUtils::is_fit<Type>(info.compound_type):\t\t\t\t" << ntl::TypeUtils::is_fit<Type>(info.compound_type) << std::endl;
-    std::cout << "ntl::TypeUtils::is_fit<Type>(info.type_attribute):\t\t\t\t" << ntl::TypeUtils::is_fit<Type>(info.type_attribute) << std::endl;
-    std::cout << "ntl::TypeUtils::is_fit<Type>(info.supported_operations):\t\t\t\t" << ntl::TypeUtils::is_fit<Type>(info.supported_operations) << std::endl;
 
     SPLIT_LINE;
 
@@ -136,8 +131,8 @@ void print(const ntl::TypeInfo<Type> &info)
     std::cout << "rank:\t\t\t\t" << info.rank << std::endl;
 }
 
-template <typename Type>
+template <typename T>
 void print()
 {
-    print(ntl::TypeInfo<Type>());
+    print(ntl::TypeInfo<T>());
 }
