@@ -5,20 +5,28 @@
 
 namespace ntl
 {
-    template <typename Type>
-    TypeInfo<Type>
-    get_type_info(
-        const Type &)
+    template <typename m_ClassType>
+    Type
+    TypeInfo<m_ClassType>::get_type()
     {
-        return TypeInfo<Type>();
+        return ntl::get_type<ClassType>();
     }
 
-    template <typename Type>
-    TypeInfo<Type>
+    template <typename ClassType>
+    TypeInfo<ClassType>
+    get_type_info(
+        const ClassType &)
+    {
+        return TypeInfo<ClassType>();
+    }
+
+    template <typename ClassType>
+    TypeInfo<ClassType>
     get_type_info()
     {
-        return TypeInfo<Type>();
+        return TypeInfo<ClassType>();
     }
+
 } // namespace ntl
 
 #endif

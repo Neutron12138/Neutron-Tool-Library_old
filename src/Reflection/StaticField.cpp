@@ -25,7 +25,7 @@ namespace ntl
     {
         if (m_pointer == nullptr)
             throw NullPointerException(
-                NTL_STRING("template <typename ReturnType> ReturnType &StaticField::of() const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename ReturnType> ReturnType &StaticField::of() const"));
 
         using FieldType = ReturnType(*);
 
@@ -38,7 +38,7 @@ namespace ntl
                         NTL_STRING("\", but the return type is \""),
                         get_type<ReturnType>().get_info().name(),
                         NTL_STRING("\"")),
-                    NTL_STRING("template <typename ReturnType> ReturnType &StaticField::of() const"));
+                    NTL_MAKE_STATEMENT_INFO("template <typename ReturnType> ReturnType &StaticField::of() const"));
 
         return *reinterpret_cast<FieldType>(m_pointer);
     }

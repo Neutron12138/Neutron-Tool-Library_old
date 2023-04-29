@@ -3,6 +3,7 @@
 
 #include "Slot.hpp"
 #include "../Exception/CaughtException.hpp"
+#include "../Exception/NullPointerException.hpp"
 
 namespace ntl
 {
@@ -37,13 +38,13 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Slot::received(ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Slot::received(ArgsType &&...args) const"));
         }
         catch (const Exception &exception)
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Slot::received(ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Slot::received(ArgsType &&...args) const"));
         }
     }
 

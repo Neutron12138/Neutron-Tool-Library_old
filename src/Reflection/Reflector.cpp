@@ -19,7 +19,7 @@ namespace ntl
                     NTL_STRING("Class (\""),
                     name,
                     NTL_STRING("\") already exists")),
-                NTL_STRING("template <typename ClassType> const typename Reflector::DetailsPointer &Reflector::register_class(const String &name)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename ClassType> const typename Reflector::DetailsPointer &Reflector::register_class(const String &name)"));
 
         return register_class(
             name,
@@ -37,7 +37,7 @@ namespace ntl
                     NTL_STRING("Class (\""),
                     name,
                     NTL_STRING("\") already exists")),
-                NTL_STRING("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const Details &details)"));
+                NTL_MAKE_STATEMENT_INFO("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const Details &details)"));
 
         typename Reflector::DetailsPointer pointer(
             new Details(
@@ -57,7 +57,7 @@ namespace ntl
                     NTL_STRING("Class (\""),
                     name,
                     NTL_STRING("\") already exists")),
-                NTL_STRING("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const typename Reflector::DetailsPointer &details)"));
+                NTL_MAKE_STATEMENT_INFO("const typename Reflector::DetailsPointer &Reflector::register_class(const String &name,const typename Reflector::DetailsPointer &details)"));
 
         m_classes.insert(
             Reflector::ClassMap::value_type(
@@ -77,7 +77,7 @@ namespace ntl
                     NTL_STRING("Class not found: \""),
                     name,
                     NTL_STRING("\"")),
-                NTL_STRING("const typename Reflector::DetailsPointer &Reflector::get_class(const String &name) const"));
+                NTL_MAKE_STATEMENT_INFO("const typename Reflector::DetailsPointer &Reflector::get_class(const String &name) const"));
 
         return m_classes.at(name);
     }

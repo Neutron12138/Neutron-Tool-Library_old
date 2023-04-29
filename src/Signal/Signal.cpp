@@ -61,7 +61,7 @@ namespace ntl
                     NTL_STRING(") is different from the required number of parameters ("),
                     m_args_count,
                     NTL_STRING(")")),
-                NTL_STRING("void Signal::connect(const String &name,const Slot &slot)"));
+                NTL_MAKE_STATEMENT_INFO("void Signal::connect(const String &name,const Slot &slot)"));
 
         m_slots.insert(
             Signal::SlotContainer::value_type(
@@ -79,7 +79,7 @@ namespace ntl
                     NTL_STRING("Unable to find slot: \""),
                     name,
                     NTL_STRING("\"")),
-                NTL_STRING("void Signal::disconnect(const String &name)"));
+                NTL_MAKE_STATEMENT_INFO("void Signal::disconnect(const String &name)"));
 
         m_slots.erase(m_slots.find(name));
     }
@@ -98,13 +98,13 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Signal::emit(ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Signal::emit(ArgsType &&...args) const"));
         }
         catch (const Exception &exception)
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Signal::emit(ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Signal::emit(ArgsType &&...args) const"));
         }
     }
 

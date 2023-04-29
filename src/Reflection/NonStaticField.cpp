@@ -24,7 +24,7 @@ namespace ntl
     {
         if (m_pointer == nullptr || object == nullptr)
             throw NullPointerException(
-                NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
 
         using FieldType = ReturnType(BasicObject::*);
 
@@ -37,7 +37,7 @@ namespace ntl
                         NTL_STRING("\", but the return type is \""),
                         get_type<ReturnType>().get_info().name(),
                         NTL_STRING("\"")),
-                    NTL_STRING("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
+                    NTL_MAKE_STATEMENT_INFO("template <typename ReturnType> ReturnType &NonStaticField::of(BasicObject &object) const"));
 
         return reinterpret_cast<BasicObject *>(object)->*reinterpret_cast<FieldType>(m_pointer);
     }

@@ -7,18 +7,18 @@
 namespace ntl
 {
     /// @brief 类型属性信息
-    /// @tparam m_Type 信息
-    template <typename m_Type>
+    /// @tparam m_ClassType 信息
+    template <typename m_ClassType>
     class TypeAttributeInfo : public Object
     {
     public:
-        using Type = m_Type;
+        using ClassType = m_ClassType;
 
-        using SelfType = TypeAttributeInfo<Type>;
+        using SelfType = TypeAttributeInfo<ClassType>;
         using ParentType = Object;
 
         /// @brief 类型属性
-        enum TypeAttribute : long
+        enum ClassTypeAttribute : long
         {
             /// @brief 未知，不可能会出现此结果
             Unknown = 0,
@@ -80,72 +80,72 @@ namespace ntl
 
     public:
         /// @brief 是否有const限定符
-        static constexpr bool is_const = std::is_const_v<Type>;
+        static constexpr bool is_const = std::is_const_v<ClassType>;
 
         /// @brief 是否有volatile限定符
-        static constexpr bool is_volatile = std::is_volatile_v<Type>;
+        static constexpr bool is_volatile = std::is_volatile_v<ClassType>;
 
         /// @brief 是否为平凡类型
-        static constexpr bool is_trivial = std::is_trivial_v<Type>;
+        static constexpr bool is_trivial = std::is_trivial_v<ClassType>;
 
         /// @brief 是否可平凡复制
-        static constexpr bool is_trivially_copyable = std::is_trivially_copyable_v<Type>;
+        static constexpr bool is_trivially_copyable = std::is_trivially_copyable_v<ClassType>;
 
         /// @brief 是否为标准布局
-        static constexpr bool is_standard_layout = std::is_standard_layout_v<Type>;
+        static constexpr bool is_standard_layout = std::is_standard_layout_v<ClassType>;
 
         /// @brief 是否该类型对象的每一位都对其值有贡献
-        static constexpr bool has_unique_object_representations = std::has_unique_object_representations_v<Type>;
+        static constexpr bool has_unique_object_representations = std::has_unique_object_representations_v<ClassType>;
 
         /// @brief 是否拥有强结构相等性，C++20
-        // static constexpr bool has_strong_structural_equality = std::has_strong_structural_equality_v<Type>;
+        // static constexpr bool has_strong_structural_equality = std::has_strong_structural_equality_v<ClassType>;
 
         /// @brief 是否为类（但非联合体）类型且无非静态数据成员
-        static constexpr bool is_empty = std::is_empty_v<Type>;
+        static constexpr bool is_empty = std::is_empty_v<ClassType>;
 
         /// @brief 是否为多态类类型
-        static constexpr bool is_polymorphic = std::is_polymorphic_v<Type>;
+        static constexpr bool is_polymorphic = std::is_polymorphic_v<ClassType>;
 
         /// @brief 是否为抽象类类型
-        static constexpr bool is_abstract = std::is_abstract_v<Type>;
+        static constexpr bool is_abstract = std::is_abstract_v<ClassType>;
 
         /// @brief 是否为 final 类类型
-        static constexpr bool is_final = std::is_final_v<Type>;
+        static constexpr bool is_final = std::is_final_v<ClassType>;
 
         /// @brief 是否为聚合类型
-        static constexpr bool is_aggregate = std::is_aggregate_v<Type>;
+        static constexpr bool is_aggregate = std::is_aggregate_v<ClassType>;
 
         /// @brief 是否为有符号算术类型
-        static constexpr bool is_signed = std::is_signed_v<Type>;
+        static constexpr bool is_signed = std::is_signed_v<ClassType>;
 
         /// @brief 是否为无符号算术类型
-        static constexpr bool is_unsigned = std::is_unsigned_v<Type>;
+        static constexpr bool is_unsigned = std::is_unsigned_v<ClassType>;
 
         /// @brief 是否为有已知边界的数组类型，C++20
-        // static constexpr bool is_bounded_array = std::is_bounded_array_v<Type>;
+        // static constexpr bool is_bounded_array = std::is_bounded_array_v<ClassType>;
 
         /// @brief 是否为无已知边界的数组类型，C++20
-        // static constexpr bool is_unbounded_array = std::is_unbounded_array_v<Type>;
+        // static constexpr bool is_unbounded_array = std::is_unbounded_array_v<ClassType>;
 
         /// @brief 是否为有作用域枚举类型，C++23
-        // static constexpr bool is_scoped_enum = std::is_scoped_enum_v<Type>;
+        // static constexpr bool is_scoped_enum = std::is_scoped_enum_v<ClassType>;
 
         /// @brief 类型属性
-        static constexpr TypeAttribute type_attribute =
-            static_cast<TypeAttribute>(
-                (is_const ? TypeAttribute::Const : TypeAttribute::Unknown) |
-                (is_volatile ? TypeAttribute::Volatile : TypeAttribute::Unknown) |
-                (is_trivial ? TypeAttribute::Trivial : TypeAttribute::Unknown) |
-                (is_trivially_copyable ? TypeAttribute::TriviallyCopyable : TypeAttribute::Unknown) |
-                (is_standard_layout ? TypeAttribute::StandardLayout : TypeAttribute::Unknown) |
-                (has_unique_object_representations ? TypeAttribute::HasUniqueObjectRepresentations : TypeAttribute::Unknown) |
-                (is_empty ? TypeAttribute::Empty : TypeAttribute::Unknown) |
-                (is_polymorphic ? TypeAttribute::Polymorphic : TypeAttribute::Unknown) |
-                (is_abstract ? TypeAttribute::Abstract : TypeAttribute::Unknown) |
-                (is_final ? TypeAttribute::Final : TypeAttribute::Unknown) |
-                (is_aggregate ? TypeAttribute::Aggregate : TypeAttribute::Unknown) |
-                (is_signed ? TypeAttribute::Signed : TypeAttribute::Unknown) |
-                (is_unsigned ? TypeAttribute::Unsigned : TypeAttribute::Unknown));
+        static constexpr ClassTypeAttribute type_attribute =
+            static_cast<ClassTypeAttribute>(
+                (is_const ? ClassTypeAttribute::Const : ClassTypeAttribute::Unknown) |
+                (is_volatile ? ClassTypeAttribute::Volatile : ClassTypeAttribute::Unknown) |
+                (is_trivial ? ClassTypeAttribute::Trivial : ClassTypeAttribute::Unknown) |
+                (is_trivially_copyable ? ClassTypeAttribute::TriviallyCopyable : ClassTypeAttribute::Unknown) |
+                (is_standard_layout ? ClassTypeAttribute::StandardLayout : ClassTypeAttribute::Unknown) |
+                (has_unique_object_representations ? ClassTypeAttribute::HasUniqueObjectRepresentations : ClassTypeAttribute::Unknown) |
+                (is_empty ? ClassTypeAttribute::Empty : ClassTypeAttribute::Unknown) |
+                (is_polymorphic ? ClassTypeAttribute::Polymorphic : ClassTypeAttribute::Unknown) |
+                (is_abstract ? ClassTypeAttribute::Abstract : ClassTypeAttribute::Unknown) |
+                (is_final ? ClassTypeAttribute::Final : ClassTypeAttribute::Unknown) |
+                (is_aggregate ? ClassTypeAttribute::Aggregate : ClassTypeAttribute::Unknown) |
+                (is_signed ? ClassTypeAttribute::Signed : ClassTypeAttribute::Unknown) |
+                (is_unsigned ? ClassTypeAttribute::Unsigned : ClassTypeAttribute::Unknown));
 
     public:
         constexpr TypeAttributeInfo() = default;

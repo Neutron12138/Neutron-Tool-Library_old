@@ -160,7 +160,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename CharTraitsType, typename AllocatorType> std::basic_string<Char, CharTraitsType, AllocatorType> deserialize_string(const Serialization &serialization)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename CharTraitsType, typename AllocatorType> std::basic_string<Char, CharTraitsType, AllocatorType> deserialize_string(const Serialization &serialization)"));
         }
     }
 

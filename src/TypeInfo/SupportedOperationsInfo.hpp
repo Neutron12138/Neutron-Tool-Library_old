@@ -7,14 +7,14 @@
 namespace ntl
 {
     /// @brief 支持的操作信息
-    /// @tparam m_Type 类型
-    template <typename m_Type>
+    /// @tparam m_ClassType 类型
+    template <typename m_ClassType>
     class SupportedOperationsInfo : public Object
     {
     public:
-        using Type = m_Type;
+        using ClassType = m_ClassType;
 
-        using SelfType = SupportedOperationsInfo<Type>;
+        using SelfType = SupportedOperationsInfo<ClassType>;
         using ParentType = Object;
 
         /// @brief 支持的操作
@@ -101,76 +101,76 @@ namespace ntl
 
     public:
         /// @brief 是否带有针对特定实参的构造函数
-        static constexpr bool is_constructible = std::is_constructible_v<Type>;
+        static constexpr bool is_constructible = std::is_constructible_v<ClassType>;
 
         /// @brief 是否带有针对特定实参的平凡的构造函数
-        static constexpr bool is_trivially_constructible = std::is_trivially_constructible_v<Type>;
+        static constexpr bool is_trivially_constructible = std::is_trivially_constructible_v<ClassType>;
 
         /// @brief 是否带有针对特定实参的不抛出异常的构造函数
-        static constexpr bool is_nothrow_constructible = std::is_nothrow_constructible_v<Type>;
+        static constexpr bool is_nothrow_constructible = std::is_nothrow_constructible_v<ClassType>;
 
         /// @brief /// @brief 是否有默认构造函数
-        static constexpr bool is_default_constructible = std::is_default_constructible_v<Type>;
+        static constexpr bool is_default_constructible = std::is_default_constructible_v<ClassType>;
 
         /// @brief 是否有平凡的默认构造函数
-        static constexpr bool is_trivially_default_constructible = std::is_trivially_default_constructible_v<Type>;
+        static constexpr bool is_trivially_default_constructible = std::is_trivially_default_constructible_v<ClassType>;
 
         /// @brief 是否有不抛出异常的默认构造函数
-        static constexpr bool is_nothrow_default_constructible = std::is_nothrow_default_constructible_v<Type>;
+        static constexpr bool is_nothrow_default_constructible = std::is_nothrow_default_constructible_v<ClassType>;
 
         /// @brief 是否拥有复制构造函数
-        static constexpr bool is_copy_constructible = std::is_copy_constructible_v<Type>;
+        static constexpr bool is_copy_constructible = std::is_copy_constructible_v<ClassType>;
 
         /// @brief 是否拥有平凡的复制构造函数
-        static constexpr bool is_trivially_copy_constructible = std::is_trivially_copy_constructible_v<Type>;
+        static constexpr bool is_trivially_copy_constructible = std::is_trivially_copy_constructible_v<ClassType>;
 
         /// @brief 是否拥有不抛出异常的复制构造函数
-        static constexpr bool is_nothrow_copy_constructible = std::is_nothrow_copy_constructible_v<Type>;
+        static constexpr bool is_nothrow_copy_constructible = std::is_nothrow_copy_constructible_v<ClassType>;
 
         /// @brief 是否拥有移动构造函数
-        static constexpr bool is_move_constructible = std::is_move_constructible_v<Type>;
+        static constexpr bool is_move_constructible = std::is_move_constructible_v<ClassType>;
 
         /// @brief 是否拥有平凡的移动构造函数
-        static constexpr bool is_trivially_move_constructible = std::is_trivially_move_constructible_v<Type>;
+        static constexpr bool is_trivially_move_constructible = std::is_trivially_move_constructible_v<ClassType>;
 
         /// @brief 是否拥有不抛出异常的移动构造函数
-        static constexpr bool is_nothrow_move_constructible = std::is_nothrow_move_constructible_v<Type>;
+        static constexpr bool is_nothrow_move_constructible = std::is_nothrow_move_constructible_v<ClassType>;
 
         /// @brief 是否拥有复制赋值运算符
-        static constexpr bool is_copy_assignable = std::is_copy_assignable_v<Type>;
+        static constexpr bool is_copy_assignable = std::is_copy_assignable_v<ClassType>;
 
         /// @brief 是否拥有平凡的复制赋值运算符
-        static constexpr bool is_trivially_copy_assignable = std::is_trivially_copy_assignable_v<Type>;
+        static constexpr bool is_trivially_copy_assignable = std::is_trivially_copy_assignable_v<ClassType>;
 
         /// @brief 是否拥有不抛出异常的复制赋值运算符
-        static constexpr bool is_nothrow_copy_assignable = std::is_nothrow_copy_assignable_v<Type>;
+        static constexpr bool is_nothrow_copy_assignable = std::is_nothrow_copy_assignable_v<ClassType>;
 
         /// @brief 是否拥有移动赋值运算符
-        static constexpr bool is_move_assignable = std::is_move_assignable_v<Type>;
+        static constexpr bool is_move_assignable = std::is_move_assignable_v<ClassType>;
 
         /// @brief 是否拥有平凡的移动赋值运算符
-        static constexpr bool is_trivially_move_assignable = std::is_trivially_move_assignable_v<Type>;
+        static constexpr bool is_trivially_move_assignable = std::is_trivially_move_assignable_v<ClassType>;
 
         /// @brief 是否拥有不抛出异常的移动赋值运算符
-        static constexpr bool is_nothrow_move_assignable = std::is_nothrow_move_assignable_v<Type>;
+        static constexpr bool is_nothrow_move_assignable = std::is_nothrow_move_assignable_v<ClassType>;
 
         /// @brief 是否拥有未被弃置的析构函数
-        static constexpr bool is_destructible = std::is_destructible_v<Type>;
+        static constexpr bool is_destructible = std::is_destructible_v<ClassType>;
 
         /// @brief 是否拥有未被弃置的平凡的析构函数
-        static constexpr bool is_trivially_destructible = std::is_trivially_destructible_v<Type>;
+        static constexpr bool is_trivially_destructible = std::is_trivially_destructible_v<ClassType>;
 
         /// @brief 是否拥有未被弃置的不抛出异常的析构函数
-        static constexpr bool is_nothrow_destructible = std::is_nothrow_destructible_v<Type>;
+        static constexpr bool is_nothrow_destructible = std::is_nothrow_destructible_v<ClassType>;
 
         /// @brief 是否拥有虚析构函数
-        static constexpr bool has_virtual_destructor = std::has_virtual_destructor_v<Type>;
+        static constexpr bool has_virtual_destructor = std::has_virtual_destructor_v<ClassType>;
 
         /// @brief 是否能与同类型的对象交换
-        static constexpr bool is_swappable = std::is_swappable_v<Type>;
+        static constexpr bool is_swappable = std::is_swappable_v<ClassType>;
 
         /// @brief 是否能与同类型的对象不抛出异常地交换
-        static constexpr bool is_nothrow_swappable = std::is_nothrow_swappable_v<Type>;
+        static constexpr bool is_nothrow_swappable = std::is_nothrow_swappable_v<ClassType>;
 
         /// @brief 支持的操作
         static constexpr SupportedOperations supported_operations =

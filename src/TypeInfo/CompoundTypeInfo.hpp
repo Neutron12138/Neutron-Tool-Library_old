@@ -7,14 +7,14 @@
 namespace ntl
 {
     /// @brief 复合类型信息
-    /// @tparam m_Type 类型
-    template <typename m_Type>
+    /// @tparam m_ClassType 类型
+    template <typename m_ClassType>
     class CompoundTypeInfo : public Object
     {
     public:
-        using Type = m_Type;
+        using ClassType = m_ClassType;
 
-        using SelfType = CompoundTypeInfo<Type>;
+        using SelfType = CompoundTypeInfo<ClassType>;
         using ParentType = Object;
 
         /// @brief 复合类型
@@ -50,25 +50,25 @@ namespace ntl
 
     public:
         /// @brief 是否否为基础类型
-        static constexpr bool is_fundamental = std::is_fundamental_v<Type>;
+        static constexpr bool is_fundamental = std::is_fundamental_v<ClassType>;
 
         /// @brief 是否否为算术类型
-        static constexpr bool is_arithmetic = std::is_arithmetic_v<Type>;
+        static constexpr bool is_arithmetic = std::is_arithmetic_v<ClassType>;
 
         /// @brief 是否否为标量类型
-        static constexpr bool is_scalar = std::is_scalar_v<Type>;
+        static constexpr bool is_scalar = std::is_scalar_v<ClassType>;
 
         /// @brief 是否否为对象类型
-        static constexpr bool is_object = std::is_object_v<Type>;
+        static constexpr bool is_object = std::is_object_v<ClassType>;
 
         /// @brief 是否否为符合类型
-        static constexpr bool is_compound = std::is_compound_v<Type>;
+        static constexpr bool is_compound = std::is_compound_v<ClassType>;
 
         /// @brief 是否否为引用类型
-        static constexpr bool is_reference = std::is_reference_v<Type>;
+        static constexpr bool is_reference = std::is_reference_v<ClassType>;
 
         /// @brief 是否否为指向非静态成员函数或对象的指针类型
-        static constexpr bool is_member_pointer = std::is_member_pointer_v<Type>;
+        static constexpr bool is_member_pointer = std::is_member_pointer_v<ClassType>;
 
         /// @brief 复合类型
         static constexpr CompoundType compound_type =

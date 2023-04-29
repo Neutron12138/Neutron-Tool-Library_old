@@ -13,7 +13,7 @@ namespace ntl
     {
         if (ptr == nullptr)
             throw NullPointerException(
-                NTL_STRING("template <typename m_ResourceObjectType> void ResourceDeleter<m_ResourceObjectType>::operator()(typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ResourceObjectType> void ResourceDeleter<m_ResourceObjectType>::operator()(typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr) const"));
 
         ptr->release();
         delete ptr;

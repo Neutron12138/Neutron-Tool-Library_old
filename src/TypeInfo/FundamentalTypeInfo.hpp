@@ -7,18 +7,18 @@
 namespace ntl
 {
     /// @brief 基本类型信息
-    /// @tparam m_Type 类型
-    template <typename m_Type>
+    /// @tparam m_ClassType 类型
+    template <typename m_ClassType>
     class FundamentalTypeInfo : public Object
     {
     public:
-        using Type = m_Type;
+        using ClassType = m_ClassType;
 
-        using SelfType = FundamentalTypeInfo<Type>;
+        using SelfType = FundamentalTypeInfo<ClassType>;
         using ParentType = Object;
 
         /// @brief 基本类型
-        enum FundamentalType
+        enum FundamentalClassType
         {
             /// @brief 未知，不可能出现此结果
             Unknown = 0,
@@ -71,64 +71,64 @@ namespace ntl
 
     public:
         /// @brief 是否为void类型
-        static constexpr bool is_void = std::is_void_v<Type>;
+        static constexpr bool is_void = std::is_void_v<ClassType>;
 
         /// @brief 是否为空指针类型
-        static constexpr bool is_null_pointer = std::is_null_pointer_v<Type>;
+        static constexpr bool is_null_pointer = std::is_null_pointer_v<ClassType>;
 
         /// @brief 是否为整数类型
-        static constexpr bool is_integral = std::is_integral_v<Type>;
+        static constexpr bool is_integral = std::is_integral_v<ClassType>;
 
         /// @brief 是否为浮点数类型
-        static constexpr bool is_floating_point = std::is_floating_point_v<Type>;
+        static constexpr bool is_floating_point = std::is_floating_point_v<ClassType>;
 
         /// @brief 是否为数组类型
-        static constexpr bool is_array = std::is_array_v<Type>;
+        static constexpr bool is_array = std::is_array_v<ClassType>;
 
         /// @brief 是否为枚举类型
-        static constexpr bool is_enum = std::is_enum_v<Type>;
+        static constexpr bool is_enum = std::is_enum_v<ClassType>;
 
         /// @brief 是否为联合体类型
-        static constexpr bool is_union = std::is_union_v<Type>;
+        static constexpr bool is_union = std::is_union_v<ClassType>;
 
         /// @brief 是否为非联合体类型
-        static constexpr bool is_class = std::is_class_v<Type>;
+        static constexpr bool is_class = std::is_class_v<ClassType>;
 
         /// @brief 是否为函数类型
-        static constexpr bool is_function = std::is_function_v<Type>;
+        static constexpr bool is_function = std::is_function_v<ClassType>;
 
         /// @brief 是否为指针类型
-        static constexpr bool is_pointer = std::is_pointer_v<Type>;
+        static constexpr bool is_pointer = std::is_pointer_v<ClassType>;
 
         /// @brief 是否为左值引用类型
-        static constexpr bool is_lvalue_reference = std::is_lvalue_reference_v<Type>;
+        static constexpr bool is_lvalue_reference = std::is_lvalue_reference_v<ClassType>;
 
         /// @brief 是否为右值引用类型
-        static constexpr bool is_rvalue_reference = std::is_rvalue_reference_v<Type>;
+        static constexpr bool is_rvalue_reference = std::is_rvalue_reference_v<ClassType>;
 
         /// @brief 是否为非静态成员对象类型
-        static constexpr bool is_member_object_pointer = std::is_member_object_pointer_v<Type>;
+        static constexpr bool is_member_object_pointer = std::is_member_object_pointer_v<ClassType>;
 
         /// @brief 是否为非静态成员函数类型
-        static constexpr bool is_member_function_pointer = std::is_member_function_pointer_v<Type>;
+        static constexpr bool is_member_function_pointer = std::is_member_function_pointer_v<ClassType>;
 
         /// @brief 基本类型
-        static constexpr FundamentalType fundamental_type =
-            static_cast<FundamentalType>(
-                (is_void ? FundamentalType::Void : FundamentalType::Unknown) |
-                (is_null_pointer ? FundamentalType::NullPointer : FundamentalType::Unknown) |
-                (is_integral ? FundamentalType::Integral : FundamentalType::Unknown) |
-                (is_floating_point ? FundamentalType::FloatingPoint : FundamentalType::Unknown) |
-                (is_array ? FundamentalType::Array : FundamentalType::Unknown) |
-                (is_enum ? FundamentalType::Enum : FundamentalType::Unknown) |
-                (is_union ? FundamentalType::Enum : FundamentalType::Unknown) |
-                (is_class ? FundamentalType::Class : FundamentalType::Unknown) |
-                (is_function ? FundamentalType::Function : FundamentalType::Unknown) |
-                (is_pointer ? FundamentalType::Pointer : FundamentalType::Unknown) |
-                (is_lvalue_reference ? FundamentalType::LValueReference : FundamentalType::Unknown) |
-                (is_rvalue_reference ? FundamentalType ::RValueReference : FundamentalType::Unknown) |
-                (is_member_object_pointer ? FundamentalType::MemberObjectPointer : FundamentalType::Unknown) |
-                (is_member_function_pointer ? FundamentalType::MemberFunctionPointer : FundamentalType::Unknown));
+        static constexpr FundamentalClassType fundamental_type =
+            static_cast<FundamentalClassType>(
+                (is_void ? FundamentalClassType::Void : FundamentalClassType::Unknown) |
+                (is_null_pointer ? FundamentalClassType::NullPointer : FundamentalClassType::Unknown) |
+                (is_integral ? FundamentalClassType::Integral : FundamentalClassType::Unknown) |
+                (is_floating_point ? FundamentalClassType::FloatingPoint : FundamentalClassType::Unknown) |
+                (is_array ? FundamentalClassType::Array : FundamentalClassType::Unknown) |
+                (is_enum ? FundamentalClassType::Enum : FundamentalClassType::Unknown) |
+                (is_union ? FundamentalClassType::Enum : FundamentalClassType::Unknown) |
+                (is_class ? FundamentalClassType::Class : FundamentalClassType::Unknown) |
+                (is_function ? FundamentalClassType::Function : FundamentalClassType::Unknown) |
+                (is_pointer ? FundamentalClassType::Pointer : FundamentalClassType::Unknown) |
+                (is_lvalue_reference ? FundamentalClassType::LValueReference : FundamentalClassType::Unknown) |
+                (is_rvalue_reference ? FundamentalClassType ::RValueReference : FundamentalClassType::Unknown) |
+                (is_member_object_pointer ? FundamentalClassType::MemberObjectPointer : FundamentalClassType::Unknown) |
+                (is_member_function_pointer ? FundamentalClassType::MemberFunctionPointer : FundamentalClassType::Unknown));
 
     public:
         constexpr FundamentalTypeInfo() = default;

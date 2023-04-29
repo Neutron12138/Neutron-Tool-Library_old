@@ -100,7 +100,7 @@ namespace ntl
                     NTL_STRING("Method \""),
                     name,
                     NTL_STRING("\" has a duplicate name")),
-                NTL_STRING("bool Details::has_method(const String &name) const"));
+                NTL_MAKE_STATEMENT_INFO("bool Details::has_method(const String &name) const"));
         // 存在于静态或非静态方法中
         else if (in_nonstatic || in_static)
             return true;
@@ -145,7 +145,7 @@ namespace ntl
                     NTL_STRING("Cannot find field: \""),
                     name,
                     NTL_STRING("\"")),
-                NTL_STRING("template <typename ReturnType> ReturnType &Details::get_field(const String &name) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename ReturnType> ReturnType &Details::get_field(const String &name) const"));
 
         try
         {

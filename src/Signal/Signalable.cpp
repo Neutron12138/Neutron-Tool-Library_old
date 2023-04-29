@@ -31,7 +31,7 @@ namespace ntl
         if (!has_signal(signal))
             throw unable_to_find_signal(
                 signal,
-                NTL_STRING("template <typename MethodType> void Signalable::connect(const String &signal,const String &name,void *object,MethodType method)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename MethodType> void Signalable::connect(const String &signal,const String &name,void *object,MethodType method)"));
 
         m_signals.at(signal).connect(name, object, method);
     }
@@ -45,7 +45,7 @@ namespace ntl
         if (!has_signal(signal))
             throw unable_to_find_signal(
                 signal,
-                NTL_STRING("void Signalable::connect(const String &signal,const String &name,const Slot &slot)"));
+                NTL_MAKE_STATEMENT_INFO("void Signalable::connect(const String &signal,const String &name,const Slot &slot)"));
 
         m_signals.at(signal).connect(name, slot);
     }
@@ -58,7 +58,7 @@ namespace ntl
         if (!has_signal(signal))
             throw unable_to_find_signal(
                 signal,
-                NTL_STRING("void Signalable::disconnect(const String &signal,const String &name)"));
+                NTL_MAKE_STATEMENT_INFO("void Signalable::disconnect(const String &signal,const String &name)"));
 
         m_signals.at(signal).disconnect(name);
     }
@@ -72,7 +72,7 @@ namespace ntl
         if (!has_signal(signal))
             throw unable_to_find_signal(
                 signal,
-                NTL_STRING("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
 
         try
         {
@@ -82,13 +82,13 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
         }
         catch (const Exception &exception)
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename... ArgsType> void Signalable::emit(const String &signal,ArgsType &&...args) const"));
         }
     }
 

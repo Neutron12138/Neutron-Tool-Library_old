@@ -62,7 +62,7 @@ namespace ntl
                         NTL_STRING("\", but the type is \""),
                         m_args_type.at(i).get_info().name(),
                         NTL_STRING("\"")),
-                    NTL_STRING("template <typename ArgType> bool MethodSign::check_arg(SizeT index) const"));
+                    NTL_MAKE_STATEMENT_INFO("template <typename ArgType> bool MethodSign::check_arg(SizeT index) const"));
 
         return true;
     }
