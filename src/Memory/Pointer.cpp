@@ -15,7 +15,7 @@ namespace ntl
     Pointer<m_DataType>::operator*() const
     {
         if (is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType &Pointer<m_DataType>::operator*() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType &Pointer<m_DataType>::operator*() const"));
         return *get();
     }
 
@@ -24,7 +24,7 @@ namespace ntl
     Pointer<m_DataType>::operator->() const
     {
         if (is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType *Pointer<m_DataType>::operator->() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType *Pointer<m_DataType>::operator->() const"));
         return get();
     }
 
@@ -42,7 +42,7 @@ namespace ntl
     Pointer<m_DataType[]>::operator*() const
     {
         if (is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType &Pointer<m_DataType>::operator*() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType &Pointer<m_DataType>::operator*() const"));
         return *get();
     }
 
@@ -51,7 +51,7 @@ namespace ntl
     Pointer<m_DataType[]>::operator->() const
     {
         if (is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType *Pointer<m_DataType>::operator->() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename Pointer<m_DataType>::DataType *Pointer<m_DataType>::operator->() const"));
         return get();
     }
 
@@ -60,7 +60,7 @@ namespace ntl
     Pointer<m_DataType[]>::operator[](SizeT index) const
     {
         if (is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> typename Pointer<m_DataType[]>::DataType *Pointer<m_DataType[]>::operator[](std::size_t index) const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> typename Pointer<m_DataType[]>::DataType *Pointer<m_DataType[]>::operator[](std::size_t index) const"));
         return get()[index];
     }
 

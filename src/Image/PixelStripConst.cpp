@@ -32,7 +32,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename m_PixelType, bool m_by_row> const typename PixelStripConst<m_PixelType, m_by_row>::PixelType &PixelStripConst<m_PixelType, m_by_row>::operator[](SizeT index) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType, bool m_by_row> const typename PixelStripConst<m_PixelType, m_by_row>::PixelType &PixelStripConst<m_PixelType, m_by_row>::operator[](SizeT index) const"));
         }
     }
 

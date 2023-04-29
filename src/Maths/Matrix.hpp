@@ -71,6 +71,9 @@ namespace ntl
         SelfType &set_components(const ComponentHolder &components);
         SelfType &swap(SelfType &another);
 
+        RowType &get_row(SizeT index);
+        const RowType &get_row(SizeT index) const;
+
         template <typename FuncType, typename... ArgsType>
         void for_each(FuncType func, ArgsType &&...args);
         template <typename FuncType, typename... ArgsType>

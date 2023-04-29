@@ -24,7 +24,7 @@ namespace ntl
     SharedPointer<m_DataType>::operator*() const
     {
         if (Pointer<m_DataType>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename SharedPointer<m_DataType>::DataType &SharedPointer<m_DataType>::operator*() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename SharedPointer<m_DataType>::DataType &SharedPointer<m_DataType>::operator*() const"));
         return *get();
     }
 
@@ -33,7 +33,7 @@ namespace ntl
     SharedPointer<m_DataType>::operator->() const
     {
         if (Pointer<m_DataType>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType> NTL_INLINE typename SharedPointer<m_DataType>::DataType *SharedPointer<m_DataType>::operator->() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType> NTL_INLINE typename SharedPointer<m_DataType>::DataType *SharedPointer<m_DataType>::operator->() const"));
         return get();
     }
 

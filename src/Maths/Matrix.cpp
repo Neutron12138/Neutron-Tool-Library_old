@@ -46,7 +46,7 @@ namespace ntl
         {
             throw OutOfRangeException(
                 exception,
-                NTL_STRING("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::operator[](SizeT index)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::operator[](SizeT index)"));
         }
     }
 
@@ -64,7 +64,7 @@ namespace ntl
         {
             throw OutOfRangeException(
                 exception,
-                NTL_STRING("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> const typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::operator[](SizeT index) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> const typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::operator[](SizeT index) const"));
         }
     }
 
@@ -305,6 +305,42 @@ namespace ntl
     {
         m_components.swap(another.m_components);
         return *this;
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &
+    Matrix<m_ComponentType, m_rows, m_columns>::get_row(
+        SizeT index)
+    {
+        try
+        {
+            RowType &result = m_components.at(index);
+            return result;
+        }
+        catch (const std::out_of_range &exception)
+        {
+            throw OutOfRangeException(
+                exception,
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::get_row(SizeT index)"));
+        }
+    }
+
+    template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>
+    const typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &
+    Matrix<m_ComponentType, m_rows, m_columns>::get_row(
+        SizeT index) const
+    {
+        try
+        {
+            RowType &result = m_components.at(index);
+            return result;
+        }
+        catch (const std::out_of_range &exception)
+        {
+            throw OutOfRangeException(
+                exception,
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_rows, SizeT m_columns> const typename Matrix<m_ComponentType, m_rows, m_columns>::RowType &Matrix<m_ComponentType, m_rows, m_columns>::get_row(SizeT index) const"));
+        }
     }
 
     template <typename m_ComponentType, SizeT m_rows, SizeT m_columns>

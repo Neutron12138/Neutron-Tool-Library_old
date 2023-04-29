@@ -9,6 +9,24 @@
 #include "../Serialization/Serializable.hpp"
 #include "../Serialization/Serialization.hpp"
 
+#define NTL_MAKE_STATEMENT_INFO(function_name) \
+    ntl::StringUtils::to_string(               \
+        NTL_STRING("at file:\""),              \
+        __FILE__,                              \
+        NTL_STRING("\",function:\""),          \
+        function_name,                         \
+        NTL_STRING("\",line:"),                \
+        __LINE__)
+
+#define NTL_STATEMENT_INFO            \
+    ntl::StringUtils::to_string(      \
+        NTL_STRING("at file:\""),     \
+        __FILE__,                     \
+        NTL_STRING("\",function:\""), \
+        __FUNCTION__,                 \
+        NTL_STRING("\",line:"),       \
+        __LINE__)
+
 namespace ntl
 {
     /// @brief 基础异常类

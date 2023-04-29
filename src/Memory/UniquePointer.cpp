@@ -39,7 +39,7 @@ namespace ntl
     UniquePointer<m_DataType, m_DeleterType>::operator*() const
     {
         if (Pointer<m_DataType>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType, m_DeleterType>::DataType &UniquePointer<m_DataType, m_DeleterType>::operator*() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType, m_DeleterType>::DataType &UniquePointer<m_DataType, m_DeleterType>::operator*() const"));
         return *get();
     }
 
@@ -48,7 +48,7 @@ namespace ntl
     UniquePointer<m_DataType, m_DeleterType>::operator->() const
     {
         if (Pointer<m_DataType>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType, m_DeleterType>::DataType *UniquePointer<m_DataType, m_DeleterType>::operator->() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType, m_DeleterType>::DataType *UniquePointer<m_DataType, m_DeleterType>::operator->() const"));
         return get();
     }
 
@@ -93,7 +93,7 @@ namespace ntl
     UniquePointer<m_DataType[], m_DeleterType>::operator*() const
     {
         if (Pointer<m_DataType[]>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType &UniquePointer<m_DataType[], m_DeleterType>::operator*() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType &UniquePointer<m_DataType[], m_DeleterType>::operator*() const"));
         return *get();
     }
 
@@ -102,7 +102,7 @@ namespace ntl
     UniquePointer<m_DataType[], m_DeleterType>::operator->() const
     {
         if (Pointer<m_DataType[]>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType *UniquePointer<m_DataType[], m_DeleterType>::operator->() const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType *UniquePointer<m_DataType[], m_DeleterType>::operator->() const"));
         return get();
     }
 
@@ -111,7 +111,7 @@ namespace ntl
     UniquePointer<m_DataType[], m_DeleterType>::operator[](SizeT index) const
     {
         if (Pointer<m_DataType[]>::is_nullptr())
-            throw NullPointerException(NTL_CSTRING("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType &UniquePointer<m_DataType[], m_DeleterType>::operator[](SizeT index) const"));
+            throw NullPointerException(NTL_MAKE_STATEMENT_INFO("template <typename m_DataType, typename m_DeleterType> typename UniquePointer<m_DataType[], m_DeleterType>::DataType &UniquePointer<m_DataType[], m_DeleterType>::operator[](SizeT index) const"));
         return get()[index];
     }
 

@@ -47,7 +47,7 @@ namespace ntl
         {
             throw OutOfRangeException(
                 exception,
-                NTL_STRING("template <typename m_ComponentType, SizeT m_dimensions> typename Vector<m_ComponentType, m_dimensions>::ComponentType &Vector<m_ComponentType, m_dimensions>::operator[](SizeT index)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_dimensions> typename Vector<m_ComponentType, m_dimensions>::ComponentType &Vector<m_ComponentType, m_dimensions>::operator[](SizeT index)"));
         }
     }
 
@@ -66,7 +66,7 @@ namespace ntl
         {
             throw OutOfRangeException(
                 exception,
-                NTL_STRING("template <typename m_ComponentType, SizeT m_dimensions> const typename Vector<m_ComponentType, m_dimensions>::ComponentType &Vector<m_ComponentType, m_dimensions>::operator[](SizeT index) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ComponentType, SizeT m_dimensions> const typename Vector<m_ComponentType, m_dimensions>::ComponentType &Vector<m_ComponentType, m_dimensions>::operator[](SizeT index) const"));
         }
     }
 

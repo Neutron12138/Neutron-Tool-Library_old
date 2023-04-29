@@ -42,7 +42,7 @@ namespace ntl
 		{
 			throw CaughtException(
 				exception,
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow &Bitmap<m_PixelType>::operator[](SizeT index)"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow &Bitmap<m_PixelType>::operator[](SizeT index)"));
 		}
 	}
 
@@ -59,7 +59,7 @@ namespace ntl
 		{
 			throw OutOfRangeException(
 				exception,
-				NTL_STRING("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelRowConst &Bitmap<m_PixelType>::operator[](SizeT index) const"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelRowConst &Bitmap<m_PixelType>::operator[](SizeT index) const"));
 		}
 	}
 
@@ -83,7 +83,7 @@ namespace ntl
 		{
 			throw OutOfRangeException(
 				exception,
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index)"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index)"));
 		}
 	}
 
@@ -100,7 +100,7 @@ namespace ntl
 		{
 			throw OutOfRangeException(
 				exception,
-				NTL_STRING("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index) const"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> const typename Bitmap<m_PixelType>::PixelType &Bitmap<m_PixelType>::get_pixel(SizeT index) const"));
 		}
 	}
 
@@ -118,7 +118,7 @@ namespace ntl
 					index,
 					NTL_STRING(", bitmap height: "),
 					m_height),
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow Bitmap<m_PixelType>::get_row(SizeT index)"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRow Bitmap<m_PixelType>::get_row(SizeT index)"));
 	}
 
 	template <typename m_PixelType>
@@ -135,7 +135,7 @@ namespace ntl
 					index,
 					NTL_STRING(", bitmap height: "),
 					m_height),
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRowConst Bitmap<m_PixelType>::get_row(SizeT index) const"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelRowConst Bitmap<m_PixelType>::get_row(SizeT index) const"));
 	}
 
 	template <typename m_PixelType>
@@ -152,7 +152,7 @@ namespace ntl
 					index,
 					NTL_STRING(", bitmap width: "),
 					m_width),
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumn Bitmap<m_PixelType>::get_column(SizeT index)"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumn Bitmap<m_PixelType>::get_column(SizeT index)"));
 	}
 
 	template <typename m_PixelType>
@@ -169,7 +169,7 @@ namespace ntl
 					index,
 					NTL_STRING(", bitmap width: "),
 					m_width),
-				NTL_STRING("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumnConst Bitmap<m_PixelType>::get_column(SizeT index) const"));
+				NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType> typename Bitmap<m_PixelType>::PixelColumnConst Bitmap<m_PixelType>::get_column(SizeT index) const"));
 	}
 
 	template <typename m_PixelType>
@@ -338,7 +338,7 @@ namespace ntl
 	{
 		if (source == nullptr)
 			throw NullPointerException(
-				NTL_STRING("bool Bitmap<PixelGrey>::load_from_memory(SizeT width,SizeT height,void *source)"));
+				NTL_MAKE_STATEMENT_INFO("bool Bitmap<PixelGrey>::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;
@@ -363,7 +363,7 @@ namespace ntl
 	{
 		if (source == nullptr)
 			throw NullPointerException(
-				NTL_STRING("bool Bitmap<PixelGA>::load_from_memory(SizeT width,SizeT height,void *source)"));
+				NTL_MAKE_STATEMENT_INFO("bool Bitmap<PixelGA>::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;
@@ -388,7 +388,7 @@ namespace ntl
 	{
 		if (source == nullptr)
 			throw NullPointerException(
-				NTL_STRING("bool Bitmap<PixelRGB>::load_from_memory(SizeT width,SizeT height,void *source)"));
+				NTL_MAKE_STATEMENT_INFO("bool Bitmap<PixelRGB>::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;
@@ -413,7 +413,7 @@ namespace ntl
 	{
 		if (source == nullptr)
 			throw NullPointerException(
-				NTL_STRING("bool Bitmap<PixelRGBA>::load_from_memory(SizeT width,SizeT height,void *source)"));
+				NTL_MAKE_STATEMENT_INFO("bool Bitmap<PixelRGBA>::load_from_memory(SizeT width,SizeT height,void *source)"));
 
 		m_width = width;
 		m_height = height;

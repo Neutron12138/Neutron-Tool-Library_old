@@ -33,7 +33,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename m_PixelType, bool m_by_row> typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::operator[](SizeT index)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType, bool m_by_row> typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::operator[](SizeT index)"));
         }
     }
 
@@ -55,7 +55,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename m_PixelType, bool m_by_row> const typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::operator[](SizeT index) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType, bool m_by_row> const typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::operator[](SizeT index) const"));
         }
     }
 
@@ -109,7 +109,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename m_PixelType, bool m_by_row> typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::get_pixel(SizeT index,bool repeat)"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType, bool m_by_row> typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::get_pixel(SizeT index,bool repeat)"));
         }
     }
 
@@ -142,7 +142,7 @@ namespace ntl
         {
             throw CaughtException(
                 exception,
-                NTL_STRING("template <typename m_PixelType, bool m_by_row> const typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::get_pixel(SizeT index,bool repeat) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_PixelType, bool m_by_row> const typename PixelStrip<m_PixelType, m_by_row>::PixelType &PixelStrip<m_PixelType, m_by_row>::get_pixel(SizeT index,bool repeat) const"));
         }
     }
 

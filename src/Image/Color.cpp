@@ -48,8 +48,7 @@ namespace ntl
                     index,
                     NTL_STRING(", total: "),
                     4),
-                NTL_STRING(
-                    "float &Color::operator[](SizeT index)"));
+                NTL_MAKE_STATEMENT_INFO("float &Color::operator[](SizeT index)"));
         }
     }
 
@@ -78,8 +77,7 @@ namespace ntl
                     index,
                     NTL_STRING(", total: "),
                     4),
-                NTL_STRING(
-                    "const float &Color::operator[](SizeT index) const"));
+                NTL_MAKE_STATEMENT_INFO("const float &Color::operator[](SizeT index) const"));
         }
     }
 
