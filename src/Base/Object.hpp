@@ -7,6 +7,8 @@
 
 namespace ntl
 {
+    class Serialization;
+
     /// @brief 对象类，有虚函数表
     class NTL_ALIGN Object : public BasicObject
     {
@@ -22,13 +24,11 @@ namespace ntl
         virtual ~Object() = default;
 
     public:
-        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
-
-    public:
-        /// @brief 转换为字符串
-        /// @return 转换后的结果
-        virtual String as_string() const;
+        constexpr SelfType &operator=(const SelfType &from) noexcept = default;
     };
+
+    Serialization serialize(const Object &object);
+
 } // namespace ntl
 
 #endif

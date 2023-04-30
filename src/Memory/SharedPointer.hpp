@@ -21,14 +21,17 @@ namespace ntl
 
     public:
         SharedPointer() = default;
-        explicit SharedPointer(DataType *ptr);
-        template <typename DeleterType>
-        explicit SharedPointer(DataType *ptr, DeleterType deleter);
+        template <typename DataType2>
+        SharedPointer(DataType2 *ptr);
+        template <typename DataType2, typename DeleterType>
+        SharedPointer(DataType2 *ptr, DeleterType deleter);
         explicit SharedPointer(const SelfType &from) = default;
         virtual ~SharedPointer() override = default;
 
     public:
+        using ParentType::operator=;
         SelfType &operator=(const SelfType &from) = default;
+
         DataType &operator*() const override;
         DataType *operator->() const override;
 
@@ -42,7 +45,17 @@ namespace ntl
     /// @param ...args 参数列表
     /// @return 指针
     template <typename DataType, typename... ArgsType>
-    SharedPointer<DataType> make_shared(const ArgsType &...args);
+    SharedPointer<DataType> make_shared(ArgsType &&...args);
+
+    /// @brief 创建一个新的共享指针
+    /// @tparam DataType 数据类型
+    /// @tparam DeleterType 删除器类型
+    /// @tparam ...ArgsType 参数类型列表
+    /// @param deleter 删除器
+    /// @param ...args 参数列表
+    /// @return 指针
+    template <typename DataType, typename DeleterType, typename... ArgsType>
+    SharedPointer<DataType> make_shared_and_deleter(DeleterType deleter, ArgsType &&...args);
 
 } // namespace ntl
 

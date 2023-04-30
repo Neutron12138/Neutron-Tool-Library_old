@@ -18,7 +18,7 @@ namespace ntl
         ~ResourceObject() override = default;
 
     public:
-        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
+        constexpr SelfType &operator=(const SelfType &from) noexcept = default;
 
     public:
         /// @brief 释放所持有的资源

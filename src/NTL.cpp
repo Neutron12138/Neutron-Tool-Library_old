@@ -9,6 +9,7 @@
 
 #include "Debug.cpp"
 
+#include "Base/BasicObject.cpp"
 #include "Base/Object.cpp"
 #include "Base/NamedObject.cpp"
 #include "Base/StdIOType.cpp"

@@ -5,6 +5,8 @@
 
 namespace ntl
 {
+    class Serialization;
+
     /// @brief 基础对象类，所有对象的基类
     class NTL_ALIGN BasicObject
     {
@@ -21,8 +23,11 @@ namespace ntl
         ~BasicObject() = default;
 
     public:
-        inline constexpr SelfType &operator=(const SelfType &from) noexcept = default;
+        constexpr SelfType &operator=(const SelfType &from) noexcept = default;
     };
+
+    Serialization serialize(const BasicObject &object);
+
 } // namespace ntl
 
 #endif

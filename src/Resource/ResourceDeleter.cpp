@@ -6,14 +6,14 @@
 
 namespace ntl
 {
-    template <typename m_ResourceObjectType>
+    template <typename m_ResourceType>
     void
-    ResourceDeleter<m_ResourceObjectType>::operator()(
-        typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr) const
+    ResourceDeleter<m_ResourceType>::operator()(
+        typename ResourceDeleter<m_ResourceType>::ResourceType *ptr) const
     {
         if (ptr == nullptr)
             throw NullPointerException(
-                NTL_MAKE_STATEMENT_INFO("template <typename m_ResourceObjectType> void ResourceDeleter<m_ResourceObjectType>::operator()(typename ResourceDeleter<m_ResourceObjectType>::ResourceObjectType *ptr) const"));
+                NTL_MAKE_STATEMENT_INFO("template <typename m_ResourceType> void ResourceDeleter<m_ResourceType>::operator()(typename ResourceDeleter<m_ResourceType>::ResourceType *ptr) const"));
 
         ptr->release();
         delete ptr;

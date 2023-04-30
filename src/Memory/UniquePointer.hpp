@@ -17,7 +17,7 @@ namespace ntl
     public:
         using DataType = m_DataType;
         using DeleterType = m_DeleterType;
-        using PointerType = Pointer<DataType[]>;
+        using PointerType = Pointer<DataType>;
         using AutoPointerType = std::unique_ptr<DataType, DeleterType>;
 
         using SelfType = UniquePointer<DataType, DeleterType>;
@@ -25,15 +25,19 @@ namespace ntl
 
     public:
         UniquePointer() = default;
-        explicit UniquePointer(DataType *ptr);
-        explicit UniquePointer(DataType *ptr, DeleterType deleter);
-        // explicit UniquePointer(const SelfType &from) = delete;
+        template <typename DataType2>
+        UniquePointer(DataType2 *ptr);
+        template <typename DataType2>
+        UniquePointer(DataType2 *ptr, DeleterType deleter);
+        explicit UniquePointer(const SelfType &from) = delete;
         explicit UniquePointer(SelfType &&from);
         virtual ~UniquePointer() override = default;
 
     public:
-        // SelfType &operator=(const SelfType &from) = delete;
+        using ParentType::operator=;
+        SelfType &operator=(const SelfType &from) = delete;
         SelfType &operator=(SelfType &&from);
+
         DataType &operator*() const override;
         DataType *operator->() const override;
 
@@ -58,15 +62,19 @@ namespace ntl
 
     public:
         UniquePointer() = default;
-        explicit UniquePointer(DataType *ptr);
-        explicit UniquePointer(DataType *ptr, DeleterType deleter);
-        // explicit UniquePointer(const SelfType &from) = delete;
+        template <typename DataType2>
+        UniquePointer(DataType2 *ptr);
+        template <typename DataType2>
+        UniquePointer(DataType2 *ptr, DeleterType deleter);
+        explicit UniquePointer(const SelfType &from) = delete;
         explicit UniquePointer(SelfType &&from);
         virtual ~UniquePointer() override = default;
 
     public:
-        // SelfType &operator=(const SelfType &from) = delete;
+        using ParentType::operator=;
+        SelfType &operator=(const SelfType &from) = delete;
         SelfType &operator=(SelfType &&from);
+
         DataType &operator*() const override;
         DataType *operator->() const override;
         DataType &operator[](SizeT index) const override;
@@ -75,13 +83,25 @@ namespace ntl
         DataType *get() const override;
     };
 
+    //
+    // 辅助函数
+    //
+
     /// @brief 创建一个新的专有指针
     /// @tparam DataType 数据类型
     /// @tparam ...ArgsType 参数类型列表
     /// @param ...args 参数列表
     /// @return 指针
     template <typename DataType, typename... ArgsType>
-    UniquePointer<DataType, BasicDeleter<DataType>> make_unique(const ArgsType &...args);
+    UniquePointer<DataType, BasicDeleter<DataType>> make_unique(ArgsType &&...args);
+
+    /// @brief 创建一个新的专有指针
+    /// @tparam DataType 数据类型
+    /// @tparam ...ArgsType 参数类型列表
+    /// @param ...args 参数列表
+    /// @return 指针
+    template <typename DataType, typename DeleterType, typename... ArgsType>
+    UniquePointer<DataType, DeleterType> make_unique_and_deleter(const DeleterType &deleter, ArgsType &&...args);
 
 } // namespace ntl
 
