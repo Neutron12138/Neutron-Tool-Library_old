@@ -31,7 +31,9 @@ int main()
 {
     try
     {
-        std::cout << "ntl::deserialize<int>(ntl::Serialization(\"123\")):" << ntl::deserialize<int>(ntl::Serialization("123")) << std::endl
+        std::cout << "ntl::serialize(ntl::deserialize<ntl::BasicObject>(ntl::Serialization(""))):" << ntl::serialize(ntl::deserialize<ntl::BasicObject>(ntl::Serialization(""))) << std::endl
+                  << "ntl::serialize(ntl::deserialize<ntl::Object>(ntl::Serialization(""))):" << ntl::serialize(ntl::deserialize<ntl::Object>(ntl::Serialization(""))) << std::endl
+                  << "ntl::deserialize<int>(ntl::Serialization(\"123\")):" << ntl::deserialize<int>(ntl::Serialization("123")) << std::endl
                   << "ntl::deserialize<double>(ntl::Serialization(\"12.3d\")):" << ntl::deserialize<double>(ntl::Serialization("12.3d")) << std::endl;
 
         std::cout << std::endl;

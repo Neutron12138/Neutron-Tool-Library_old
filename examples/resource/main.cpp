@@ -2,23 +2,24 @@
 #include "../../src/NTL.hpp"
 #include "../../src/NTL.cpp"
 
-class MyRes : public ntl::ResourceObject
+struct MyRes : public ntl::ResourceObject
 {
-public:
-    MyRes() = default;
-    ~MyRes() = default;
-
-public:
-    void release()
+    ~MyRes()
     {
-        std::cout << "released" << std::endl;
+        std::cout << "resource destructed" << std::endl;
+    }
+
+    void release() override
+    {
+        std::cout << "resource released" << std::endl;
     }
 };
 
 int main()
 {
-    ntl::UniquePointer<MyRes, ntl::ResourceDeleter<MyRes>> ptr(new MyRes());
-    
+    ntl::SharedPointer<MyRes> res =
+        ntl::make_shared_and_deleter<MyRes>(ntl::ResourceDeleter<MyRes>());
+
     try
     {
         ntl::ResourceDeleter<MyRes>()(nullptr);
