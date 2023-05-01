@@ -37,7 +37,7 @@ namespace ntl
 
     public:
         StringUtils() = default;
-        explicit StringUtils(const SelfType &from) = default;
+        StringUtils(const SelfType &from) = default;
         ~StringUtils() override = default;
 
     public:

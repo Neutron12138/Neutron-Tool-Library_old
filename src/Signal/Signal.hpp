@@ -26,8 +26,8 @@ namespace ntl
 
     public:
         Signal() = default;
-        explicit Signal(SizeT args_count);
-        explicit Signal(const SelfType &from) = default;
+        Signal(SizeT args_count);
+        Signal(const SelfType &from) = default;
         ~Signal() = default;
 
     public:

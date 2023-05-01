@@ -23,7 +23,7 @@ namespace ntl
 
     public:
         constexpr ResourceDeleter() noexcept = default;
-        constexpr explicit ResourceDeleter(const SelfType &from) noexcept = default;
+        constexpr ResourceDeleter(const SelfType &from) noexcept = default;
         virtual ~ResourceDeleter() override = default;
 
     public:

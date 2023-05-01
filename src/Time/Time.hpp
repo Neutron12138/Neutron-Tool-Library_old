@@ -20,8 +20,8 @@ namespace ntl
 
     public:
         Time() = default;
-        explicit Time(clock_t clocks);
-        explicit Time(float seconds);
+        Time(clock_t clocks);
+        Time(float seconds);
         Time(const SelfType &from) = default;
         ~Time() override = default;
 

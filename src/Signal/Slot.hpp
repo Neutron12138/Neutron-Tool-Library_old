@@ -22,8 +22,8 @@ namespace ntl
 
     public:
         Slot() = default;
-        explicit Slot(void *object, const NonStaticMethod &method);
-        explicit Slot(const SelfType &from) = default;
+        Slot(void *object, const NonStaticMethod &method);
+        Slot(const SelfType &from) = default;
         ~Slot() = default;
 
     public:

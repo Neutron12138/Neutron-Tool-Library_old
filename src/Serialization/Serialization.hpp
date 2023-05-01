@@ -19,8 +19,8 @@ namespace ntl
 
     public:
         Serialization() = default;
-        explicit Serialization(const String &serialization);
-        explicit Serialization(const SelfType &from) = default;
+        Serialization(const String &serialization);
+        Serialization(const SelfType &from) = default;
         ~Serialization() = default;
 
     public:

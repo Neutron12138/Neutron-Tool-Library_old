@@ -27,7 +27,7 @@ namespace ntl
 
     public:
         constexpr AttributeQueryInfo() = default;
-        constexpr explicit AttributeQueryInfo(const SelfType &from) = default;
+        constexpr AttributeQueryInfo(const SelfType &from) = default;
         ~AttributeQueryInfo() override = default;
 
     public:

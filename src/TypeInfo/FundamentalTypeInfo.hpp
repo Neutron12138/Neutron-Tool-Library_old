@@ -132,7 +132,7 @@ namespace ntl
 
     public:
         constexpr FundamentalTypeInfo() = default;
-        constexpr explicit FundamentalTypeInfo(const SelfType &from) = default;
+        constexpr FundamentalTypeInfo(const SelfType &from) = default;
         ~FundamentalTypeInfo() override = default;
 
     public:

@@ -24,7 +24,7 @@ namespace ntl
 
     public:
         Signalable() = default;
-        explicit Signalable(const SelfType &from) = default;
+        Signalable(const SelfType &from) = default;
         ~Signalable() = default;
 
     public:

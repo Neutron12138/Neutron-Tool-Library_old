@@ -22,9 +22,9 @@ namespace ntl
         const std::type_info &m_info;
 
     public:
-        explicit Type(const std::type_info &info);
-        explicit Type(const String &name, const std::type_info &info);
-        explicit Type(const SelfType &from) = default;
+        Type(const std::type_info &info);
+        Type(const String &name, const std::type_info &info);
+        Type(const SelfType &from) = default;
         ~Type() = default;
 
     public:

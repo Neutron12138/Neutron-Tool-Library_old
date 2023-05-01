@@ -202,7 +202,7 @@ namespace ntl
 
     public:
         constexpr SupportedOperationsInfo() = default;
-        constexpr explicit SupportedOperationsInfo(const SelfType &from) = default;
+        constexpr SupportedOperationsInfo(const SelfType &from) = default;
         ~SupportedOperationsInfo() override = default;
 
     public:

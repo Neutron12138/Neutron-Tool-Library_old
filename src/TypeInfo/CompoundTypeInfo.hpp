@@ -83,7 +83,7 @@ namespace ntl
 
     public:
         constexpr CompoundTypeInfo() = default;
-        constexpr explicit CompoundTypeInfo(const SelfType &from) = default;
+        constexpr CompoundTypeInfo(const SelfType &from) = default;
         virtual ~CompoundTypeInfo() override = default;
 
     public:

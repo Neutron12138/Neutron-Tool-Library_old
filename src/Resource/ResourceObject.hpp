@@ -14,7 +14,7 @@ namespace ntl
 
     public:
         constexpr ResourceObject() noexcept = default;
-        constexpr explicit ResourceObject(const SelfType &from) noexcept = default;
+        constexpr ResourceObject(const SelfType &from) noexcept = default;
         ~ResourceObject() override = default;
 
     public:

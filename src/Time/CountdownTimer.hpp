@@ -51,7 +51,7 @@ namespace ntl
 
     public:
         CountdownTimer() = default;
-        explicit CountdownTimer(const SelfType &from) = default;
+        CountdownTimer(const SelfType &from) = default;
         ~CountdownTimer() override = default;
 
     public:

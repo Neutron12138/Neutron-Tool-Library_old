@@ -149,7 +149,7 @@ namespace ntl
 
     public:
         constexpr TypeAttributeInfo() = default;
-        constexpr explicit TypeAttributeInfo(const SelfType &from) = default;
+        constexpr TypeAttributeInfo(const SelfType &from) = default;
         ~TypeAttributeInfo() override = default;
 
     public:

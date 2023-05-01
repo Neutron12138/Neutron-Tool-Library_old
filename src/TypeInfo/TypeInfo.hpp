@@ -31,7 +31,7 @@ namespace ntl
 
     public:
         TypeInfo() = default;
-        explicit TypeInfo(const SelfType &from) = default;
+        TypeInfo(const SelfType &from) = default;
         ~TypeInfo() override = default;
 
     public:

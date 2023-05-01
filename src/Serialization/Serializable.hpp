@@ -16,7 +16,7 @@ namespace ntl
 
     public:
         constexpr Serializable() noexcept = default;
-        constexpr explicit Serializable(const SelfType &from) noexcept = default;
+        constexpr Serializable(const SelfType &from) noexcept = default;
         ~Serializable() override = default;
 
     public:

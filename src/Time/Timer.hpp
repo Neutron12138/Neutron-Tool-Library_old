@@ -29,7 +29,7 @@ namespace ntl
 
     public:
         Timer() = default;
-        explicit Timer(const SelfType &from) = default;
+        Timer(const SelfType &from) = default;
         ~Timer() override = default;
 
     public:
