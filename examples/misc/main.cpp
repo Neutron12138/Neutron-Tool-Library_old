@@ -53,5 +53,12 @@ int main()
               << "MyEnum3::B:\t" << MyEnum3::B << std::endl
               << "MyEnum3::C:\t" << MyEnum3::C << std::endl;
 
+    std::cout << std::endl;
+
+    ntl::InitializeOnly<int> a(10);
+    int b = a;
+    // *a=100;
+    std::cout << "a:" << a << std::endl;
+
     return 0;
 }
