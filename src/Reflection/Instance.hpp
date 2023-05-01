@@ -21,8 +21,8 @@ namespace ntl
 
     public:
         Instance() = default;
-        explicit Instance(const typename Reflector::DetailsPointer &details, const SharedPointer<Byte> &memory);
-        explicit Instance(const SelfType &from) = default;
+        Instance(const typename Reflector::DetailsPointer &details, const SharedPointer<Byte> &memory);
+        Instance(const SelfType &from) = default;
         ~Instance() override = default;
 
     public:

@@ -16,7 +16,7 @@ namespace ntl
 
     public:
         constexpr PrintUtils() noexcept = default;
-        constexpr explicit PrintUtils(const SelfType &from) noexcept = default;
+        constexpr PrintUtils(const SelfType &from) noexcept = default;
         ~PrintUtils() override = default;
 
     public:

@@ -32,8 +32,8 @@ namespace ntl
 
     public:
         Vector() = default;
-        explicit Vector(const ComponentHolder &components);
-        explicit Vector(const SelfType &from) = default;
+        Vector(const ComponentHolder &components);
+        Vector(const SelfType &from) = default;
         ~Vector() = default;
 
     public:

@@ -23,7 +23,7 @@ namespace ntl
 
     public:
         MethodSign(const Type &return_type, const std::vector<Type> &args_type);
-        explicit MethodSign(const SelfType &from) = default;
+        MethodSign(const SelfType &from) = default;
         ~MethodSign() = default;
 
     public:

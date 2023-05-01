@@ -24,8 +24,8 @@ namespace ntl
     public:
         Member() = default;
         template <typename MemberType>
-        explicit Member(MemberType pointer);
-        explicit Member(const SelfType &from) = default;
+        Member(MemberType pointer);
+        Member(const SelfType &from) = default;
         ~Member() = default;
 
     public:

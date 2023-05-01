@@ -17,10 +17,10 @@ namespace ntl
     public:
         NonStaticMethod() = default;
         template <typename MethodType>
-        explicit NonStaticMethod(MethodType pointer, SizeT args_count);
+        NonStaticMethod(MethodType pointer, SizeT args_count);
         template <typename MethodType>
-        explicit NonStaticMethod(MethodType pointer, SizeT args_count, const MethodSign &sign);
-        explicit NonStaticMethod(const SelfType &from) = default;
+        NonStaticMethod(MethodType pointer, SizeT args_count, const MethodSign &sign);
+        NonStaticMethod(const SelfType &from) = default;
         ~NonStaticMethod() = default;
 
     public:

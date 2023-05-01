@@ -24,8 +24,8 @@ namespace ntl
 
     public:
         Node() = default;
-        explicit Node(const String &name);
-        explicit Node(const SelfType &from) = default;
+        Node(const String &name);
+        Node(const SelfType &from) = default;
         virtual ~Node() override = default;
 
     public:

@@ -25,10 +25,10 @@ namespace ntl
     public:
         Field() = default;
         template <typename FieldType>
-        explicit Field(FieldType pointer);
+        Field(FieldType pointer);
         template <typename FieldType>
-        explicit Field(FieldType pointer, const FieldSign &sign);
-        explicit Field(const SelfType &from) = default;
+        Field(FieldType pointer, const FieldSign &sign);
+        Field(const SelfType &from) = default;
         ~Field() = default;
 
     public:

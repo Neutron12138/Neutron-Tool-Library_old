@@ -24,9 +24,9 @@ namespace ntl
 
     public:
         DefaultNode() = default;
-        explicit DefaultNode(const String &name);
-        explicit DefaultNode(const String &name, const ParentNodeType &parent_node);
-        explicit DefaultNode(const SelfType &from) = default;
+        DefaultNode(const String &name);
+        DefaultNode(const String &name, const ParentNodeType &parent_node);
+        DefaultNode(const SelfType &from) = default;
         ~DefaultNode() override = default;
 
     public:

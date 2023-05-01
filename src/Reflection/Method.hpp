@@ -28,10 +28,10 @@ namespace ntl
     public:
         Method() = default;
         template <typename MethodType>
-        explicit Method(MethodType pointer, SizeT args_count);
+        Method(MethodType pointer, SizeT args_count);
         template <typename MethodType>
-        explicit Method(MethodType pointer, SizeT args_count, const MethodSign &sign);
-        explicit Method(const SelfType &from) = default;
+        Method(MethodType pointer, SizeT args_count, const MethodSign &sign);
+        Method(const SelfType &from) = default;
         ~Method() = default;
 
     public:

@@ -18,8 +18,8 @@ namespace ntl
 
     public:
         BasicNode() = default;
-        explicit BasicNode(const String &name);
-        explicit BasicNode(const SelfType &from) = default;
+        BasicNode(const String &name);
+        BasicNode(const SelfType &from) = default;
         ~BasicNode() override = default;
 
     public:

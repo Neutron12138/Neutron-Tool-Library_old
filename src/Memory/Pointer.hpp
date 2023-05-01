@@ -18,7 +18,7 @@ namespace ntl
 
     public:
         constexpr Pointer() noexcept = default;
-        constexpr explicit Pointer(const SelfType &from) noexcept = default;
+        constexpr Pointer(const SelfType &from) noexcept = default;
         ~Pointer() override = default;
 
     public:
@@ -48,7 +48,7 @@ namespace ntl
 
     public:
         constexpr Pointer() noexcept = default;
-        constexpr explicit Pointer(const SelfType &from) noexcept = default;
+        constexpr Pointer(const SelfType &from) noexcept = default;
         ~Pointer() override = default;
 
     public:

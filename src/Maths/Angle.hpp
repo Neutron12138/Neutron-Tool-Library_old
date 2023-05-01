@@ -43,8 +43,8 @@ namespace ntl
 
     public:
         Angle() = default;
-        explicit Angle(float v, AngleUnit u = AngleUnit::Radian);
-        explicit Angle(const SelfType &from) = default;
+        Angle(float v, AngleUnit u = AngleUnit::Radian);
+        Angle(const SelfType &from) = default;
         ~Angle() = default;
 
     public:

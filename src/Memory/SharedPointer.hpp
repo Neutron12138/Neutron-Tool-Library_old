@@ -25,7 +25,7 @@ namespace ntl
         SharedPointer(DataType2 *ptr);
         template <typename DataType2, typename DeleterType>
         SharedPointer(DataType2 *ptr, DeleterType deleter);
-        explicit SharedPointer(const SelfType &from) = default;
+        SharedPointer(const SelfType &from) = default;
         virtual ~SharedPointer() override = default;
 
     public:

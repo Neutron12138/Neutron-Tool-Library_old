@@ -22,8 +22,8 @@ namespace ntl
 
     public:
         WeakPointer() = default;
-        explicit WeakPointer(const SharedPointerType &ptr);
-        explicit WeakPointer(const SelfType &from) = default;
+        WeakPointer(const SharedPointerType &ptr);
+        WeakPointer(const SelfType &from) = default;
         ~WeakPointer() override = default;
 
     public:

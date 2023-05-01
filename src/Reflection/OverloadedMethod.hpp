@@ -12,8 +12,6 @@ namespace ntl
     class NTL_ALIGN OverloadedMethod : public BasicObject
     {
     public:
-
-    
         using MethodClassType = m_MethodClassType;
         using MethodContainer = std::map<String, MethodClassType>;
 

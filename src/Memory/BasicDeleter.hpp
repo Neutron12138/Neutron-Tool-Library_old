@@ -18,7 +18,7 @@ namespace ntl
 
     public:
         constexpr BasicDeleter() noexcept = default;
-        constexpr explicit BasicDeleter(const SelfType &from) noexcept = default;
+        constexpr BasicDeleter(const SelfType &from) noexcept = default;
         ~BasicDeleter() override = default;
 
     public:
@@ -33,20 +33,20 @@ namespace ntl
     {
     public:
         using DataType = m_DataType;
-        
+
         using SelfType = BasicDeleter<DataType[]>;
         using ParentType = Object;
 
     public:
         constexpr BasicDeleter() noexcept = default;
-        constexpr explicit BasicDeleter(const SelfType &from) noexcept = default;
+        constexpr BasicDeleter(const SelfType &from) noexcept = default;
         ~BasicDeleter() override = default;
 
     public:
         constexpr BasicDeleter &operator=(const SelfType &from) noexcept = default;
         virtual void operator()(DataType *ptr) const;
     };
-    
+
 } // namespace ntl
 
 #endif

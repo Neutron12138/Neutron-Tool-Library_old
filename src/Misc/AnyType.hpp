@@ -15,7 +15,7 @@ namespace ntl
 
     public:
         AnyType() = default;
-        explicit AnyType(const SelfType &from) = default;
+        AnyType(const SelfType &from) = default;
         ~AnyType() = default;
 
     public:

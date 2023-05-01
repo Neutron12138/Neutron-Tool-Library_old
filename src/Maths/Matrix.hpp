@@ -30,8 +30,8 @@ namespace ntl
 
     public:
         Matrix() = default;
-        explicit Matrix(const ComponentHolder &components);
-        explicit Matrix(const SelfType &from) = default;
+        Matrix(const ComponentHolder &components);
+        Matrix(const SelfType &from) = default;
         ~Matrix() = default;
 
     public:

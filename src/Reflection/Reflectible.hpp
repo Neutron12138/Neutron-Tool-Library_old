@@ -16,7 +16,7 @@ namespace ntl
 
     public:
         constexpr Reflectible() noexcept = default;
-        constexpr explicit Reflectible(const SelfType &from) noexcept = default;
+        constexpr Reflectible(const SelfType &from) noexcept = default;
         ~Reflectible() = default;
 
     public:

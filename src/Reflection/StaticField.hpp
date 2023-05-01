@@ -17,10 +17,10 @@ namespace ntl
     public:
         StaticField() = default;
         template <typename FieldType>
-        explicit StaticField(FieldType pointer);
+        StaticField(FieldType pointer);
         template <typename FieldType>
-        explicit StaticField(FieldType pointer, const FieldSign &sign);
-        explicit StaticField(const SelfType &from) = default;
+        StaticField(FieldType pointer, const FieldSign &sign);
+        StaticField(const SelfType &from) = default;
         ~StaticField() = default;
 
     public:

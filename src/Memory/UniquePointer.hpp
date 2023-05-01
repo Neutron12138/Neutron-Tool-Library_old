@@ -29,8 +29,8 @@ namespace ntl
         UniquePointer(DataType2 *ptr);
         template <typename DataType2>
         UniquePointer(DataType2 *ptr, DeleterType deleter);
-        explicit UniquePointer(const SelfType &from) = delete;
-        explicit UniquePointer(SelfType &&from);
+        UniquePointer(const SelfType &from) = delete;
+        UniquePointer(SelfType &&from);
         virtual ~UniquePointer() override = default;
 
     public:
@@ -66,8 +66,8 @@ namespace ntl
         UniquePointer(DataType2 *ptr);
         template <typename DataType2>
         UniquePointer(DataType2 *ptr, DeleterType deleter);
-        explicit UniquePointer(const SelfType &from) = delete;
-        explicit UniquePointer(SelfType &&from);
+        UniquePointer(const SelfType &from) = delete;
+        UniquePointer(SelfType &&from);
         virtual ~UniquePointer() override = default;
 
     public:

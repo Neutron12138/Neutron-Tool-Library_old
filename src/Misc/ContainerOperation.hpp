@@ -15,7 +15,7 @@ namespace ntl
 
     public:
         constexpr ContainerOperation() noexcept = default;
-        constexpr explicit ContainerOperation(const SelfType &from) noexcept = default;
+        constexpr ContainerOperation(const SelfType &from) noexcept = default;
         ~ContainerOperation() override = default;
 
     public:

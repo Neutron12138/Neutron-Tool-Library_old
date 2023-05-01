@@ -23,7 +23,7 @@ namespace ntl
 
     public:
         BasicEnumeration(const ValueType &value);
-        explicit BasicEnumeration(const SelfType &from) = default;
+        BasicEnumeration(const SelfType &from) = default;
         ~BasicEnumeration() = default;
 
     public:
@@ -79,7 +79,7 @@ namespace ntl
 
     public:
         BasicEnumeration(const ValueType &value);
-        explicit BasicEnumeration(const SelfType &from) = default;
+        BasicEnumeration(const SelfType &from) = default;
         ~BasicEnumeration() = default;
 
     public:

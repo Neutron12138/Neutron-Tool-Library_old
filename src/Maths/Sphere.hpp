@@ -15,7 +15,7 @@ namespace ntl
 
     public:
         constexpr Sphere() noexcept = default;
-        constexpr explicit Sphere(const SelfType &from) noexcept = default;
+        constexpr Sphere(const SelfType &from) noexcept = default;
         ~Sphere() override = default;
 
     public:

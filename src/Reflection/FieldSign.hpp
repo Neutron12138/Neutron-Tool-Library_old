@@ -18,8 +18,8 @@ namespace ntl
         Type m_field_type;
 
     public:
-        explicit FieldSign(const Type &field_sign);
-        explicit FieldSign(const SelfType &from) = default;
+        FieldSign(const Type &field_sign);
+        FieldSign(const SelfType &from) = default;
         ~FieldSign() = default;
 
     public:

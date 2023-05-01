@@ -64,14 +64,14 @@ namespace ntl
 
     public:
         Details() = default;
-        explicit Details(SizeT size);
-        explicit Details(
+        Details(SizeT size);
+        Details(
             SizeT size,
             const NonStaticFieldMap &nonstatic_fields,
             const StaticFieldMap &static_fields,
             const NonStaticMethodMap &nonstatic_methods,
             const StaticMethodMap &static_methods);
-        explicit Details(const SelfType &from) = default;
+        Details(const SelfType &from) = default;
         ~Details() = default;
 
     public:

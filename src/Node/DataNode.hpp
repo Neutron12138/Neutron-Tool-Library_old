@@ -21,8 +21,8 @@ namespace ntl
 
     public:
         DataNode() = default;
-        explicit DataNode(const DataType &data);
-        explicit DataNode(const SelfType &from) = default;
+        DataNode(const DataType &data);
+        DataNode(const SelfType &from) = default;
         ~DataNode() override = default;
 
     public:

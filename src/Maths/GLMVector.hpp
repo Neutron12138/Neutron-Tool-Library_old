@@ -25,11 +25,11 @@ namespace ntl
 
     public:
         Vector2() = default;
-        explicit Vector2(const ComponentType &x);
-        explicit Vector2(const ComponentType &x,
+        Vector2(const ComponentType &x);
+        Vector2(const ComponentType &x,
                          const ComponentType &y);
-        explicit Vector2(const GLMType &from);
-        explicit Vector2(const SelfType &from) = default;
+        Vector2(const GLMType &from);
+        Vector2(const SelfType &from) = default;
         ~Vector2() = default;
 
     public:
@@ -56,14 +56,14 @@ namespace ntl
 
     public:
         Vector3() = default;
-        explicit Vector3(const ComponentType &x);
-        explicit Vector3(const ComponentType &x,
+        Vector3(const ComponentType &x);
+        Vector3(const ComponentType &x,
                          const ComponentType &y);
-        explicit Vector3(const ComponentType &x,
+        Vector3(const ComponentType &x,
                          const ComponentType &y,
                          const ComponentType &z);
-        explicit Vector3(const GLMType &from);
-        explicit Vector3(const SelfType &from) = default;
+        Vector3(const GLMType &from);
+        Vector3(const SelfType &from) = default;
         ~Vector3() = default;
 
     public:
@@ -90,18 +90,18 @@ namespace ntl
 
     public:
         Vector4() = default;
-        explicit Vector4(const ComponentType &x);
-        explicit Vector4(const ComponentType &x,
+        Vector4(const ComponentType &x);
+        Vector4(const ComponentType &x,
                          const ComponentType &y);
-        explicit Vector4(const ComponentType &x,
+        Vector4(const ComponentType &x,
                          const ComponentType &y,
                          const ComponentType &z);
-        explicit Vector4(const ComponentType &x,
+        Vector4(const ComponentType &x,
                          const ComponentType &y,
                          const ComponentType &z,
                          const ComponentType &w);
-        explicit Vector4(const GLMType &from);
-        explicit Vector4(const SelfType &from) = default;
+        Vector4(const GLMType &from);
+        Vector4(const SelfType &from) = default;
         ~Vector4() = default;
 
     public:

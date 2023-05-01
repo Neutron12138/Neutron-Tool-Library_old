@@ -26,7 +26,7 @@ namespace ntl
 
     public:
         Reflector() = default;
-        explicit Reflector(const SelfType &from) = default;
+        Reflector(const SelfType &from) = default;
         ~Reflector() override = default;
 
     public:
