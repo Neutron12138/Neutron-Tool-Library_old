@@ -19,8 +19,8 @@ namespace ntl
 
     public:
         NamedObject() = default;
-        explicit NamedObject(const String &name);
-        explicit NamedObject(const SelfType &from) = default;
+        NamedObject(const String &name);
+        NamedObject(const SelfType &from) = default;
         ~NamedObject() override = default;
 
     public:

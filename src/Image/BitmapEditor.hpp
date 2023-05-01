@@ -16,7 +16,7 @@ namespace ntl
 
     public:
         constexpr BitmapEditor() noexcept = default;
-        constexpr explicit BitmapEditor(const SelfType &from) noexcept = default;
+        constexpr BitmapEditor(const SelfType &from) noexcept = default;
         ~BitmapEditor() override = default;
 
     public:

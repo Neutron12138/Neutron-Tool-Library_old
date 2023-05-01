@@ -23,10 +23,10 @@ namespace ntl
 
     public:
         Log() = default;
-        explicit Log(bool auto_output);
-        explicit Log(OutputStream *output);
-        explicit Log(bool auto_output, OutputStream *output);
-        explicit Log(const SelfType &from) = default;
+        Log(bool auto_output);
+        Log(OutputStream *output);
+        Log(bool auto_output, OutputStream *output);
+        Log(const SelfType &from) = default;
         ~Log() override = default;
 
     public:

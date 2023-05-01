@@ -14,8 +14,8 @@ namespace ntl
 
     public:
         NullPointerException() = default;
-        explicit NullPointerException(const String &where);
-        explicit NullPointerException(const NullPointerException &from) = default;
+        NullPointerException(const String &where);
+        NullPointerException(const NullPointerException &from) = default;
         ~NullPointerException() override = default;
 
     public:

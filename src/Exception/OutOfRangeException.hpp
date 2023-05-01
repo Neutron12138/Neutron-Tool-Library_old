@@ -14,9 +14,9 @@ namespace ntl
 
     public:
         OutOfRangeException() = default;
-        explicit OutOfRangeException(const std::out_of_range &exception, const String &where);
-        explicit OutOfRangeException(const String &why, const String &where);
-        explicit OutOfRangeException(const OutOfRangeException &from) = default;
+        OutOfRangeException(const std::out_of_range &exception, const String &where);
+        OutOfRangeException(const String &why, const String &where);
+        OutOfRangeException(const OutOfRangeException &from) = default;
         ~OutOfRangeException() override = default;
 
     public:

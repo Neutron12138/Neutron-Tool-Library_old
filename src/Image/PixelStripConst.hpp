@@ -29,8 +29,8 @@ namespace ntl
         SizeT m_number;
 
     public:
-        explicit PixelStripConst(const BitmapType &bitmap, SizeT number);
-        explicit PixelStripConst(const SelfType &from) = default;
+        PixelStripConst(const BitmapType &bitmap, SizeT number);
+        PixelStripConst(const SelfType &from) = default;
         ~PixelStripConst() override = default;
 
     public:

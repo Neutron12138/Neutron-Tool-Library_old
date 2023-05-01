@@ -41,10 +41,10 @@ namespace ntl
 
     public:
         BasicLog() = default;
-        explicit BasicLog(bool auto_output);
-        explicit BasicLog(OutputStream *output);
-        explicit BasicLog(bool auto_output, OutputStream *output);
-        explicit BasicLog(const SelfType &from) = default;
+        BasicLog(bool auto_output);
+        BasicLog(OutputStream *output);
+        BasicLog(bool auto_output, OutputStream *output);
+        BasicLog(const SelfType &from) = default;
         ~BasicLog() override = default;
 
     public:

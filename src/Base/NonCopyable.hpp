@@ -17,7 +17,7 @@ namespace ntl
         ~NonCopyable() = default;
 
     public:
-        constexpr explicit NonCopyable(const SelfType &from) noexcept = delete;
+        constexpr NonCopyable(const SelfType &from) noexcept = delete;
         constexpr SelfType &operator=(const SelfType &from) noexcept = delete;
     };
 

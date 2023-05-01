@@ -13,8 +13,8 @@ namespace ntl
 
     public:
         CSVFile() = default;
-        explicit CSVFile(SizeT rows, SizeT columns);
-        explicit CSVFile(const SelfType &from) = default;
+        CSVFile(SizeT rows, SizeT columns);
+        CSVFile(const SelfType &from) = default;
         ~CSVFile() override = default;
 
     public:

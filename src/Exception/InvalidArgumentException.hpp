@@ -14,8 +14,8 @@ namespace ntl
 
     public:
         InvalidArgumentException() = default;
-        explicit InvalidArgumentException(const String &why, const String &where);
-        explicit InvalidArgumentException(const SelfType &from) = default;
+        InvalidArgumentException(const String &why, const String &where);
+        InvalidArgumentException(const SelfType &from) = default;
         ~InvalidArgumentException() override = default;
 
     public:

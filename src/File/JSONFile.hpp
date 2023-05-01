@@ -13,7 +13,7 @@ namespace ntl
 
     public:
         JSONFile() = default;
-        explicit JSONFile(const SelfType &from) = default;
+        JSONFile(const SelfType &from) = default;
         ~JSONFile() override = default;
 
     public:

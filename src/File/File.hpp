@@ -15,7 +15,7 @@ namespace ntl
 
     public:
         File() = default;
-        explicit File(const SelfType &from) = default;
+        File(const SelfType &from) = default;
         ~File() override = default;
 
     public:

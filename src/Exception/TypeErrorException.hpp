@@ -14,8 +14,8 @@ namespace ntl
 
     public:
         TypeErrorException() = default;
-        explicit TypeErrorException(const String &why, const String &where);
-        explicit TypeErrorException(const SelfType &from) = default;
+        TypeErrorException(const String &why, const String &where);
+        TypeErrorException(const SelfType &from) = default;
         ~TypeErrorException() override = default;
 
     public:

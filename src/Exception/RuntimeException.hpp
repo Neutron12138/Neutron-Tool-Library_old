@@ -14,8 +14,8 @@ namespace ntl
 
     public:
         RuntimeException() = default;
-        explicit RuntimeException(const String &why, const String &where);
-        explicit RuntimeException(const SelfType &from) = default;
+        RuntimeException(const String &why, const String &where);
+        RuntimeException(const SelfType &from) = default;
         ~RuntimeException() override = default;
 
     public:

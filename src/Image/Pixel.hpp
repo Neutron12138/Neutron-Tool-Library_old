@@ -28,9 +28,9 @@ namespace ntl
 
     public:
         BasicPixel() = default;
-        explicit BasicPixel(const ComponentHolder &components);
-        explicit BasicPixel(const Color &color);
-        explicit BasicPixel(const SelfType &from) = default;
+        BasicPixel(const ComponentHolder &components);
+        BasicPixel(const Color &color);
+        BasicPixel(const SelfType &from) = default;
         ~BasicPixel() = default;
 
     public:

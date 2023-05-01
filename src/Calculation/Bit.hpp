@@ -20,8 +20,8 @@ namespace ntl
 
     public:
         Bit() = default;
-        explicit Bit(const StorageType &v);
-        explicit Bit(const SelfType &from) = default;
+        Bit(const StorageType &v);
+        Bit(const SelfType &from) = default;
         ~Bit() = default;
 
     public:

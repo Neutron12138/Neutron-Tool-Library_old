@@ -20,7 +20,7 @@ namespace ntl
 
     public:
         constexpr Object() noexcept = default;
-        constexpr explicit Object(const SelfType &from) noexcept = default;
+        constexpr Object(const SelfType &from) noexcept = default;
         virtual ~Object() = default;
 
     public:

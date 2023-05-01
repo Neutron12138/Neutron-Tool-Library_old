@@ -18,7 +18,7 @@ namespace ntl
 
     public:
         ConsoleApplication() = default;
-        explicit ConsoleApplication(const SelfType &from) = default;
+        ConsoleApplication(const SelfType &from) = default;
         ~ConsoleApplication() = default;
 
     public:

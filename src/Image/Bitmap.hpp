@@ -41,9 +41,9 @@ namespace ntl
 
     public:
         Bitmap() = default;
-        explicit Bitmap(SizeT width, SizeT height);
-        explicit Bitmap(SizeT width, SizeT height, const PixelHolder &pixels);
-        explicit Bitmap(const SelfType &from) = default;
+        Bitmap(SizeT width, SizeT height);
+        Bitmap(SizeT width, SizeT height, const PixelHolder &pixels);
+        Bitmap(const SelfType &from) = default;
         ~Bitmap() override = default;
 
     public:

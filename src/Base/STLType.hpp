@@ -52,7 +52,7 @@ namespace ntl
 
     public:
         constexpr STLType() noexcept = default;
-        constexpr explicit STLType(const SelfType &from) noexcept = default;
+        constexpr STLType(const SelfType &from) noexcept = default;
         ~STLType() override = default;
 
     public:

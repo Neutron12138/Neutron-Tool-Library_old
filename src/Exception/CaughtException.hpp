@@ -21,9 +21,9 @@ namespace ntl
 
     public:
         CaughtException() = default;
-        explicit CaughtException(const Exception &exception, const String &where);
-        explicit CaughtException(const CaughtException &exception, const String &where);
-        explicit CaughtException(const SelfType &from) = default;
+        CaughtException(const Exception &exception, const String &where);
+        CaughtException(const CaughtException &exception, const String &where);
+        CaughtException(const SelfType &from) = default;
         ~CaughtException() override = default;
 
     public:

@@ -28,9 +28,9 @@ namespace ntl
 
     public:
         constexpr Color() = default;
-        explicit Color(float grey);
-        explicit Color(float r, float g, float b, float a = 0.0f);
-        constexpr explicit Color(const SelfType &from) = default;
+        Color(float grey);
+        Color(float r, float g, float b, float a = 0.0f);
+        constexpr Color(const SelfType &from) = default;
         ~Color() = default;
 
     public:

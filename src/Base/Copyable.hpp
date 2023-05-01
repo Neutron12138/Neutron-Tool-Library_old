@@ -14,7 +14,7 @@ namespace ntl
 
     public:
         constexpr Copyable() noexcept = default;
-        constexpr explicit Copyable(const SelfType &from) noexcept = default;
+        constexpr Copyable(const SelfType &from) noexcept = default;
         ~Copyable() override = default;
 
     public:

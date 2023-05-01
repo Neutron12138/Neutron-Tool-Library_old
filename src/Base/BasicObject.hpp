@@ -19,7 +19,7 @@ namespace ntl
 
     public:
         constexpr BasicObject() noexcept = default;
-        constexpr explicit BasicObject(const SelfType &from) noexcept = default;
+        constexpr BasicObject(const SelfType &from) noexcept = default;
         ~BasicObject() = default;
 
     public:

@@ -29,8 +29,8 @@ namespace ntl
         String m_content;
 
     public:
-        explicit LogItem(LogLevel::LogLevel level, const String &title, const String &content);
-        explicit LogItem(const LogItem &from) = default;
+        LogItem(LogLevel::LogLevel level, const String &title, const String &content);
+        LogItem(const LogItem &from) = default;
         ~LogItem() override = default;
 
     public:

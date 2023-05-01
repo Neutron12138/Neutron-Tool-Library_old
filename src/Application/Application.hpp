@@ -31,7 +31,7 @@ namespace ntl
 
     public:
         constexpr Application() = default;
-        constexpr explicit Application(const SelfType &from) = default;
+        constexpr Application(const SelfType &from) = default;
         ~Application() override = default;
 
     public:

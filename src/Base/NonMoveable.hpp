@@ -17,7 +17,7 @@ namespace ntl
         ~NonMoveable() = default;
 
     public:
-        constexpr explicit NonMoveable(const SelfType &&from) noexcept = delete;
+        constexpr NonMoveable(const SelfType &&from) noexcept = delete;
         constexpr SelfType &operator=(const SelfType &&from) noexcept = delete;
     };
 

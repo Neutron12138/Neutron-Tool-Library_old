@@ -14,8 +14,8 @@ namespace ntl
 
     public:
         FileNotFoundException() = default;
-        explicit FileNotFoundException(const String &why, const String &where);
-        explicit FileNotFoundException(const SelfType &from) = default;
+        FileNotFoundException(const String &why, const String &where);
+        FileNotFoundException(const SelfType &from) = default;
         ~FileNotFoundException() override = default;
 
     public:

@@ -14,7 +14,7 @@ namespace ntl
 
     public:
         constexpr Comparable() noexcept = default;
-        constexpr explicit Comparable(const SelfType &from) noexcept = default;
+        constexpr Comparable(const SelfType &from) noexcept = default;
         ~Comparable() override = default;
 
     public:
