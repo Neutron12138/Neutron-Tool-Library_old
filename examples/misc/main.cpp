@@ -2,12 +2,10 @@
 #include "../../src/NTL.hpp"
 #include "../../src/NTL.cpp"
 
-class MyEnum : public ntl::Enumeration
+struct MyEnum : public ntl::Enumeration
 {
-public:
     using EnumType = ntl::Enumeration;
 
-public:
     static const EnumType A;
     static const EnumType B;
     static const EnumType C;
@@ -17,9 +15,8 @@ const MyEnum::EnumType MyEnum::A = EnumType(0);
 const MyEnum::EnumType MyEnum::B = EnumType(1);
 const MyEnum::EnumType MyEnum::C = EnumType(2);
 
-class MyEnum2 : public MyEnum
+struct MyEnum2 : public MyEnum
 {
-public:
     static const EnumType D;
     static const EnumType E;
     static const EnumType F;
@@ -39,6 +36,8 @@ namespace MyEnum3
 
 } // namespace MyEnum3
 
+ntl::Result<int> add(int *a, int *b);
+
 int main()
 {
     std::cout << "MyEnum2::A:\t" << MyEnum2::A << std::endl
@@ -57,8 +56,27 @@ int main()
 
     ntl::InitializeOnly<int> a(10);
     int b = a;
+    // 会报错
     // *a=100;
     std::cout << "a:" << a << std::endl;
 
+    int x = 1, y = 2;
+    ntl::Result<int> result = add(nullptr, nullptr);
+    ntl::Result<int> result2 = add(&x, &y);
+    std::cout << "result.success:" << result.success << std::endl
+              << "result.data.has_value():" << result.data.has_value() << std::endl
+              << "*result.reason:" << *result.reason << std::endl
+              << "result2.success:" << result2.success << std::endl
+              << "*result2.data:" << *result2.data << std::endl
+              << "*result2.reason.has_value():" << result2.reason.has_value() << std::endl;
+
     return 0;
+}
+
+ntl::Result<int> add(int *a, int *b)
+{
+    if (a == nullptr || b == nullptr)
+        return {"nullptr"};
+
+    return {*a + *b};
 }
