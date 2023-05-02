@@ -40,6 +40,7 @@
 #include "Exception/CaughtException.hpp"
 #include "Exception/TypeErrorException.hpp"
 #include "Exception/RuntimeException.hpp"
+#include "Exception/FileException.hpp"
 
 #include "Maths/Numbers.hpp"
 #include "Maths/MathsContants.hpp"
@@ -90,6 +91,7 @@
 #include "Misc/Enumeration.hpp"
 #include "Misc/AnyType.hpp"
 #include "Misc/InitializeOnly.hpp"
+#include "Misc/Result.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
@@ -122,6 +124,8 @@
 #include "Signal/Slot.hpp"
 #include "Signal/Signal.hpp"
 #include "Signal/Signalable.hpp"
+
+#include "File/File.hpp"
 
 // ---------- 静态实例 ----------
 

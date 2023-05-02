@@ -7,27 +7,39 @@
 namespace ntl
 {
     CaughtException::CaughtException(
+        const std::exception &exception,
+        const String &where)
+        : ParentType(
+              NTL_STRING("An exception was caught at runtime"),
+              where),
+          m_caught_exception(exception, where)
+    {
+        m_what = NTL_STRING("caught exception");
+        m_where_array.push_back(where);
+    }
+
+    CaughtException::CaughtException(
         const Exception &exception,
         const String &where)
-        : Exception(
-              NTL_STRING("caught exception"),
+        : ParentType(
               NTL_STRING("An exception was caught at runtime"),
               where),
           m_caught_exception(exception)
     {
+        m_what = NTL_STRING("caught exception");
         m_where_array.push_back(where);
     }
 
     CaughtException::CaughtException(
         const CaughtException &exception,
         const String &where)
-        : Exception(
-              NTL_STRING("caught exception"),
+        : ParentType(
               NTL_STRING("An exception was caught at runtime"),
               where),
           m_caught_exception(exception.get_caught_exception()),
           m_where_array(exception.get_where_array())
     {
+        m_what = NTL_STRING("caught exception");
         m_where_array.push_back(where);
     }
 

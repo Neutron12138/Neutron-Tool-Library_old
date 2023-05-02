@@ -24,6 +24,7 @@
 #include "Exception/CaughtException.cpp"
 #include "Exception/TypeErrorException.cpp"
 #include "Exception/RuntimeException.cpp"
+#include "Exception/FileException.cpp"
 
 #include "Maths/Numbers.cpp"
 #include "Maths/MathsUtils.cpp"
@@ -67,6 +68,7 @@
 #include "Misc/Enumeration.cpp"
 #include "Misc/AnyType.cpp"
 #include "Misc/InitializeOnly.cpp"
+#include "Misc/Result.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"
@@ -99,5 +101,7 @@
 #include "Signal/Slot.cpp"
 #include "Signal/Signal.cpp"
 #include "Signal/Signalable.cpp"
+
+#include "File/File.cpp"
 
 #endif

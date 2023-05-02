@@ -2,25 +2,28 @@
 #define __NEUTRONTL_EXCEPTION_CAUGHTEXCEPTION_HPP__
 
 #include <vector>
-#include "Exception.hpp"
+#include <exception>
+#include "RuntimeException.hpp"
 
 namespace ntl
 {
     /// @brief 捕捉到异常
-    class CaughtException : public Exception
+    class CaughtException : public RuntimeException
     {
     public:
         using SelfType = CaughtException;
-        using ParentType = Exception;
+        using ParentType = RuntimeException;
 
     protected:
         /// @brief 发生异常的地方数组
         std::vector<String> m_where_array;
+
         /// @brief 捕捉到的异常
         Exception m_caught_exception;
 
     public:
         CaughtException() = default;
+        CaughtException(const std::exception &exception, const String &where);
         CaughtException(const Exception &exception, const String &where);
         CaughtException(const CaughtException &exception, const String &where);
         CaughtException(const SelfType &from) = default;

@@ -9,7 +9,6 @@
 
 namespace ntl
 {
-
     Serialization serialize(char value);
 
     template <typename ValueType>
