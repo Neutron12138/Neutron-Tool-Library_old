@@ -3,6 +3,9 @@
 
 #include <functional>
 #include "Base/Object.hpp"
+#include "String/StringUtils.hpp"
+#include "Exception/Exception.hpp"
+#include "Exception/CaughtException.hpp"
 
 #ifndef NEUTRONTL_CONFIG_NO_DEBUG
 
@@ -11,62 +14,89 @@
 // 什么都不干:)
 #endif
 
-// 如果定义NEUTRONTL_ENABLE_DEBUG
-#ifdef NEUTRONTL_ENABLE_DEBUG
-#ifndef NEUTRONTL_DEBUG
-#define NEUTRONTL_DEBUG
-#endif
-#endif
-
-// 禁用调试
-/*
-#ifdef NEUTRONTL_DEBUG
-#undef NEUTRONTL_DEBUG
-#endif
-*/
-
-#ifdef NEUTRONTL_DEBUG
-
 // 设置调试输出函数
-#define NTL_set_debug_output(func) __ntl__::__Debugger__::get().set_output_func(func)
-// 输出调试信息
-#define NTL_debug_output(str) __ntl__::__Debugger__::get().output(str)
+#define NTL_set_debug_output(func) __ntl__::set_debug_output_func(func)
 
-/// @brief NTL的私有命名空间
+// 输出调试信息
+#define NTL_debug_output(args...) __ntl__::debug_output(args)
+
+// 调试
+#define NTL_debug(func_name, statement)                                       \
+    try                                                                       \
+    {                                                                         \
+        statement                                                             \
+    }                                                                         \
+    catch (const ntl::CaughtException &exception)                             \
+    {                                                                         \
+        NTL_debug_output(                                                     \
+            ntl::CaughtException(                                             \
+                exception,                                                    \
+                NTL_MAKE_STATEMENT_INFO(func_name)));                         \
+    }                                                                         \
+    catch (const ntl::Exception &exception)                                   \
+    {                                                                         \
+        NTL_debug_output(                                                     \
+            ntl::CaughtException(                                             \
+                exception,                                                    \
+                NTL_MAKE_STATEMENT_INFO(func_name)));                         \
+    }                                                                         \
+    catch (const std::exception &exception)                                   \
+    {                                                                         \
+        NTL_debug_output(                                                     \
+            ntl::CaughtException(                                             \
+                exception,                                                    \
+                NTL_MAKE_STATEMENT_INFO(func_name)));                         \
+    }                                                                         \
+    catch (...)                                                               \
+    {                                                                         \
+        NTL_debug_output(                                                     \
+            NTL_STRING("An unknown exception was caught during debugging\n"), \
+            NTL_MAKE_STATEMENT_INFO(func_name));                              \
+    }
+
+// 调试
+#define NTL_debug_throw(func_name, statement)                               \
+    try                                                                     \
+    {                                                                       \
+        statement                                                           \
+    }                                                                       \
+    catch (const ntl::CaughtException &exception)                           \
+    {                                                                       \
+        throw ntl::CaughtException(                                         \
+            exception,                                                      \
+            NTL_MAKE_STATEMENT_INFO(func_name));                            \
+    }                                                                       \
+    catch (const ntl::Exception &exception)                                 \
+    {                                                                       \
+        throw ntl::CaughtException(                                         \
+            exception,                                                      \
+            NTL_MAKE_STATEMENT_INFO(func_name));                            \
+    }                                                                       \
+    catch (const std::exception &exception)                                 \
+    {                                                                       \
+        throw ntl::CaughtException(                                         \
+            exception,                                                      \
+            NTL_MAKE_STATEMENT_INFO(func_name));                            \
+    }                                                                       \
+    catch (...)                                                             \
+    {                                                                       \
+        throw ntl::Exception(                                               \
+            NTL_STRING("exception"),                                        \
+            NTL_STRING("An unknown exception was caught during debugging"), \
+            NTL_MAKE_STATEMENT_INFO(func_name));                            \
+    }
+
 namespace __ntl__
 {
-    /// @brief 调试器，单例对象
-    class __Debugger__ : public ntl::Object
-    {
-    public:
-        using SelfType = __Debugger__;
-        using ParentType = ntl::BasicObject;
+    std::function<void(const ntl::Char *)> debug_output_func;
 
-        static __Debugger__ &get();
+    template <typename FuncType>
+    void set_debug_output_func(FuncType func);
 
-    private:
-        std::function<void(const NTL_CHAR *)> m_output_func;
+    template <typename... ArgsType>
+    void debug_output(ArgsType &&...args);
 
-    private:
-        __Debugger__() = default;
-
-    public:
-        __Debugger__(const SelfType &from) = delete;
-        __Debugger__(const SelfType &&from) = delete;
-        ~__Debugger__() = default;
-
-    public:
-        SelfType &operator=(const SelfType &from) = delete;
-        SelfType &operator=(const SelfType &&from) = delete;
-
-    public:
-        void set_output_func(const std::function<void(const NTL_CHAR *)> &output_func);
-        const std::function<void(const NTL_CHAR *)> &get_output_func() const;
-        void output(const NTL_CHAR *str);
-    };
 } // namespace __ntl__
-
-#endif
 
 #endif
 

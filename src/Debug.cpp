@@ -5,33 +5,29 @@
 
 #ifndef NEUTRONTL_CONFIG_NO_DEBUG
 
-#ifdef NEUTRONTL_DEBUG
-
 namespace __ntl__
 {
-    __Debugger__ &__Debugger__::get()
+    template <typename FuncType>
+    void
+    set_debug_output_func(
+        FuncType func)
     {
-        static __Debugger__ debugger;
-        return debugger;
+        debug_output_func = func;
     }
 
-    void __Debugger__::set_output_func(const std::function<void(const NTL_CHAR *)> &output_func)
+    template <typename... ArgsType>
+    void
+    debug_output(
+        ArgsType &&...args)
     {
-        m_output_func = output_func;
+        if (debug_output_func)
+            debug_output_func(
+                ntl::StringUtils::to_string(
+                    std::forward<ArgsType>(args)...)
+                    .data());
     }
 
-    const std::function<void(const NTL_CHAR *)> &__Debugger__::get_output_func() const
-    {
-        return m_output_func;
-    }
-
-    void __Debugger__::output(const NTL_CHAR *str)
-    {
-        m_output_func(str);
-    }
 } // namespace __ntl__
-
-#endif
 
 #endif
 
