@@ -4,9 +4,15 @@
 
 ## 版本
 
-1.2.6
+1.2.7
 
 ## 更新说明
+
+### 1.2.7
+
+增加了Variant，可以储存基本类型和NTL类型，其余类型可以用void*
+
+给BasicDeleter增加了```void operator()(void *ptr) const```和```void operator()(std::nullptr_t) const```
 
 ### 1.2.6
 
