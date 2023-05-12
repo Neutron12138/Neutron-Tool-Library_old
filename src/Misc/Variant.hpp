@@ -8,11 +8,11 @@
 #include "../Memory/SharedPointer.hpp"
 #include "../Memory/WeakPointer.hpp"
 
-// 自动格式化得有点问题...
-
 // Variant的类型列表
 #define NEUTRONTL_VARIANT_TYPES   \
-    CharW,                        \
+    std::nullptr_t,               \
+                                  \
+        CharW,                    \
         Byte,                     \
         UByte,                    \
         Short,                    \
