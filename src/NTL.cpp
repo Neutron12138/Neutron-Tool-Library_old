@@ -69,6 +69,7 @@
 #include "Misc/AnyType.cpp"
 #include "Misc/InitializeOnly.cpp"
 #include "Misc/Result.cpp"
+#include "Misc/Variant.cpp"
 
 #include "Application/Application.cpp"
 #include "Application/ConsoleApplication.cpp"

@@ -47,6 +47,9 @@ namespace ntl
     /// @brief 宽字符
     using CharW = wchar_t;
 
+    /// @brief 通用指针类型
+    using UniversalPointer = void *;
+
 #ifdef NEUTRONTL_CONFIG_USE_WCHAR
     /// @brief 字符类型
     using Char = wchar_t;

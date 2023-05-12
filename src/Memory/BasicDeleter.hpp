@@ -23,8 +23,15 @@ namespace ntl
 
     public:
         constexpr BasicDeleter &operator=(const SelfType &from) noexcept = default;
+
+        void operator()(std::nullptr_t) const;
         virtual void operator()(DataType *ptr) const;
+        virtual void operator()(void *ptr) const;
     };
+
+    //
+    // 数组特化
+    //
 
     /// @brief 基础删除器，数组特化型
     /// @tparam m_DataType 指针类型
@@ -44,7 +51,10 @@ namespace ntl
 
     public:
         constexpr BasicDeleter &operator=(const SelfType &from) noexcept = default;
+
+        void operator()(std::nullptr_t) const;
         virtual void operator()(DataType *ptr) const;
+        virtual void operator()(void *ptr) const;
     };
 
 } // namespace ntl

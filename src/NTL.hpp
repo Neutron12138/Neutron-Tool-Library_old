@@ -92,6 +92,7 @@
 #include "Misc/AnyType.hpp"
 #include "Misc/InitializeOnly.hpp"
 #include "Misc/Result.hpp"
+#include "Misc/Variant.hpp"
 
 #include "Application/Application.hpp"
 #include "Application/ConsoleApplication.hpp"
