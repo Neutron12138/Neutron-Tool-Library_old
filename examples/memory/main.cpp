@@ -59,5 +59,10 @@ int main()
 
     std::cout << "----------" << std::endl;
 
+    std::function<void(void *)> deleter = ntl::BasicDeleter<MyObject>();
+    deleter(new MyObject(6));
+
+    std::cout << "----------" << std::endl;
+
     return 0;
 }

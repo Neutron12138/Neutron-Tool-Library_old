@@ -70,6 +70,19 @@ int main()
               << "*result2.data:" << *result2.data << std::endl
               << "*result2.reason.has_value():" << result2.reason.has_value() << std::endl;
 
+    std::cout << std::endl;
+
+    ntl::Variant var = int(10);
+    std::cout << int(var) << std::endl;
+
+    var = float(10.0f);
+    std::cout << float(var) << std::endl;
+    var = std::string("abc");
+    std::cout << std::string(var) << std::endl;
+    var = std::vector<ntl::Variant>();
+
+    std::cout << "sizeof(ntl::Variant):" << sizeof(ntl::Variant) << std::endl;
+
     return 0;
 }
 
