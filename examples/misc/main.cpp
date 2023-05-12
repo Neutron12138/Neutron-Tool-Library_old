@@ -75,10 +75,16 @@ int main()
     ntl::Variant var = int(10);
     std::cout << int(var) << std::endl;
 
-    var = float(10.0f);
+    var = float(123.0f);
     std::cout << float(var) << std::endl;
     var = std::string("abc");
     std::cout << std::string(var) << std::endl;
+
+    var = new int(666);
+    std::cout << *reinterpret_cast<int *>((void *)var) << std::endl;
+    ntl::BasicDeleter<int>()(reinterpret_cast<int *>((void *)var));
+    var = nullptr;
+
     var = std::vector<ntl::Variant>();
 
     std::cout << "sizeof(ntl::Variant):" << sizeof(ntl::Variant) << std::endl;
