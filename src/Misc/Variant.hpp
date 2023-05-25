@@ -32,7 +32,8 @@
         WeakPointer<BasicObject>, \
         WeakPointer<Object>,      \
                                   \
-        std::vector<Variant>,     \
+        List,                     \
+        Dictionary,               \
                                   \
         SharedPointer<Variant>,   \
         UniquePointer<Variant>,   \
@@ -42,6 +43,12 @@ namespace ntl
 {
     struct Variant;
 
+    /// @brief 列表
+    using List = std::vector<Variant>;
+
+    /// @brief 字典
+    using Dictionary = std::map<String, Variant>;
+
     /// @brief 变体类型
     class Variant
         : public Object,
@@ -50,6 +57,23 @@ namespace ntl
     public:
         using SelfType = Variant;
         using ParentType = std::variant<NEUTRONTL_VARIANT_TYPES>;
+
+        enum Type
+        {
+            Null,
+            Char,
+            Byte,
+            Short,
+            Int,
+            Long,
+            Float,
+            Double,
+            Pointer,
+            String,
+            Reference,
+            List,
+            Dictionary,
+        };
 
     public:
         Variant() = default;
