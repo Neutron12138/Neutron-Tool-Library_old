@@ -1,6 +1,8 @@
 # Neutron-Tool-Library
 
-一个简单的C++工具库
+一个简单的C++工具库，现在已被放弃。
+
+新版：https://github.com/Neutron12138/Neutron-Tool-Library
 
 ## 版本
 
